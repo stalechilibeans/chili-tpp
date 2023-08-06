@@ -7,4 +7,3 @@ struct AreaMapData castle_courtyard_areamap = {
     /* Y */    -7.5f,
     /* Size */  2.25f,
 };
-//i couldn't get the minimap stuff figured out, so it would be nice if that was fixed by another person with more knowledge than i'll ever have
