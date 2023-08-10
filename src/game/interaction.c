@@ -563,7 +563,7 @@ u32 determine_knockback_action(struct MarioState *m, UNUSED s32 arg) {
 
     if (remainingHealth < 0x100) {
         strengthIndex = 2;
-    } else if (m->interactObj->oDamageOrCoinValue >= 2) {
+    } else if (m->interactObj->oDamageOrCoinValue >= 1) {
         strengthIndex = 2;
     }
 

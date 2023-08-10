@@ -1590,7 +1590,7 @@ chan_end
 .layer_96E:
 layer_somethingon
 .layer_96F:
-layer_note1 39, 0x12c, 80
+layer_note1 40, 0x12c, 95
 layer_jump .layer_96F
 layer_end
 
@@ -7825,6 +7825,7 @@ layer_note1 39, 0xc7, 79
 layer_note1 35, 0xe9, 74
 layer_jump .layer_31EB
 layer_end
+
 
 .sound_obj_bird_chirp1:
 chan_setbank 5

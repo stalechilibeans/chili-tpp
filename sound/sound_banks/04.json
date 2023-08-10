@@ -77,7 +77,7 @@
     "instruments": {
         "inst0": {
             "release_rate": 123,
-            "envelope": "envelope0",
+            "envelope": "envelope0", //goe mama
             "sound": "00"
         },
         "inst1": {
