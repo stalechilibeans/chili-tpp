@@ -981,7 +981,7 @@ void radial_camera_move(struct Camera *c) {
     }
 
     if (gCameraMovementFlags & CAM_MOVE_ENTERED_ROTATE_SURFACE) {
-        rotateSpeed = 0x7F;
+        rotateSpeed = 0x49;
     }
 
     if (c->mode == CAMERA_MODE_OUTWARD_RADIAL) {
@@ -10818,7 +10818,7 @@ void approach_fov_45(struct MarioState *m) {
     f32 targetFoV = sFOVState.fov;
 
     if (m->area->camera->mode == CAMERA_MODE_FIXED && m->area->camera->cutscene == 0) {
-        targetFoV = 64.f;
+        targetFoV = 61.f;
     } else {
         targetFoV = 45.f;
     }
