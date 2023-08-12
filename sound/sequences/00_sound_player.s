@@ -386,7 +386,8 @@ chan_setlayer 0, .layer_252
 chan_end
 
 .layer_252:
-layer_note1 39, 0x1E, 80
+layer_note1 41, 0x6, 100
+layer_note1 50, 0x18, 100
 layer_end
 
 .sound_action_jump_stone:
@@ -450,9 +451,10 @@ chan_setinstr 0
 chan_setlayer 0, .layer_2AE
 chan_end
 
+#zoo wee mama
 .layer_2AE:
-layer_note1 46, 0xc, 117
-layer_note1 41, 0x18, 117
+layer_portamento 0, 0, 255
+layer_note1 46, 0x18, 255
 layer_end
 
 .sound_action_landing_grass:
@@ -473,7 +475,8 @@ chan_setlayer 0, .layer_2CC
 chan_end
 
 .layer_2CC:
-layer_note1 39, 0x24, 120
+layer_note1 50, 0xc, 100
+layer_note1 41, 0x18, 100
 layer_end
 
 .sound_action_landing_stone:
@@ -2870,7 +2873,7 @@ chan_setlayer 0, .layer_10E3
 chan_end
 
 .layer_10E3:
-layer_note1 39, 0x38, 100
+layer_note1 39, 0x38, 115 #made the sound louder
 layer_note1 0, 0x0, 0
 layer_end
 
@@ -2958,6 +2961,8 @@ chan_end
 
 .layer_1161:
 layer_note1 32, 0x18, 127
+layer_portamento 0x81, 41, 255
+layer_note1 27, 0x96, 127
 layer_end
 
 .sound_general_quiet_bubble2:
@@ -5218,6 +5223,7 @@ layer_end
 layer_note1 30, 0x7f, 127
 layer_end
 
+
 .sound_obj_cannon1:
 chan_setbank 6
 chan_setinstr 10
@@ -5730,7 +5736,8 @@ chan_end
 
 .layer_236A:
 layer_setinstr 0
-layer_note1 39, 0x54, 100
+layer_portamento 0x82, 44, 255
+layer_note1 43, 0x54, 100
 layer_end
 
 .layer_2374:
@@ -7826,7 +7833,6 @@ layer_note1 35, 0xe9, 74
 layer_jump .layer_31EB
 layer_end
 
-
 .sound_obj_bird_chirp1:
 chan_setbank 5
 chan_setinstr 12
@@ -7836,18 +7842,7 @@ chan_setlayer 0, .layer_3221
 chan_end
 
 .layer_3221:
-layer_delay 0x32
-layer_note1 41, 0x31, 66
-layer_delay 0x9f
-layer_note1 39, 0x31, 51
-layer_delay 0xf9
-layer_note1 38, 0x1d, 60
-layer_note1 41, 0x4c, 77
-layer_delay_long 0x64
-layer_note1 42, 0x31, 59
-layer_delay 0x159
-layer_note1 36, 0x4f, 61
-layer_delay 0xc6
+layer_note1 39, 0x425, 127
 layer_jump .layer_3221
 layer_end
 
@@ -7920,11 +7915,7 @@ layer_note0 38, 0x3, 127, 127
 layer_delay 0x2a
 layer_jump .layer_32B7
 
-.ifndef VERSION_US
-  # padding
-  .byte 0
-.endif
-
+.align 2, 0
 .envelope_32C4:
 envelope_line 7 20000
 envelope_line 6 32700
