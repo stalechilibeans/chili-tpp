@@ -147,19 +147,19 @@
             {"release_rate": 10, "pan": 65, "envelope": "envelope4", "sound": {"sample": "08", "tuning": 0.75}}, //snare
             {"release_rate": 10, "pan": 66, "envelope": "envelope4", "sound": {"sample": "08", "tuning": 0.75}}, //snare
             {"release_rate": 10, "pan": 66, "envelope": "envelope4", "sound": {"sample": "08", "tuning": 0.75}}, //snare
-             {"release_rate": 10, "pan": 6, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.4}}, //log drums!!!
-            {"release_rate": 10, "pan": 6, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.4}}, //log drums!!!
-            {"release_rate": 10, "pan": 27, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.4}}, //log drums!!!
-            {"release_rate": 10, "pan": 27, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.4}},//log drums!!!
-            {"release_rate": 10, "pan": 45, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.4}}, //log drums!!!
-            {"release_rate": 10, "pan": 45, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.4}}, //log drums!!!
-            {"release_rate": 10, "pan": 53, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.4}}, //log drums!!!
-            {"release_rate": 10, "pan": 53, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.4}}, //log drums!!!
-            {"release_rate": 10, "pan": 83, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.4}}, //log drums!!!
-            {"release_rate": 10, "pan": 83, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.4}}, //log drums!!!
-            {"release_rate": 10, "pan": 83, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.4}}, //log drums!!!
-            {"release_rate": 10, "pan": 83, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.4}}, //log drums!!!
-            {"release_rate": 10, "pan": 83, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.4}}, //log drums!!!
+             {"release_rate": 10, "pan": 6, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.3}}, //log drums!!!
+            {"release_rate": 10, "pan": 6, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.3}}, //log drums!!!
+            {"release_rate": 10, "pan": 27, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.3}}, //log drums!!!
+            {"release_rate": 10, "pan": 27, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.3}},//log drums!!!
+            {"release_rate": 10, "pan": 45, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.3}}, //log drums!!!
+            {"release_rate": 10, "pan": 45, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.3}}, //log drums!!!
+            {"release_rate": 10, "pan": 53, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.3}}, //log drums!!!
+            {"release_rate": 10, "pan": 53, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.3}}, //log drums!!!
+            {"release_rate": 10, "pan": 83, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.3}}, //log drums!!!
+            {"release_rate": 10, "pan": 83, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.3}}, //log drums!!!
+            {"release_rate": 10, "pan": 83, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.3}}, //log drums!!!
+            {"release_rate": 10, "pan": 83, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.3}}, //log drums!!!
+            {"release_rate": 10, "pan": 83, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.3}}, //log drums!!!
             {"release_rate": 10, "pan": 35, "envelope": "envelope8", "sound": {"sample": "0A", "tuning": 1.189207}},
             {"release_rate": 10, "pan": 35, "envelope": "envelope8", "sound": {"sample": "0A", "tuning": 1.259921}},
             {"release_rate": 10, "pan": 35, "envelope": "envelope8", "sound": {"sample": "0A", "tuning": 1.33484}},
