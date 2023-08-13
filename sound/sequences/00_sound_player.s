@@ -364,8 +364,8 @@ chan_setlayer 0, .layer_234
 chan_end
 
 .layer_234:
-layer_note1 41, 0xc, 117
-layer_note1 46, 0x18, 117
+layer_portamento 0, 0, 255
+layer_note1 46, 0x18, 255
 layer_end
 
 .sound_action_jump_grass:
@@ -386,7 +386,6 @@ chan_setlayer 0, .layer_252
 chan_end
 
 .layer_252:
-layer_note1 41, 0x6, 100
 layer_note1 50, 0x18, 100
 layer_end
 
@@ -397,8 +396,8 @@ chan_setlayer 0, .layer_261
 chan_end
 
 .layer_261:
-layer_note1 41, 0xc, 127
-layer_note1 50, 0x18, 127
+layer_portamento 0, 0, 255
+layer_note1 46, 0x18, 255
 layer_end
 
 .sound_action_jump_spooky:
@@ -419,8 +418,7 @@ chan_setlayer 0, .layer_27F
 chan_end
 
 .layer_27F:
-layer_note1 41, 0xc, 80
-layer_note1 50, 0x18, 80
+layer_note1 46, 0x18, 255
 layer_end
 
 .sound_action_jump_ice:
@@ -476,7 +474,7 @@ chan_end
 
 .layer_2CC:
 layer_note1 50, 0xc, 100
-layer_note1 41, 0x18, 100
+layer_note1 40, 0x18, 100
 layer_end
 
 .sound_action_landing_stone:
@@ -486,8 +484,8 @@ chan_setlayer 0, .layer_2DB
 chan_end
 
 .layer_2DB:
-layer_note1 50, 0xc, 127
-layer_note1 41, 0x18, 127
+layer_portamento 0, 0, 255
+layer_note1 46, 0x18, 255
 layer_end
 
 .sound_action_landing_spooky:
@@ -508,8 +506,7 @@ chan_setlayer 0, .layer_2F9
 chan_end
 
 .layer_2F9:
-layer_note1 50, 0xc, 80
-layer_note1 41, 0x18, 80
+layer_note1 46, 0x18, 255
 layer_end
 
 .sound_action_landing_ice:
@@ -2068,9 +2065,6 @@ chan_setlayer 0, .layer_C3C
 chan_end
 
 .layer_C3C:
-.ifdef VERSION_EU
-  layer_transpose 2
-.endif
 layer_note1 39, 0x64, 127
 layer_end
 
@@ -5736,8 +5730,7 @@ chan_end
 
 .layer_236A:
 layer_setinstr 0
-layer_portamento 0x82, 44, 255
-layer_note1 43, 0x54, 100
+layer_note1 39, 0x54, 100
 layer_end
 
 .layer_2374:

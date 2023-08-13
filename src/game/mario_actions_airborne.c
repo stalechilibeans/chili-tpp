@@ -1422,7 +1422,7 @@ s32 act_butt_slide_air(struct MarioState *m) {
             } else {
                 set_mario_action(m, ACT_BUTT_SLIDE, 0);
             }
-            play_mario_landing_sound(m, SOUND_ACTION_TERRAIN_LANDING);
+            play_mario_landing_sound(m, SOUND_ACTION_TERRAIN_STEP);
             break;
 
         case AIR_STEP_HIT_WALL:

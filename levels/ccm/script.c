@@ -98,7 +98,7 @@ const LevelScript level_ccm_entry[] = {
     END_AREA(),
 
     AREA(/*index*/ 2, ccm_geo_000B5C),
-        OBJECT(/*model*/ MODEL_NONE, /*pos*/ 7000, 5381, 6750, /*angle*/ 0, 225, 0, /*behParam*/ 0x000A0000, /*beh*/ bhvWarps64),
+        OBJECT(/*model*/ MODEL_NONE, /*pos*/ 6850, 5381, 6600, /*angle*/ 0, 225, 0, /*behParam*/ 0x000A0000, /*beh*/ bhvWarps64),
         WARP_NODE(/*id*/ 0x0A, /*destLevel*/ LEVEL_CCM, /*destArea*/ 0x02, /*destNode*/ 0x0A, /*flags*/ WARP_NO_CHECKPOINT),
         WARP_NODE(/*id*/ 0xF0, /*destLevel*/ LEVEL_CASTLE, /*destArea*/ 0x01, /*destNode*/ 0x32, /*flags*/ WARP_NO_CHECKPOINT),
         WARP_NODE(/*id*/ 0xF1, /*destLevel*/ LEVEL_CASTLE, /*destArea*/ 0x01, /*destNode*/ 0x64, /*flags*/ WARP_NO_CHECKPOINT),

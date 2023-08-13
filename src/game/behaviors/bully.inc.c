@@ -161,7 +161,7 @@ void bully_step(void) {
     s16 collisionFlags = 0;
     collisionFlags = object_step();
     bully_backup_check(collisionFlags);
-    bully_play_stomping_sound();
+    //bully_play_stomping_sound();
     obj_check_floor_death(collisionFlags, sObjFloor);
 
     if (o->oBullySubtype & BULLY_STYPE_CHILL) {
