@@ -70,7 +70,7 @@ s8 gDebugLevelSelect = 0;
 s8 D_8032C650 = 0;
 
 s8 gShowProfiler = FALSE;
-s8 gShowDebugText = TRUE;
+s8 gShowDebugText = FALSE;
 
 u16 sProfilerKeySequence[] = { U_JPAD, U_JPAD, D_JPAD, D_JPAD, L_JPAD, R_JPAD, L_JPAD, R_JPAD };
 
