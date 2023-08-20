@@ -114,6 +114,7 @@ s32 set_pole_position(struct MarioState *m, f32 offsetY) {
 
 s32 act_holding_pole(struct MarioState *m) {
     struct Object *marioObj = m->marioObj;
+    int anim = MARIO_ANIM_IDLE_ON_POLE;
 
 #ifdef VERSION_JP
     if (m->input & INPUT_A_PRESSED) {
@@ -140,6 +141,11 @@ s32 act_holding_pole(struct MarioState *m) {
         return set_mario_action(m, ACT_WALL_KICK_AIR, 0);
     }
 #endif
+
+    if (m->actionTimer <= 12) {
+        anim = MARIO_ANIM_JUST_GRABBED_POLE;
+        m->actionTimer++;
+    }
 
     if (m->controller->stickY > 16.0f) {
         f32 poleTop = m->usedObj->hitboxHeight - 100.0f;
@@ -181,7 +187,7 @@ s32 act_holding_pole(struct MarioState *m) {
     }
 
     if (set_pole_position(m, 0.0f) == POLE_NONE) {
-        set_mario_animation(m, MARIO_ANIM_IDLE_ON_POLE);
+        set_mario_animation(m, anim);
     }
 
     return FALSE;
