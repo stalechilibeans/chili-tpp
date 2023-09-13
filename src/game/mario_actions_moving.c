@@ -1564,15 +1564,9 @@ s32 common_ground_knockback_action(struct MarioState *m, s32 animation, s32 arg2
         play_mario_heavy_landing_sound_once(m, SOUND_ACTION_TERRAIN_BODY_HIT_GROUND);
     }
 
-    if (arg4 > 0) {
+    if (m->action != ACT_FORWARD_GROUND_KB) {
         play_sound_if_no_flag(m, SOUND_MARIO_ATTACKED, MARIO_MARIO_SOUND_PLAYED);
-    } else {
-#ifdef VERSION_JP
-        play_sound_if_no_flag(m, SOUND_MARIO_ATTACKED, MARIO_MARIO_SOUND_PLAYED);
-#else
-        play_sound_if_no_flag(m, SOUND_MARIO_OOOF2, MARIO_MARIO_SOUND_PLAYED);
-#endif
-    }
+    } 
 
     if (m->forwardVel > 32.0f) {
         m->forwardVel = 32.0f;
@@ -1591,18 +1585,24 @@ s32 common_ground_knockback_action(struct MarioState *m, s32 animation, s32 arg2
     }
 
     if (perform_ground_step(m) == GROUND_STEP_LEFT_GROUND) {
-        if (m->forwardVel >= 0.0f) {
-            set_mario_action(m, ACT_FORWARD_AIR_KB, arg4);
-        } else {
-            set_mario_action(m, ACT_BACKWARD_AIR_KB, arg4);
+        if (m->action != ACT_FORWARD_GROUND_KB) {
+            if (m->forwardVel >= 0.0f) {
+                set_mario_action(m, ACT_FORWARD_GROUND_KB, arg4);
+            } else {
+                set_mario_action(m, ACT_BACKWARD_GROUND_KB, arg4);
         }
+        } else if (is_anim_at_end(m)) {
+            if (m->health < 0x100) {
+                set_mario_action(m, ACT_STANDING_DEATH, 0);
+            } else {
+                set_mario_action(m, ACT_IDLE, 0);
+            }    
+        }
+        m->forwardVel = 0.0f;
     } else if (is_anim_at_end(m)) {
         if (m->health < 0x100) {
             set_mario_action(m, ACT_STANDING_DEATH, 0);
         } else {
-            if (arg4 > 0) {
-                //m->invincTimer = 30;
-            }
             set_mario_action(m, ACT_IDLE, 0);
         }
     }

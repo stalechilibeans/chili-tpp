@@ -285,9 +285,9 @@ static s32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos) {
             return GROUND_STEP_HIT_WALL_STOP_QSTEPS;
         }
 
-        vec3f_copy(m->pos, nextPos);
-        m->floor = floor;
-        m->floorHeight = floorHeight;
+        //vec3f_copy(m->pos, nextPos);
+        //m->floor = floor;
+        //m->floorHeight = floorHeight;
         return GROUND_STEP_LEFT_GROUND;
     }
 
