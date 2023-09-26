@@ -8685,11 +8685,7 @@ BAD_RETURN(s32) cutscene_read_message_start(struct Camera *c) {
 }
 
 static void unused_cam_to_mario(struct Camera *c) {
-    Vec3s dir;
-
-    vec3s_set(dir, 0, sMarioCamState->faceAngle[1], 0);
-    offset_rotated_coords(c->pos, sMarioCamState->pos, dir, 0, 100.f, 190.f);
-    offset_rotated_coords(c->focus, sMarioCamState->pos, dir, 0, 70.f, -20.f);
+    set_focus_rel_mario(c, 0.f, 125.f, 0.f, 0);
 }
 
 /**
@@ -10062,7 +10058,8 @@ struct Cutscene sCutsceneDoorPull[] = { { cutscene_door_start, 1 },
  * Cutscene that plays when mario pushes open a door.
  */
 struct Cutscene sCutsceneDoorPush[] = { { cutscene_door_start, 1 },
-                                        { cutscene_door_fix_cam, 20 },
+                                        { cutscene_door_fix_cam, 19 },
+                                        { unused_cam_to_mario, 1 },
                                         { cutscene_door_move_behind_mario, 1 },
                                         { cutscene_door_follow_mario, 50 },
                                         { cutscene_door_end, 0 } };
