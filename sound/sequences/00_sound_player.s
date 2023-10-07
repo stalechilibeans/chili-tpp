@@ -395,7 +395,7 @@ chan_setlayer 0, .layer_261
 chan_end
 
 .layer_261:
-layer_note1 30, 0x18, 255
+layer_note1 40, 0x18, 255
 layer_end
 
 .sound_action_jump_spooky:
