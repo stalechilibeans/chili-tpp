@@ -5079,7 +5079,7 @@ chan_setlayer 0, .layer_1F85
 chan_end
 
 .layer_1F85:
-layer_note1 39, 0x30, 110
+layer_note1 30, 0x30, 110
 layer_end
 
 .sound_obj_bowser_walk:
