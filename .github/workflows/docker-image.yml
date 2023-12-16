@@ -18,7 +18,7 @@ jobs:
       run: wget https://archive.org/download/nointro.n64/Super%20Mario%2064%20%28Japan%29.7z/Super%20Mario%2064%20%28Japan%29.z64 && mv "Super Mario 64 (Japan).z64" baserom.jp.z64
     
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag sm64
+      run: docker build . --file Dockerfile --tag tpp
       
     - name: Run the Docker image
-      run: docker run --rm --mount type=bind,source="$(pwd)",destination=/sm64 sm64 make -j
+      run: docker run --rm --mount type=bind,source="$(pwd)",destination=/tpp tpp make -j

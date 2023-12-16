@@ -82,7 +82,7 @@ For each version (jp/us/eu) that you want to build a ROM for, put an existing RO
 #### 2. Create docker image
 
 ```bash
-docker build -t sm64 .
+docker build -t tpp .
 ```
 
 #### 3. Build
@@ -91,10 +91,10 @@ To build we simply have to mount our local filesystem into the docker container 
 
 ```bash
 # for example if you have baserom.us.z64 in the project root
-docker run --rm --mount type=bind,source="$(pwd)",destination=/sm64 sm64 make VERSION=us -j4
+docker run --rm -v ${PWD}:/tpp tpp make VERSION=jp -j4
 
 # if your host system is linux you need to tell docker what user should own the output files
-docker run --rm --mount type=bind,source="$(pwd)",destination=/sm64 --user $UID:$UID sm64 make VERSION=us -j4
+docker run --rm -v ${PWD}:/tpp --user $UID:$UID tpp make VERSION=jp -j4
 ```
 
 Resulting artifacts can be found in the `build` directory.
