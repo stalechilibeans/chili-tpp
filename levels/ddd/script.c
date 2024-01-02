@@ -3,6 +3,7 @@
 #include "behavior_data.h"
 #include "model_ids.h"
 #include "seq_ids.h"
+#include "dialog_ids.h"
 #include "segment_symbols.h"
 #include "level_commands.h"
 
@@ -88,6 +89,7 @@ const LevelScript level_ddd_entry[] = {
         INSTANT_WARP(/*index*/ 3, /*destArea*/ 2, /*displace*/ -8192, 0, 0),
         TERRAIN(/*terrainData*/ water_land_area_1_collision),
         MACRO_OBJECTS(/*objList*/ water_land_area_1_macro),
+        SHOW_DIALOG(/*index*/ 0x00, DIALOG_053),
         SET_BACKGROUND_MUSIC(/*settingsPreset*/ 0x0000, /*seq*/ SEQ_LEVEL_WATER),
         TERRAIN_TYPE(/*terrainType*/ TERRAIN_WATER),
     END_AREA(),
