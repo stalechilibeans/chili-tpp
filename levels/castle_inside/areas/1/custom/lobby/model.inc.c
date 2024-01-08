@@ -2044,12 +2044,12 @@ Gfx castle_inside_main_dl_mesh[] = {
 };
 
 Vtx castle_inside_decal_dl_mesh_vtx_0[6] = {
-	{{ {468, 569, -539}, 0, {-16, 1008}, {0, 0, 127, 255} }},
-	{{ {661, 569, -539}, 0, {1008, 1008}, {0, 0, 127, 255} }},
-	{{ {661, 785, -539}, 0, {1008, -16}, {0, 0, 127, 255} }},
-	{{ {468, 569, -539}, 0, {-16, 1008}, {255, 1, 127, 255} }},
-	{{ {661, 785, -539}, 0, {1008, -16}, {255, 1, 127, 255} }},
-	{{ {468, 785, -540}, 0, {-16, -16}, {255, 1, 127, 255} }},
+	{{ {-665, 569, -539}, 0, {-16, 1008}, {255, 1, 127, 255} }},
+	{{ {-472, 785, -539}, 0, {1008, -16}, {255, 1, 127, 255} }},
+	{{ {-665, 785, -540}, 0, {-16, -16}, {255, 1, 127, 255} }},
+	{{ {-665, 569, -539}, 0, {-16, 1008}, {0, 0, 127, 255} }},
+	{{ {-472, 569, -539}, 0, {1008, 1008}, {0, 0, 127, 255} }},
+	{{ {-472, 785, -539}, 0, {1008, -16}, {0, 0, 127, 255} }},
 };
 
 Gfx castle_inside_decal_dl_mesh_tri_0[] = {
@@ -2060,12 +2060,12 @@ Gfx castle_inside_decal_dl_mesh_tri_0[] = {
 };
 
 Vtx castle_inside_decal_dl_mesh_vtx_1[6] = {
-	{{ {-665, 569, -539}, 0, {-16, 1008}, {255, 1, 127, 255} }},
-	{{ {-472, 785, -539}, 0, {1008, -16}, {255, 1, 127, 255} }},
-	{{ {-665, 785, -540}, 0, {-16, -16}, {255, 1, 127, 255} }},
-	{{ {-665, 569, -539}, 0, {-16, 1008}, {0, 0, 127, 255} }},
-	{{ {-472, 569, -539}, 0, {1008, 1008}, {0, 0, 127, 255} }},
-	{{ {-472, 785, -539}, 0, {1008, -16}, {0, 0, 127, 255} }},
+	{{ {468, 569, -539}, 0, {-16, 1008}, {0, 0, 127, 255} }},
+	{{ {661, 569, -539}, 0, {1008, 1008}, {0, 0, 127, 255} }},
+	{{ {661, 785, -539}, 0, {1008, -16}, {0, 0, 127, 255} }},
+	{{ {468, 569, -539}, 0, {-16, 1008}, {255, 1, 127, 255} }},
+	{{ {661, 785, -539}, 0, {1008, -16}, {255, 1, 127, 255} }},
+	{{ {468, 785, -540}, 0, {-16, -16}, {255, 1, 127, 255} }},
 };
 
 Gfx castle_inside_decal_dl_mesh_tri_1[] = {
@@ -2077,10 +2077,10 @@ Gfx castle_inside_decal_dl_mesh_tri_1[] = {
 
 Gfx castle_inside_decal_dl_mesh[] = {
 	gsSPDisplayList(mat_castle_inside_MoonMaterial),
-	gsSPDisplayList(castle_inside_decal_dl_mesh_tri_1),
+	gsSPDisplayList(castle_inside_decal_dl_mesh_tri_0),
 	gsSPDisplayList(mat_revert_castle_inside_MoonMaterial),
 	gsSPDisplayList(mat_castle_inside_StarMaterial),
-	gsSPDisplayList(castle_inside_decal_dl_mesh_tri_0),
+	gsSPDisplayList(castle_inside_decal_dl_mesh_tri_1),
 	gsSPDisplayList(mat_revert_castle_inside_StarMaterial),
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),
