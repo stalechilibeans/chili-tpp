@@ -31,7 +31,7 @@ const Collision bowser_1_seg7_collision_level[] = {
     COL_VERTEX(-7167, -6143, -7167),
     COL_VERTEX(-7167, -6143, 7168),
     COL_VERTEX(7168, -6143, 7168),
-    COL_TRI_INIT(SURFACE_DEFAULT, 40),
+    COL_TRI_INIT(SURFACE_VERY_SLIPPERY, 40),
     COL_TRI(5, 6, 7),
     COL_TRI(0, 1, 2),
     COL_TRI(1, 3, 4),
