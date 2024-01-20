@@ -426,8 +426,7 @@ chan_setlayer 0, .layer_28E
 chan_end
 
 .layer_28E:
-layer_note1 29, 0xc, 127
-layer_note1 38, 0x18, 127
+layer_note1 29, 0xc, 255
 layer_end
 
 .sound_action_jump_sand:
@@ -447,9 +446,7 @@ chan_setinstr 0
 chan_setlayer 0, .layer_2AE
 chan_end
 
-#zoo wee mama
 .layer_2AE:
-layer_portamento 0, 0, 255
 layer_note1 46, 0x18, 255
 layer_end
 
@@ -514,8 +511,7 @@ chan_setlayer 0, .layer_308
 chan_end
 
 .layer_308:
-layer_note1 38, 0xc, 127
-layer_note1 29, 0x18, 127
+layer_note1 38, 0xc, 255
 layer_end
 
 .sound_action_landing_sand:
