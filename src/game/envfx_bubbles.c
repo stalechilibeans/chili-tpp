@@ -80,7 +80,7 @@ s32 random_flower_offset() {
  */
 void envfx_update_flower(Vec3s centerPos) {
     s32 i;
-    struct FloorGeometry *floorGeo; // unused
+    struct Plane *floorGeo; // unused
     s32 timer = gGlobalTimer;
 
     s16 centerX = centerPos[0];
@@ -92,7 +92,7 @@ void envfx_update_flower(Vec3s centerPos) {
         if ((gEnvFxBuffer + i)->isAlive == 0) {
             (gEnvFxBuffer + i)->xPos = random_flower_offset() + centerX;
             (gEnvFxBuffer + i)->zPos = random_flower_offset() + centerZ;
-            (gEnvFxBuffer + i)->yPos = find_floor_height_and_data((gEnvFxBuffer + i)->xPos, 10000.0f,
+            (gEnvFxBuffer + i)->yPos = mcGroundCheck((gEnvFxBuffer + i)->xPos, 10000.0f,
                                                                   (gEnvFxBuffer + i)->zPos, &floorGeo);
             (gEnvFxBuffer + i)->isAlive = 1;
             (gEnvFxBuffer + i)->animFrame = random_float() * 5.0f;
@@ -107,7 +107,7 @@ void envfx_update_flower(Vec3s centerPos) {
 
 /**
  * Update the position of a lava bubble to be somewhere around centerPos
- * Uses find_floor to find the height of lava, if no floor or a non-lava
+ * Uses mcBGGroundCheck to find the height of lava, if no floor or a non-lava
  * floor is found the bubble y is set to -10000, which is why you can see
  * occasional lava bubbles far below the course in Lethal Lava Land.
  * In the second Bowser fight arena, the visual lava is above the lava
@@ -141,7 +141,7 @@ void envfx_set_lava_bubble_position(s32 index, Vec3s centerPos) {
     }
 
     floorY =
-        find_floor((gEnvFxBuffer + index)->xPos, centerY + 500, (gEnvFxBuffer + index)->zPos, &surface);
+        mcBGGroundCheck((gEnvFxBuffer + index)->xPos, centerY + 500, (gEnvFxBuffer + index)->zPos, &surface);
     if (surface == NULL) {
         (gEnvFxBuffer + index)->yPos = -10000;
         return;

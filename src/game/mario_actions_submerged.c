@@ -73,7 +73,7 @@ static u32 perform_water_full_step(struct MarioState *m, Vec3f nextPos) {
     f32 floorHeight;
 
     wall = resolve_and_return_wall_collisions(nextPos, 10.0f, 110.0f);
-    floorHeight = find_floor(nextPos[0], nextPos[1], nextPos[2], &floor);
+    floorHeight = mcBGGroundCheck(nextPos[0], nextPos[1], nextPos[2], &floor);
     ceilHeight = vec3f_find_ceil(nextPos, floorHeight, &ceil);
 
     if (floor == NULL) {
@@ -570,8 +570,7 @@ static s32 act_breaststroke(struct MarioState *m) {
     }
 
     if (m->actionTimer == 1) {
-        play_sound(sSwimStrength == MIN_SWIM_STRENGTH ? SOUND_ACTION_SWIM : SOUND_ACTION_SWIM_FAST,
-                   m->marioObj->header.gfx.cameraToObject);
+        play_sound(SOUND_ACTION_SWIM, m->marioObj->header.gfx.cameraToObject);
         reset_float_globals(m);
     }
 

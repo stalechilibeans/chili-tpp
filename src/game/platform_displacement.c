@@ -33,7 +33,7 @@ void update_mario_platform(void) {
         return;
     }
 
-    //! If mario moves onto a rotating platform in a PU, the find_floor call
+    //! If mario moves onto a rotating platform in a PU, the mcBGGroundCheck call
     //  will detect the platform and he will end up receiving a large amount
     //  of displacement since he is considered to be far from the platform's
     //  axis of rotation.
@@ -41,7 +41,7 @@ void update_mario_platform(void) {
     marioX = gMarioObject->oPosX;
     marioY = gMarioObject->oPosY;
     marioZ = gMarioObject->oPosZ;
-    floorHeight = find_floor(marioX, marioY, marioZ, &floor);
+    floorHeight = mcBGGroundCheck(marioX, marioY, marioZ, &floor);
 
     if (absf(marioY - floorHeight) < 4.0f) {
         awayFromFloor = 0;

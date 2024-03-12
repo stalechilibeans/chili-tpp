@@ -537,7 +537,7 @@ s32 act_debug_free_move(struct MarioState *m) {
 
     resolve_and_return_wall_collisions(pos, 60.0f, 50.0f);
 
-    floorHeight = find_floor(pos[0], pos[1], pos[2], &surf);
+    floorHeight = mcBGGroundCheck(pos[0], pos[1], pos[2], &surf);
     if (surf != NULL) {
         if (pos[1] < floorHeight) {
             pos[1] = floorHeight;
@@ -1786,7 +1786,7 @@ static f32 end_obj_set_visual_pos(struct Object *o) {
     sp1C = o->header.gfx.pos[1] + 10.0f;
     sp18 = o->header.gfx.pos[2] + sp24[2];
 
-    return find_floor(sp20, sp1C, sp18, &surf);
+    return mcBGGroundCheck(sp20, sp1C, sp18, &surf);
 }
 
 // make mario fall and soften wing cap gravity
@@ -1938,7 +1938,7 @@ static void end_peach_cutscene_run_to_peach(struct MarioState *m) {
         advance_cutscene_step(m);
     }
 
-    m->pos[1] = find_floor(m->pos[0], m->pos[1], m->pos[2], &surf);
+    m->pos[1] = mcBGGroundCheck(m->pos[0], m->pos[1], m->pos[2], &surf);
 
     set_mario_anim_with_accel(m, MARIO_ANIM_RUNNING, 0x00080000);
     play_step_sound(m, 9, 45);

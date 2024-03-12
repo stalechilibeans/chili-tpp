@@ -22,7 +22,7 @@ s32 unused8038BE90;
  * the 16x16 cells that each level is split into.
  */
 SpatialPartitionCell gStaticSurfacePartition[16][16];
-SpatialPartitionCell gDynamicSurfacePartition[16][16];
+SpatialPartitionCell gDynamicSurfacePartition;
 
 /**
  * Pools of data to contain either surface nodes or surfaces.
@@ -142,7 +142,7 @@ static void add_surface_to_cell(s16 dynamic, s16 cellX, s16 cellZ, struct Surfac
     newNode->surface = surface;
 
     if (dynamic) {
-        list = &gDynamicSurfacePartition[cellZ][cellX][listIndex];
+        list = &gDynamicSurfacePartition[listIndex];
     } else {
         list = &gStaticSurfacePartition[cellZ][cellX][listIndex];
     }
@@ -291,7 +291,8 @@ static void add_surface(struct Surface *surface, s32 dynamic) {
     }
 }
 
-static void stub_surface_load_1(void) {
+static void stub_surface_load_1(struct Surface *surface) {
+    add_surface_to_cell(TRUE, 0, 0, surface);
 }
 
 /**
@@ -599,7 +600,9 @@ void clear_dynamic_surfaces(void) {
         gSurfacesAllocated = gNumStaticSurfaces;
         gSurfaceNodesAllocated = gNumStaticSurfaceNodes;
 
-        clear_spatial_partition(&gDynamicSurfacePartition[0][0]);
+        gDynamicSurfacePartition[SPATIAL_PARTITION_FLOORS].next = NULL;
+        gDynamicSurfacePartition[SPATIAL_PARTITION_CEILS].next = NULL;
+        gDynamicSurfacePartition[SPATIAL_PARTITION_WALLS].next = NULL;
     }
 }
 
@@ -686,7 +689,7 @@ void load_object_surfaces(s16 **data, s16 *vertexData) {
 
             surface->flags |= flags;
             surface->room = (s8) room;
-            add_surface(surface, TRUE);
+            stub_surface_load_1(surface);
         }
 
         if (hasForce) {

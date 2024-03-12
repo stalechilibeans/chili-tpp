@@ -64,7 +64,7 @@ struct WaterDropletParams sShallowWaterWaveDropletParams = {
 void bhv_water_splash_spawn_droplets(void) {
     s32 i;
     if (o->oTimer == 0)
-        o->oPosY = find_water_level(o->oPosX, o->oPosZ);
+        o->oPosY = mcWaterCheck(o->oPosX, o->oPosZ);
 
     if (o->oPosY > -10000.0f) // Make sure it is not at the default water level
         for (i = 0; i < 3; i++)
@@ -73,7 +73,7 @@ void bhv_water_splash_spawn_droplets(void) {
 
 void bhv_water_droplet_loop(void) {
     UNUSED u32 unusedVar;
-    f32 waterLevel = find_water_level(o->oPosX, o->oPosZ);
+    f32 waterLevel = mcWaterCheck(o->oPosX, o->oPosZ);
 
     if (o->oTimer == 0) {
         if (cur_obj_has_model(MODEL_FISH))
@@ -112,7 +112,7 @@ void bhv_water_droplet_splash_init(void) {
 }
 
 void bhv_bubble_splash_init(void) {
-    f32 waterLevel = find_water_level(o->oPosX, o->oPosZ);
+    f32 waterLevel = mcWaterCheck(o->oPosX, o->oPosZ);
     obj_scale_xyz(o, 0.5f, 1.0f, 0.5f);
     o->oPosY = waterLevel + 5.0f;
 }
@@ -128,7 +128,7 @@ void bhv_shallow_water_splash_init(void) {
 }
 
 void bhv_wave_trail_shrink(void) {
-    f32 waterLevel = find_water_level(o->oPosX, o->oPosZ);
+    f32 waterLevel = mcWaterCheck(o->oPosX, o->oPosZ);
     // Destroy every other water wave to space them out (this is a terrible way of doing it)
     if (o->oTimer == 0)
         if (gGlobalTimer & 1)

@@ -124,8 +124,8 @@ void check_ledge_climb_down(struct MarioState *m) {
         wallCols.radius = 10.0f;
         wallCols.offsetY = -10.0f;
 
-        if (find_wall_collisions(&wallCols) != 0) {
-            floorHeight = find_floor(wallCols.x, wallCols.y, wallCols.z, &floor);
+        if (mcWallCheck(&wallCols) != 0) {
+            floorHeight = mcBGGroundCheck(wallCols.x, wallCols.y, wallCols.z, &floor);
             if (floor != NULL) {
                 if (wallCols.y - floorHeight > 160.0f) {
                     wall = wallCols.walls[wallCols.numWalls - 1];

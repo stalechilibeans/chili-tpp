@@ -558,7 +558,7 @@ static s32 bhv_cmd_drop_to_floor(void) {
     f32 y = gCurrentObject->oPosY;
     f32 z = gCurrentObject->oPosZ;
 
-    f32 floor = find_floor_height(x, y + 200.0f, z);
+    f32 floor = BGcheck(x, y + 200.0f, z);
     gCurrentObject->oPosY = floor;
     gCurrentObject->oMoveFlags |= OBJ_MOVE_ON_GROUND;
 

@@ -618,9 +618,9 @@ void push_mario_out_of_object(struct MarioState *m, struct Object *o, f32 paddin
         newMarioX = o->oPosX + minDistance * sins(pushAngle);
         newMarioZ = o->oPosZ + minDistance * coss(pushAngle);
 
-        f32_find_wall_collision(&newMarioX, &m->pos[1], &newMarioZ, 60.0f, 50.0f);
+        WallCheck(&newMarioX, &m->pos[1], &newMarioZ, 60.0f, 50.0f);
 
-        find_floor(newMarioX, m->pos[1], newMarioZ, &floor);
+        mcBGGroundCheck(newMarioX, m->pos[1], newMarioZ, &floor);
         if (floor != NULL) {
             //! Doesn't update mario's referenced floor (allows oob death when
             // an object pushes you into a steep slope while in a ground action)

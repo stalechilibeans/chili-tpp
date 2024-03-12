@@ -189,7 +189,7 @@ Gfx *geo_switch_area(s32 run, struct GraphNode *node) {
         } else {
             gFindFloorIncludeSurfaceIntangible = TRUE;
 
-            find_floor(gMarioObject->oPosX, gMarioObject->oPosY, gMarioObject->oPosZ, &sp20);
+            mcBGGroundCheck(gMarioObject->oPosX, gMarioObject->oPosY, gMarioObject->oPosZ, &sp20);
 
             if (sp20) {
                 gMarioCurrentRoom = sp20->room;
@@ -513,7 +513,7 @@ struct Object *spawn_water_droplet(struct Object *parent, struct WaterDropletPar
     }
 
     if (params->flags & WATER_DROPLET_FLAG_SET_Y_TO_WATER_LEVEL) {
-        newObj->oPosY = find_water_level(newObj->oPosX, newObj->oPosZ);
+        newObj->oPosY = mcWaterCheck(newObj->oPosX, newObj->oPosZ);
     }
 
     if (params->flags & WATER_DROPLET_FLAG_RAND_OFFSET_XZ) {
@@ -809,10 +809,10 @@ void cur_obj_enable_rendering_2(void) {
 void cur_obj_unused_init_on_floor(void) {
     cur_obj_enable_rendering();
 
-    o->oPosY = find_floor_height(o->oPosX, o->oPosY, o->oPosZ);
+    o->oPosY = BGcheck(o->oPosX, o->oPosY, o->oPosZ);
     if (o->oPosY < -10000.0f) {
         cur_obj_set_pos_relative_to_parent(0, 0, -70);
-        o->oPosY = find_floor_height(o->oPosX, o->oPosY, o->oPosZ);
+        o->oPosY = BGcheck(o->oPosX, o->oPosY, o->oPosZ);
     }
 }
 
@@ -1091,14 +1091,14 @@ void cur_obj_unrender_and_reset_state(s32 sp18, s32 sp1C) {
 
 static void cur_obj_move_after_thrown_or_dropped(f32 forwardVel, f32 velY) {
     o->oMoveFlags = 0;
-    o->oFloorHeight = find_floor_height(o->oPosX, o->oPosY + 160.0f, o->oPosZ);
+    o->oFloorHeight = BGcheck(o->oPosX, o->oPosY + 160.0f, o->oPosZ);
 
     if (o->oFloorHeight > o->oPosY) {
         o->oPosY = o->oFloorHeight;
     } else if (o->oFloorHeight < -10000.0f) {
         //! OoB failsafe
         obj_copy_pos(o, gMarioObject);
-        o->oFloorHeight = find_floor_height(o->oPosX, o->oPosY, o->oPosZ);
+        o->oFloorHeight = BGcheck(o->oPosX, o->oPosY, o->oPosZ);
     }
 
     o->oForwardVel = forwardVel;
@@ -1187,12 +1187,12 @@ void obj_become_tangible(struct Object *obj) {
 
 void cur_obj_update_floor_height(void) {
     struct Surface *floor;
-    o->oFloorHeight = find_floor(o->oPosX, o->oPosY, o->oPosZ, &floor);
+    o->oFloorHeight = mcBGGroundCheck(o->oPosX, o->oPosY, o->oPosZ, &floor);
 }
 
 struct Surface *cur_obj_update_floor_height_and_get_floor(void) {
     struct Surface *floor;
-    o->oFloorHeight = find_floor(o->oPosX, o->oPosY, o->oPosZ, &floor);
+    o->oFloorHeight = mcBGGroundCheck(o->oPosX, o->oPosY, o->oPosZ, &floor);
     return floor;
 }
 
@@ -1228,7 +1228,7 @@ static s32 cur_obj_move_xz(f32 steepSlopeNormalY, s32 careAboutEdgesAndSteepSlop
     f32 intendedX = o->oPosX + o->oVelX;
     f32 intendedZ = o->oPosZ + o->oVelZ;
 
-    f32 intendedFloorHeight = find_floor(intendedX, o->oPosY, intendedZ, &intendedFloor);
+    f32 intendedFloorHeight = mcBGGroundCheck(intendedX, o->oPosY, intendedZ, &intendedFloor);
     f32 deltaFloorHeight = intendedFloorHeight - o->oFloorHeight;
 
     UNUSED f32 unused;
@@ -1345,7 +1345,7 @@ static f32 cur_obj_move_y_and_get_water_level(f32 gravity, f32 buoyancy) {
     if (o->activeFlags & ACTIVE_FLAG_UNK10) {
         waterLevel = -11000.0f;
     } else {
-        waterLevel = find_water_level(o->oPosX, o->oPosZ);
+        waterLevel = mcWaterCheck(o->oPosX, o->oPosZ);
     }
 
     return waterLevel;
@@ -1414,7 +1414,7 @@ static s32 clear_move_flag(u32 *bitSet, s32 flag) {
 
 void cur_obj_unused_resolve_wall_collisions(f32 offsetY, f32 radius) {
     if (radius > 0.1L) {
-        f32_find_wall_collision(&o->oPosX, &o->oPosY, &o->oPosZ, offsetY, radius);
+        WallCheck(&o->oPosX, &o->oPosY, &o->oPosZ, offsetY, radius);
     }
 }
 
@@ -1617,7 +1617,7 @@ static void obj_spawn_loot_coins(struct Object *obj, s32 numCoins, f32 sp30,
     struct Surface *floor;
     struct Object *coin;
 
-    spawnHeight = find_floor(obj->oPosX, obj->oPosY, obj->oPosZ, &floor);
+    spawnHeight = mcBGGroundCheck(obj->oPosX, obj->oPosY, obj->oPosZ, &floor);
     if (obj->oPosY - spawnHeight > 100.0f) {
         spawnHeight = obj->oPosY;
     }
@@ -1695,7 +1695,7 @@ static s32 cur_obj_detect_steep_floor(s16 steepAngleDegrees) {
     if (o->oForwardVel != 0) {
         intendedX = o->oPosX + o->oVelX;
         intendedZ = o->oPosZ + o->oVelZ;
-        intendedFloorHeight = find_floor(intendedX, o->oPosY, intendedZ, &intendedFloor);
+        intendedFloorHeight = mcBGGroundCheck(intendedX, o->oPosY, intendedZ, &intendedFloor);
         deltaFloorHeight = intendedFloorHeight - o->oFloorHeight;
 
         if (intendedFloorHeight < -10000.0f) {
@@ -1728,7 +1728,7 @@ s32 cur_obj_resolve_wall_collisions(void) {
         collisionData.y = (s16) o->oPosY;
         collisionData.z = (s16) o->oPosZ;
 
-        numCollisions = find_wall_collisions(&collisionData);
+        numCollisions = mcWallCheck(&collisionData);
         if (numCollisions != 0) {
             o->oPosX = collisionData.x;
             o->oPosY = collisionData.y;
@@ -2412,7 +2412,7 @@ void bhv_init_room(void) {
     f32 floorHeight;
 
     if (is_item_in_array(gCurrLevelNum, sLevelsWithRooms)) {
-        floorHeight = find_floor(o->oPosX, o->oPosY, o->oPosZ, &floor);
+        floorHeight = mcBGGroundCheck(o->oPosX, o->oPosY, o->oPosZ, &floor);
 
         if (floor != NULL) {
             if (floor->room != 0) {
@@ -2420,7 +2420,7 @@ void bhv_init_room(void) {
             } else {
                 // Floor probably belongs to a platform object. Try looking
                 // underneath it
-                find_floor(o->oPosX, floorHeight - 100.0f, o->oPosZ, &floor);
+                mcBGGroundCheck(o->oPosX, floorHeight - 100.0f, o->oPosZ, &floor);
                 if (floor != NULL) {
                     //! Technically possible that the room could still be 0 here
                     o->oRoom = floor->room;
@@ -2769,7 +2769,7 @@ void cur_obj_align_gfx_with_floor(void) {
     position[1] = o->oPosY;
     position[2] = o->oPosZ;
 
-    find_floor(position[0], position[1], position[2], &floor);
+    mcBGGroundCheck(position[0], position[1], position[2], &floor);
     if (floor != NULL) {
         floorNormal[0] = floor->normal.x;
         floorNormal[1] = floor->normal.y;

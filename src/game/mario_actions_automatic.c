@@ -76,8 +76,8 @@ s32 set_pole_position(struct MarioState *m, f32 offsetY) {
     m->pos[2] = m->usedObj->oPosZ;
     m->pos[1] = m->usedObj->oPosY + marioObj->oMarioPolePos + offsetY;
 
-    collided = f32_find_wall_collision(&m->pos[0], &m->pos[1], &m->pos[2], 60.0f, 50.0f);
-    collided |= f32_find_wall_collision(&m->pos[0], &m->pos[1], &m->pos[2], 30.0f, 24.0f);
+    collided = WallCheck(&m->pos[0], &m->pos[1], &m->pos[2], 60.0f, 50.0f);
+    collided |= WallCheck(&m->pos[0], &m->pos[1], &m->pos[2], 30.0f, 24.0f);
 
     ceilHeight = vec3f_find_ceil(m->pos, m->pos[1], &ceil);
     if (m->pos[1] > ceilHeight - 160.0f) {
@@ -85,7 +85,7 @@ s32 set_pole_position(struct MarioState *m, f32 offsetY) {
         marioObj->oMarioPolePos = m->pos[1] - m->usedObj->oPosY;
     }
 
-    floorHeight = find_floor(m->pos[0], m->pos[1], m->pos[2], &floor);
+    floorHeight = mcBGGroundCheck(m->pos[0], m->pos[1], m->pos[2], &floor);
     if (m->pos[1] < floorHeight) {
         m->pos[1] = floorHeight;
         set_mario_action(m, ACT_IDLE, 0);
@@ -313,7 +313,7 @@ s32 perform_hanging_step(struct MarioState *m, Vec3f nextPos) {
     f32 ceilOffset;
 
     m->wall = resolve_and_return_wall_collisions(nextPos, 50.0f, 50.0f);
-    floorHeight = find_floor(nextPos[0], nextPos[1], nextPos[2], &floor);
+    floorHeight = mcBGGroundCheck(nextPos[0], nextPos[1], nextPos[2], &floor);
     ceilHeight = vec3f_find_ceil(nextPos, floorHeight, &ceil);
 
     if (floor == NULL) {
@@ -505,7 +505,7 @@ s32 let_go_of_ledge(struct MarioState *m) {
     m->pos[2] -= 60.0f * coss(m->faceAngle[1]);
     m->faceAngle[1] += 0x8000;
 
-    floorHeight = find_floor(m->pos[0], m->pos[1], m->pos[2], &floor);
+    floorHeight = mcBGGroundCheck(m->pos[0], m->pos[1], m->pos[2], &floor);
     if (floorHeight < m->pos[1] - 100.0f) {
         m->pos[1] -= 100.0f;
     } else {
@@ -816,9 +816,9 @@ s32 act_tornado_twirling(struct MarioState *m) {
     nextPos[2] = usedObj->oPosZ - dx * sinAngleVel + dz * cosAngleVel;
     nextPos[1] = usedObj->oPosY + marioObj->oMarioTornadoPosY;
 
-    f32_find_wall_collision(&nextPos[0], &nextPos[1], &nextPos[2], 60.0f, 50.0f);
+    WallCheck(&nextPos[0], &nextPos[1], &nextPos[2], 60.0f, 50.0f);
 
-    floorHeight = find_floor(nextPos[0], nextPos[1], nextPos[2], &floor);
+    floorHeight = mcBGGroundCheck(nextPos[0], nextPos[1], nextPos[2], &floor);
     if (floor != NULL) {
         m->floor = floor;
         m->floorHeight = floorHeight;

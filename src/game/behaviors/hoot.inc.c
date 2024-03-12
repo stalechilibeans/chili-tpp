@@ -14,17 +14,17 @@ void bhv_hoot_init(void) {
 // sp28 = arg0
 // sp2c = arg1
 
-f32 hoot_find_next_floor(struct FloorGeometry **arg0, f32 arg1) {
+f32 hoot_find_next_floor(struct Plane **arg0, f32 arg1) {
     f32 sp24 = arg1 * sins(o->oMoveAngleYaw) + o->oPosX;
     UNUSED f32 sp20 = o->oPosY;
     f32 sp1c = arg1 * coss(o->oMoveAngleYaw) + o->oPosZ;
-    f32 floorY = find_floor_height_and_data(sp24, 10000.0f, sp1c, arg0);
+    f32 floorY = mcGroundCheck(sp24, 10000.0f, sp1c, arg0);
 
     return floorY;
 }
 
 void hoot_floor_bounce(void) {
-    struct FloorGeometry *sp1c;
+    struct Plane *sp1c;
     f32 floorY;
 
     floorY = hoot_find_next_floor(&sp1c, 375.0f);
@@ -46,7 +46,7 @@ void hoot_floor_bounce(void) {
 // sp34 = speed
 
 void hoot_free_step(s16 fastOscY, s32 speed) {
-    struct FloorGeometry *sp2c;
+    struct Plane *sp2c;
     s16 yaw = o->oMoveAngleYaw;
     s16 pitch = o->oMoveAnglePitch;
     s16 sp26 = o->header.gfx.unk38.animFrame;
@@ -66,7 +66,7 @@ void hoot_free_step(s16 fastOscY, s32 speed) {
         o->oPosY -= o->oVelY + coss((s32)(sp26 * 6553.6)) * 50.0f / 4;
     o->oPosZ += o->oVelZ;
 
-    find_floor_height_and_data(o->oPosX, o->oPosY, o->oPosZ, &sp2c);
+    mcGroundCheck(o->oPosX, o->oPosY, o->oPosZ, &sp2c);
     if (sp2c == NULL) {
         o->oPosX = xPrev;
         o->oPosZ = zPrev;
@@ -127,7 +127,7 @@ void hoot_carry_step(s32 speed, UNUSED f32 xPrev, UNUSED f32 zPrev) {
 // sp50 = zPrev
 
 void hoot_surface_collision(f32 xPrev, UNUSED f32 yPrev, f32 zPrev) {
-    struct FloorGeometry *sp44;
+    struct Plane *sp44;
     struct WallCollisionData hitbox;
     f32 floorY;
 
@@ -137,12 +137,12 @@ void hoot_surface_collision(f32 xPrev, UNUSED f32 yPrev, f32 zPrev) {
     hitbox.offsetY = 10.0;
     hitbox.radius = 50.0;
 
-    if (find_wall_collisions(&hitbox) != 0) {
+    if (mcWallCheck(&hitbox) != 0) {
         o->oPosX = xPrev;
         o->oPosZ = zPrev;
     }
 
-    floorY = find_floor_height_and_data(o->oPosX, o->oPosY, o->oPosZ, &sp44);
+    floorY = mcGroundCheck(o->oPosX, o->oPosY, o->oPosZ, &sp44);
     if (sp44 == NULL) {
         o->oPosX = xPrev;
         o->oPosZ = zPrev;

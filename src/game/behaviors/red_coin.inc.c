@@ -25,7 +25,7 @@ static struct ObjectHitbox sRedCoinHitbox = {
 void bhv_red_coin_init(void) {
     // This floor and floor height are unused. Perhaps for orange number spawns originally?
     struct Surface *dummyFloor;
-    UNUSED f32 floorHeight = find_floor(o->oPosX, o->oPosY, o->oPosZ, &dummyFloor);
+    UNUSED f32 floorHeight = mcBGGroundCheck(o->oPosX, o->oPosY, o->oPosZ, &dummyFloor);
 
     struct Object *hiddenRedCoinStar;
 

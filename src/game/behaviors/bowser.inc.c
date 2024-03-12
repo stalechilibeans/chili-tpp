@@ -1021,7 +1021,7 @@ void bowser_free_update(void) {
     cur_obj_move_standard(-78);
     if (bowser_check_fallen_off_stage())
         o->oAction = 2; // bowser go home?
-    floorHeight = find_floor(o->oPosX, o->oPosY, o->oPosZ, &floor);
+    floorHeight = mcBGGroundCheck(o->oPosX, o->oPosY, o->oPosZ, &floor);
     if ((floor != NULL) && (floor->object != 0))
         o->platform = floor->object;
     else

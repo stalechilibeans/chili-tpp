@@ -243,6 +243,7 @@ struct Surface
     } normal;
     /*0x28*/ f32 originOffset;
     /*0x2C*/ struct Object *object;
+    /*0x30*/ u8 padding[4];
 };
 
 struct MarioBodyState
