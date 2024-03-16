@@ -88,7 +88,7 @@
             "normal_range_hi": 19,
             "envelope": "envelope0",
             "sound_lo": "38",
-            "sound": {"sample": "08", "tuning": 2.9},
+            "sound": {"sample": "08", "tuning": 3.121321},
             "sound_hi": "38"
         },
         "inst1": {
