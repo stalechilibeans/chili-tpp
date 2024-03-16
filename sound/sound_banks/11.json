@@ -88,7 +88,7 @@
             "normal_range_hi": 19,
             "envelope": "envelope0",
             "sound_lo": "38",
-            "sound": {"sample": "08", "tuning": 2.121321},
+            "sound": {"sample": "08", "tuning": 2.9},
             "sound_hi": "38"
         },
         "inst1": {
@@ -144,9 +144,9 @@
             {"release_rate": 10, "pan": 62, "envelope": "envelope4", "sound": {"sample": "06", "tuning": 0.4719375}},
             {"release_rate": 10, "pan": 62, "envelope": "envelope4", "sound": {"sample": "06", "tuning": 0.5}},
             {"release_rate": 10, "pan": 57, "envelope": "envelope8", "sound": "07"},
-            {"release_rate": 10, "pan": 65, "envelope": "envelope4", "sound": {"sample": "08", "tuning": 0.75}}, //snare
-            {"release_rate": 10, "pan": 66, "envelope": "envelope4", "sound": {"sample": "08", "tuning": 0.75}}, //snare
-            {"release_rate": 10, "pan": 66, "envelope": "envelope4", "sound": {"sample": "08", "tuning": 0.75}}, //snare
+            {"release_rate": 10, "pan": 65, "envelope": "envelope4", "sound": {"sample": "08", "tuning": 1.0}}, //snare
+            {"release_rate": 10, "pan": 66, "envelope": "envelope4", "sound": {"sample": "08", "tuning": 1.0}}, //snare
+            {"release_rate": 10, "pan": 66, "envelope": "envelope4", "sound": {"sample": "08", "tuning": 1.0}}, //snare
              {"release_rate": 10, "pan": 6, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.4}}, //log drums!!!
             {"release_rate": 10, "pan": 6, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.4}}, //log drums!!!
             {"release_rate": 10, "pan": 27, "envelope": "envelope4", "sound": {"sample": "0C", "tuning": 1.4}}, //log drums!!!
