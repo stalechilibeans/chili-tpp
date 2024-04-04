@@ -68,6 +68,8 @@ Original assets, to-do lists and more can soon be found in a special repository.
 
 *CreamDream*
 
+*stalechilibeans*
+
 ### Original Super Mario 64 Decompilation Team
 
 ## Installation
