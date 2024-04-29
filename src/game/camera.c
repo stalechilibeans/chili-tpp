@@ -818,56 +818,6 @@ s16 look_down_slopes(s16 camYaw) {
     return pitch;
 }
 
-/**
- * Look ahead to the left or right in the direction the player is facing
- * The calculation for pan[0] could be simplified to:
- *      yaw = -yaw;
- *      pan[0] = sins(sMarioCamState->faceAngle[1] + yaw) * sins(0xC00) * dist;
- * Perhaps, early in development, the pan used to be calculated for both the x and z directions
- *
- * Since this function only affects the camera's focus, mario's movement direction isn't affected.
- */
-void pan_ahead_of_player(struct Camera *c) {
-    f32 dist;
-    s16 pitch;
-    s16 yaw;
-    Vec3f pan = { 0, 0, 0 };
-
-    // Get distance and angle from camera to mario.
-    vec3f_get_dist_and_angle(c->pos, sMarioCamState->pos, &dist, &pitch, &yaw);
-
-    // The camera will pan ahead up to about 30% of the camera's distance to mario.
-    pan[2] = sins(0xC00) * dist;
-
-    rotate_in_xz(pan, pan, sMarioCamState->faceAngle[1]);
-    // rotate in the opposite direction
-    yaw = -yaw;
-    rotate_in_xz(pan, pan, yaw);
-    // Only pan left or right
-    pan[2] = 0.f;
-
-    // If mario is long jumping, or on a flag pole (but not at the top), then pan in the opposite
-    // direction
-    if (sMarioCamState->action == ACT_LONG_JUMP
-        || (sMarioCamState->action != ACT_TOP_OF_POLE && (sMarioCamState->action & ACT_FLAG_ON_POLE))) {
-        pan[0] = -pan[0];
-    }
-
-    // Slowly make the actual pan, sPanDistance, approach the calculated pan
-    // If mario is sleeping, then don't pan
-    if (sStatusFlags & CAM_FLAG_SLEEPING) {
-        approach_f32_asymptotic_bool(&sPanDistance, 0.f, 0.025f);
-    } else {
-        approach_f32_asymptotic_bool(&sPanDistance, pan[0], 0.025f);
-    }
-
-    // Now apply the pan. It's a dir vector to the left or right, rotated by the camera's yaw to mario
-    pan[0] = sPanDistance;
-    yaw = -yaw;
-    rotate_in_xz(pan, pan, yaw);
-    vec3f_add(c->focus, pan);
-}
-
 s16 find_in_bounds_yaw_wdw_bob_thi(Vec3f pos, Vec3f origin, s16 yaw) {
     switch (gCurrLevelArea) {
         case AREA_WDW_MAIN:

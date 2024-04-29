@@ -472,29 +472,15 @@ s32 act_double_jump(struct MarioState *m) {
 }
 
 s32 act_triple_jump(struct MarioState *m) {
-    if (m->vel[1] < 0.0f) {
-        return set_mario_action(m, ACT_TWIRLING, 0);
+    if (gSpecialTripleJump) {
+        return set_mario_action(m, ACT_SPECIAL_TRIPLE_JUMP, 0);
     }
 
     play_mario_sound(m, SOUND_ACTION_TERRAIN_JUMP, SOUND_MARIO_YAHOO);
-    set_mario_animation(m, MARIO_ANIM_DOUBLE_JUMP_RISE);
 
-    m->angleVel[1] = approach_s32(m->angleVel[1], 0x1100, 0x200, 0x200);
-    m->twirlYaw += m->angleVel[1];
-
-    update_lava_boost_or_twirling(m);
-
-    switch (perform_air_step(m, 0)) {
-        case AIR_STEP_HIT_WALL:
-            mario_bonk_reflection(m, FALSE);
-            break;
-
-        case AIR_STEP_HIT_LAVA_WALL:
-            lava_boost_on_wall(m);
-            break;
-    }
-
-    m->marioObj->header.gfx.angle[1] += m->twirlYaw;
+    set_mario_action(m, ACT_TWIRLING, 0);
+    
+    //play_flip_sounds(m, 2, 8, 20);
     return FALSE;
 }
 
@@ -680,18 +666,35 @@ s32 act_twirling(struct MarioState *m) {
         yawVelTarget = 0x1800;
     }
 
-    m->angleVel[1] = approach_s32(m->angleVel[1], yawVelTarget, 0x200, 0x200);
+    m->angleVel[1] = approach_s32(m->angleVel[1], yawVelTarget, 350, 512);
     m->twirlYaw += m->angleVel[1];
-
-    set_mario_animation(m, m->actionArg == 0 ? MARIO_ANIM_START_TWIRL : MARIO_ANIM_TWIRL);
-    if (is_anim_past_end(m)) {
-        m->actionArg = 1;
+    
+    switch (m->actionArg) {
+        case 0:
+            set_mario_animation(m, MARIO_ANIM_DOUBLE_JUMP_RISE);
+            if (m->vel[1] < 5.0f) {
+                m->actionArg = 1;
+            }
+            break;
+            
+        case 1:
+            set_mario_animation(m, MARIO_ANIM_START_TWIRL);
+            if (is_anim_past_end(m)) {
+                m->actionArg = 2;
+            }
+            break;
+            
+        case 2:
+            set_mario_animation(m, MARIO_ANIM_TWIRL);
+            break;
+            
     }
 
     if (startTwirlYaw > m->twirlYaw) {
         play_sound(SOUND_ACTION_TWIRL, m->marioObj->header.gfx.cameraToObject);
     }
 
+    //play_mario_sound(m, SOUND_ACTION_TERRAIN_JUMP, SOUND_MARIO_YAHOO);
     update_lava_boost_or_twirling(m);
 
     switch (perform_air_step(m, 0)) {
