@@ -473,7 +473,7 @@ void spawn_objects_from_info(UNUSED s32 unused, struct SpawnInfo *spawnInfo) {
         struct Object *object;
         UNUSED s32 unused;
         const BehaviorScript *script;
-        UNUSED s16 arg16 = (s16)(spawnInfo->behaviorArg & 0xFFFF);
+        UNUSED s16 arg16 = (s16) (spawnInfo->behaviorArg & 0xFFFF);
 
         script = segmented_to_virtual(spawnInfo->behaviorScript);
 
@@ -613,7 +613,7 @@ static u16 unused_get_elapsed_time(u64 *cycleCounts, s32 index) {
         cycles = 0;
     }
 
-    time = (u16)(((u64) cycles * 1000000 / osClockRate) / 16667.0 * 1000.0);
+    time = (u16) (((u64) cycles * 1000000 / osClockRate) / 16667.0 * 1000.0);
     if (time > 999) {
         time = 999;
     }

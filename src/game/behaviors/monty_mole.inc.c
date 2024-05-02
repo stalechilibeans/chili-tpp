@@ -72,7 +72,7 @@ static struct Object *monty_mole_select_available_hole(f32 minDistToMario) {
     }
 
     if (numAvailableHoles != 0) {
-        s32 selectedHole = (s32)(random_float() * numAvailableHoles);
+        s32 selectedHole = (s32) (random_float() * numAvailableHoles);
 
         hole = sMontyMoleHoleList;
         numAvailableHoles = 0;
@@ -421,7 +421,7 @@ static void monty_mole_rock_act_held(void) {
         o->oAction = MONTY_MOLE_ROCK_ACT_MOVE;
 
         // The angle is adjusted to compensate for the start position offset
-        o->oMoveAngleYaw = (s32)(o->parentObj->oMoveAngleYaw + 0x1F4 - distToMario * 0.1f);
+        o->oMoveAngleYaw = (s32) (o->parentObj->oMoveAngleYaw + 0x1F4 - distToMario * 0.1f);
 
         o->oForwardVel = 40.0f;
         o->oVelY = distToMario * 0.08f + 8.0f;

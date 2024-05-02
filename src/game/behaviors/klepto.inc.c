@@ -137,7 +137,7 @@ static void klepto_circle_target(f32 radius, f32 targetSpeed) {
     } else {
         turnAmount = 0x4000 - atan2s(radius, o->oKleptoDistanceToTarget - radius);
         accel = 0.05f;
-        if ((s16)(o->oMoveAngleYaw - o->oKleptoYawToTarget) < 0) {
+        if ((s16) (o->oMoveAngleYaw - o->oKleptoYawToTarget) < 0) {
             turnAmount = -turnAmount;
         }
 
@@ -146,8 +146,8 @@ static void klepto_circle_target(f32 radius, f32 targetSpeed) {
 
         //! The multiplied value is sometimes out of range for an s16 during the s32 -> s16 cast,
         //  which might invert sign.
-        turnAmount = (s16)(s32)(abs_angle_diff(o->oKleptoYawToTarget, o->oMoveAngleYaw)
-                                * (0.03f * o->oKleptoSpeed));
+        turnAmount = (s16) (s32) (abs_angle_diff(o->oKleptoYawToTarget, o->oMoveAngleYaw)
+                                  * (0.03f * o->oKleptoSpeed));
         clamp_s16(&turnAmount, 400, 700);
         obj_rotate_yaw_and_bounce_off_walls(o->oKleptoYawToTarget, turnAmount);
 

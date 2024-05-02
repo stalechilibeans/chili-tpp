@@ -218,12 +218,13 @@ s32 act_climbing_pole(struct MarioState *m) {
 
     marioObj->oMarioPolePos += m->controller->stickY / 8.0f;
     marioObj->oMarioPoleYawVel = 0;
-    m->faceAngle[1] = cameraAngle - approach_s32((s16)(cameraAngle - m->faceAngle[1]), 0, 0x400, 0x400);
+    m->faceAngle[1] =
+        cameraAngle - approach_s32((s16) (cameraAngle - m->faceAngle[1]), 0, 0x400, 0x400);
 
     if (set_pole_position(m, 0.0f) == POLE_NONE) {
         sp24 = m->controller->stickY / 4.0f * 0x10000;
         set_mario_anim_with_accel(m, MARIO_ANIM_CLIMB_UP_POLE, sp24);
-        //add_tree_leaf_particles(m);
+        // add_tree_leaf_particles(m);
         play_climbing_sounds(m, 1);
     }
 
@@ -238,7 +239,7 @@ s32 act_grab_pole_slow(struct MarioState *m) {
         if (is_anim_at_end(m)) {
             set_mario_action(m, ACT_HOLDING_POLE, 0);
         }
-        //add_tree_leaf_particles(m);
+        // add_tree_leaf_particles(m);
     }
 
     return FALSE;
@@ -261,7 +262,7 @@ s32 act_grab_pole_fast(struct MarioState *m) {
                 set_mario_action(m, ACT_HOLDING_POLE, 0);
             }
         }
-        //add_tree_leaf_particles(m);
+        // add_tree_leaf_particles(m);
     }
 
     return FALSE;
@@ -359,7 +360,7 @@ s32 update_hang_moving(struct MarioState *m) {
     }
 
     m->faceAngle[1] =
-        m->intendedYaw - approach_s32((s16)(m->intendedYaw - m->faceAngle[1]), 0, 0x800, 0x800);
+        m->intendedYaw - approach_s32((s16) (m->intendedYaw - m->faceAngle[1]), 0, 0x800, 0x800);
 
     m->slideYaw = m->faceAngle[1];
     m->slideVelX = m->forwardVel * sins(m->faceAngle[1]);
@@ -718,8 +719,8 @@ s32 act_in_cannon(struct MarioState *m) {
             break;
 
         case 2:
-            m->faceAngle[0] -= (s16)(m->controller->stickY * 10.0f);
-            marioObj->oMarioCannonInputYaw -= (s16)(m->controller->stickX * 10.0f);
+            m->faceAngle[0] -= (s16) (m->controller->stickY * 10.0f);
+            marioObj->oMarioCannonInputYaw -= (s16) (m->controller->stickX * 10.0f);
 
             if (m->faceAngle[0] > 0x38E3) {
                 m->faceAngle[0] = 0x38E3;
@@ -746,7 +747,7 @@ s32 act_in_cannon(struct MarioState *m) {
                 m->pos[2] += 80.0f * coss(m->faceAngle[0]) * coss(m->faceAngle[1]);
 
                 play_sound(SOUND_OBJ_POUNDING_CANNON, m->marioObj->header.gfx.cameraToObject);
-                
+
                 m->marioObj->header.gfx.node.flags |= GRAPH_RENDER_ACTIVE;
 
                 set_mario_action(m, ACT_SHOT_FROM_CANNON, 0);

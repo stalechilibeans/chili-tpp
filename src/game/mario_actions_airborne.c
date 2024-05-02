@@ -263,7 +263,7 @@ void update_lava_boost_or_twirling(struct MarioState *m) {
 }
 
 void update_flying_yaw(struct MarioState *m) {
-    s16 targetYawVel = -(s16)(m->controller->stickX * (m->forwardVel / 4.0f));
+    s16 targetYawVel = -(s16) (m->controller->stickX * (m->forwardVel / 4.0f));
 
     if (targetYawVel > 0) {
         if (m->angleVel[1] < 0) {
@@ -292,7 +292,7 @@ void update_flying_yaw(struct MarioState *m) {
 }
 
 void update_flying_pitch(struct MarioState *m) {
-    s16 targetPitchVel = -(s16)(m->controller->stickY * (m->forwardVel / 5.0f));
+    s16 targetPitchVel = -(s16) (m->controller->stickY * (m->forwardVel / 5.0f));
 
     if (targetPitchVel > 0) {
         if (m->angleVel[0] < 0) {
@@ -479,8 +479,8 @@ s32 act_triple_jump(struct MarioState *m) {
     play_mario_sound(m, SOUND_ACTION_TERRAIN_JUMP, SOUND_MARIO_YAHOO);
 
     set_mario_action(m, ACT_TWIRLING, 0);
-    
-    //play_flip_sounds(m, 2, 8, 20);
+
+    // play_flip_sounds(m, 2, 8, 20);
     return FALSE;
 }
 
@@ -668,7 +668,7 @@ s32 act_twirling(struct MarioState *m) {
 
     m->angleVel[1] = approach_s32(m->angleVel[1], yawVelTarget, 350, 512);
     m->twirlYaw += m->angleVel[1];
-    
+
     switch (m->actionArg) {
         case 0:
             set_mario_animation(m, MARIO_ANIM_DOUBLE_JUMP_RISE);
@@ -676,25 +676,24 @@ s32 act_twirling(struct MarioState *m) {
                 m->actionArg = 1;
             }
             break;
-            
+
         case 1:
             set_mario_animation(m, MARIO_ANIM_START_TWIRL);
             if (is_anim_past_end(m)) {
                 m->actionArg = 2;
             }
             break;
-            
+
         case 2:
             set_mario_animation(m, MARIO_ANIM_TWIRL);
             break;
-            
     }
 
     if (startTwirlYaw > m->twirlYaw) {
         play_sound(SOUND_ACTION_TWIRL, m->marioObj->header.gfx.cameraToObject);
     }
 
-    //play_mario_sound(m, SOUND_ACTION_TERRAIN_JUMP, SOUND_MARIO_YAHOO);
+    // play_mario_sound(m, SOUND_ACTION_TERRAIN_JUMP, SOUND_MARIO_YAHOO);
     update_lava_boost_or_twirling(m);
 
     switch (perform_air_step(m, 0)) {
@@ -1959,8 +1958,8 @@ s32 act_vertical_wind(struct MarioState *m) {
             break;
     }
 
-    m->marioObj->header.gfx.angle[0] = (s16)(6144.0f * intendedMag * coss(intendedDYaw));
-    m->marioObj->header.gfx.angle[2] = (s16)(-4096.0f * intendedMag * sins(intendedDYaw));
+    m->marioObj->header.gfx.angle[0] = (s16) (6144.0f * intendedMag * coss(intendedDYaw));
+    m->marioObj->header.gfx.angle[2] = (s16) (-4096.0f * intendedMag * sins(intendedDYaw));
     return FALSE;
 }
 

@@ -190,7 +190,7 @@ static void eyerok_hand_act_sleep(void) {
             approach_f32_ptr(&o->oPosX, o->oHomeX, 15.0f);
             o->oPosY = o->oHomeY
                        + (200 * o->oBehParams2ndByte + 400)
-                             * sins((s16)(absf(o->oPosX - o->oHomeX) / 724.0f * 0x8000));
+                             * sins((s16) (absf(o->oPosX - o->oHomeX) / 724.0f * 0x8000));
             obj_face_yaw_approach(o->oMoveAngleYaw, 400);
         }
     } else {
@@ -275,7 +275,7 @@ static void eyerok_hand_act_show_eye(void) {
             if (o->oAnimState < 3) {
                 o->oAnimState += 1;
             } else if (cur_obj_check_if_near_animation_end()) {
-                val06 = (s16)(o->oAngleToMario - o->oFaceAngleYaw) * o->oBehParams2ndByte;
+                val06 = (s16) (o->oAngleToMario - o->oFaceAngleYaw) * o->oBehParams2ndByte;
                 o->oAction = EYEROK_HAND_ACT_CLOSE;
             }
         } else {
@@ -402,7 +402,7 @@ static void eyerok_hand_act_smash(void) {
                 sp1E = abs_angle_diff(o->oFaceAngleYaw, o->oAngleToMario);
                 if (o->oDistanceToMario < 300.0f && sp1E > 0x2000 && sp1E < 0x6000) {
                     o->oAction = EYEROK_HAND_ACT_FIST_SWEEP;
-                    if ((s16)(o->oFaceAngleYaw - o->oAngleToMario) < 0) {
+                    if ((s16) (o->oFaceAngleYaw - o->oAngleToMario) < 0) {
                         o->oMoveAngleYaw = 0x4000;
                     } else {
                         o->oMoveAngleYaw = -0x4000;
@@ -449,7 +449,7 @@ static void eyerok_hand_act_begin_double_pound(void) {
     if (o->parentObj->oEyerokBossUnk104 < 0
         || o->parentObj->oEyerokBossActiveHand == o->oBehParams2ndByte) {
         o->oAction = EYEROK_HAND_ACT_DOUBLE_POUND;
-        o->oMoveAngleYaw = (s32)(o->oFaceAngleYaw - 0x4000 * o->parentObj->oEyerokBossUnk108);
+        o->oMoveAngleYaw = (s32) (o->oFaceAngleYaw - 0x4000 * o->parentObj->oEyerokBossUnk108);
     } else {
         sp4 = o->parentObj->oPosX + 400.0f * o->parentObj->oEyerokBossUnk108
               - 180.0f * o->oBehParams2ndByte;

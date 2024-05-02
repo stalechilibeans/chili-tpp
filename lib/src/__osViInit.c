@@ -23,7 +23,7 @@ extern OSViMode D_80302FD0;
 #endif
 
 void __osViInit(void) {
-//#ifdef VERSION_JP
+// #ifdef VERSION_JP
 #ifdef VERSION_US
     D_80334918 = osTvType;
 #endif

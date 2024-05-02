@@ -114,7 +114,7 @@ void envfx_update_snowflake_count(s32 mode, Vec3s marioPos) {
             waterLevel = mcWaterCheck(marioPos[0], marioPos[2]);
 
             gSnowParticleCount =
-                (((s32)((waterLevel - 400.f - (f32) marioPos[1]) * 1.0e-3) << 0x10) >> 0x10) * 5;
+                (((s32) ((waterLevel - 400.f - (f32) marioPos[1]) * 1.0e-3) << 0x10) >> 0x10) * 5;
 
             if (gSnowParticleCount < 0) {
                 gSnowParticleCount = 0;
@@ -214,15 +214,15 @@ void envfx_update_snow_normal(s32 snowCylinderX, s32 snowCylinderY, s32 snowCyli
             envfx_is_snowflake_alive(i, snowCylinderX, snowCylinderY, snowCylinderZ);
         if ((gEnvFxBuffer + i)->isAlive == 0) {
             (gEnvFxBuffer + i)->xPos =
-                400.0f * random_float() - 200.0f + snowCylinderX + (s16)(deltaX * 2);
+                400.0f * random_float() - 200.0f + snowCylinderX + (s16) (deltaX * 2);
             (gEnvFxBuffer + i)->zPos =
-                400.0f * random_float() - 200.0f + snowCylinderZ + (s16)(deltaZ * 2);
+                400.0f * random_float() - 200.0f + snowCylinderZ + (s16) (deltaZ * 2);
             (gEnvFxBuffer + i)->yPos = 200.0f * random_float() + snowCylinderY;
             (gEnvFxBuffer + i)->isAlive = 1;
         } else {
-            (gEnvFxBuffer + i)->xPos += random_float() * 2 - 1.0f + (s16)(deltaX / 1.2);
-            (gEnvFxBuffer + i)->yPos -= 2 - (s16)(deltaY * 0.8);
-            (gEnvFxBuffer + i)->zPos += random_float() * 2 - 1.0f + (s16)(deltaZ / 1.2);
+            (gEnvFxBuffer + i)->xPos += random_float() * 2 - 1.0f + (s16) (deltaX / 1.2);
+            (gEnvFxBuffer + i)->yPos -= 2 - (s16) (deltaY * 0.8);
+            (gEnvFxBuffer + i)->zPos += random_float() * 2 - 1.0f + (s16) (deltaZ / 1.2);
         }
     }
 
@@ -248,15 +248,15 @@ void envfx_update_snow_blizzard(s32 snowCylinderX, s32 snowCylinderY, s32 snowCy
             envfx_is_snowflake_alive(i, snowCylinderX, snowCylinderY, snowCylinderZ);
         if ((gEnvFxBuffer + i)->isAlive == 0) {
             (gEnvFxBuffer + i)->xPos =
-                400.0f * random_float() - 200.0f + snowCylinderX + (s16)(deltaX * 2);
+                400.0f * random_float() - 200.0f + snowCylinderX + (s16) (deltaX * 2);
             (gEnvFxBuffer + i)->zPos =
-                400.0f * random_float() - 200.0f + snowCylinderZ + (s16)(deltaZ * 2);
+                400.0f * random_float() - 200.0f + snowCylinderZ + (s16) (deltaZ * 2);
             (gEnvFxBuffer + i)->yPos = 400.0f * random_float() - 200.0f + snowCylinderY;
             (gEnvFxBuffer + i)->isAlive = 1;
         } else {
-            (gEnvFxBuffer + i)->xPos += random_float() * 2 - 1.0f + (s16)(deltaX / 1.2) + 20.0f;
-            (gEnvFxBuffer + i)->yPos -= 5 - (s16)(deltaY * 0.8);
-            (gEnvFxBuffer + i)->zPos += random_float() * 2 - 1.0f + (s16)(deltaZ / 1.2);
+            (gEnvFxBuffer + i)->xPos += random_float() * 2 - 1.0f + (s16) (deltaX / 1.2) + 20.0f;
+            (gEnvFxBuffer + i)->yPos -= 5 - (s16) (deltaY * 0.8);
+            (gEnvFxBuffer + i)->zPos += random_float() * 2 - 1.0f + (s16) (deltaZ / 1.2);
         }
     }
 

@@ -512,7 +512,7 @@ void linearly_interpolate_solidity_negative(struct Shadow *s, u8 initialSolidity
     // This is not necessarily a bug, since this function is only used once,
     // with start == 0.
     if (curr >= start && end >= curr) {
-        s->solidity = ((f32) initialSolidity * (1.0 - (f32)(curr - start) / (end - start)));
+        s->solidity = ((f32) initialSolidity * (1.0 - (f32) (curr - start) / (end - start)));
     } else {
         s->solidity = 0;
     }

@@ -43,7 +43,7 @@ void set_rolling_sphere_hitbox(void) {
 }
 
 void adjust_rolling_face_pitch(f32 f12) {
-    o->oFaceAnglePitch += (s16)(o->oForwardVel * (100.0f / f12));
+    o->oFaceAnglePitch += (s16) (o->oForwardVel * (100.0f / f12));
     o->oSnowmansBottomUnkF4 += o->oForwardVel * 1e-4;
 
     if (o->oSnowmansBottomUnkF4 > 1.0)

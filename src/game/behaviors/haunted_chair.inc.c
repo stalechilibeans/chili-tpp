@@ -75,7 +75,7 @@ void haunted_chair_act_0(void) {
             o->oHomeX -= val08;
             o->oHomeZ -= val08;
 
-            o->oFaceAnglePitch = o->oFaceAngleRoll = (s32)(50.0f * val08);
+            o->oFaceAnglePitch = o->oFaceAngleRoll = (s32) (50.0f * val08);
             ;
         } else {
             o->oFaceAnglePitch = o->oFaceAngleRoll = 0;

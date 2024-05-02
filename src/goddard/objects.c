@@ -401,7 +401,7 @@ struct VtxLink *make_vtx_link(struct VtxLink *prevlink, Vtx *data) {
     newLink->next = NULL;
     newLink->data = data;
     // WTF?
-    if (((uintptr_t)(newLink)) == 0x3F800000) {
+    if (((uintptr_t) (newLink)) == 0x3F800000) {
         fatal_printf("bad3\n");
     }
     return newLink;
@@ -1719,7 +1719,7 @@ void drag_picked_object(struct GdObj *inputObj) {
     sp28 = gd_vec3f_magnitude(&gViewUpdateCamera->unk40);
     sp28 /= 1000.0f;
 
-    spD0.x = ((f32)(ctrl->csrX - ctrl->csrXatApress)) * sp28;
+    spD0.x = ((f32) (ctrl->csrX - ctrl->csrXatApress)) * sp28;
     spD0.y = ((f32) - (ctrl->csrY - ctrl->csrYatApress)) * sp28;
     spD0.z = 0.0f;
 

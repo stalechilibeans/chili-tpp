@@ -56,7 +56,7 @@ int run_press_start_demo_timer(s32 timer) {
 
                 // add 1 (+4) to the pointer to skip the demoID.
                 gCurrDemoInput = ((struct DemoInput *) gDemo.targetAnim) + 1;
-                timer = (s8)((struct DemoInput *) gDemo.targetAnim)->timer;
+                timer = (s8) ((struct DemoInput *) gDemo.targetAnim)->timer;
                 gCurrSaveFileNum = 1;
                 gCurrActNum = 1;
             }
@@ -146,7 +146,7 @@ int intro_default(void) {
     /*
         if(gPlayer1Controller->buttonDown == QUIT_LEVEL_SELECT_COMBO) gDebugLevelSelect = 1;
                                                                  else gDebugLevelSelect = 0;
-    
+
     */
     if (gPlayer1Controller->buttonPressed & START_BUTTON) {
         play_sound(SOUND_MENU_STAR_SOUND, gDefaultSoundArgs);

@@ -91,7 +91,7 @@ void bully_act_knockback(void) {
         o->oBullyKBTimerAndMinionKOCounter++;
         o->oFlags |= 0x8; /* bit 3 */
         o->oMoveAngleYaw = o->oFaceAngleYaw;
-        //obj_turn_toward_object(o, gMarioObject, 16, 1280);
+        // obj_turn_toward_object(o, gMarioObject, 16, 1280);
     } else
         o->header.gfx.unk38.animFrame = 0;
 
@@ -161,7 +161,7 @@ void bully_step(void) {
     s16 collisionFlags = 0;
     collisionFlags = object_step();
     bully_backup_check(collisionFlags);
-    //bully_play_stomping_sound();
+    // bully_play_stomping_sound();
     obj_check_floor_death(collisionFlags, sObjFloor);
 
     if (o->oBullySubtype & BULLY_STYPE_CHILL) {
@@ -175,7 +175,7 @@ void bully_spawn_coin(void) {
     coin->oForwardVel = 10.0f;
     coin->oVelY = 100.0f;
     coin->oPosY = o->oPosY + 310.0f;
-    coin->oMoveAngleYaw = (f32)(o->oBullyMarioCollisionAngle + 0x8000) + random_float() * 1024.0f;
+    coin->oMoveAngleYaw = (f32) (o->oBullyMarioCollisionAngle + 0x8000) + random_float() * 1024.0f;
 }
 
 void bully_act_level_death(void) {

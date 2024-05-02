@@ -68,9 +68,16 @@ extern SkyboxTexture water_skybox_ptrlist;
 extern SkyboxTexture wdw_skybox_ptrlist;
 
 SkyboxTexture *sSkyboxTextures[10] = {
-    &water_skybox_ptrlist, &bitfs_skybox_ptrlist, &wdw_skybox_ptrlist, &cloud_floor_skybox_ptrlist,
-    &ccm_skybox_ptrlist, NULL, NULL, &bidw_skybox_ptrlist,
-    NULL, NULL,
+    &water_skybox_ptrlist,
+    &bitfs_skybox_ptrlist,
+    &wdw_skybox_ptrlist,
+    &cloud_floor_skybox_ptrlist,
+    &ccm_skybox_ptrlist,
+    NULL,
+    NULL,
+    &bidw_skybox_ptrlist,
+    NULL,
+    NULL,
 };
 
 /**

@@ -70,7 +70,7 @@ void cat_grp_name_to_buf(struct ObjGroup *group) {
     char buf[0x100]; // sp18
 
     if (group->debugPrint == 1) {
-        sprintf(buf, "| %s %%x%d", group->name, (u32)(uintptr_t) group);
+        sprintf(buf, "| %s %%x%d", group->name, (u32) (uintptr_t) group);
         gd_strcat(sMenuStrBuf, buf); // gd_strcat?
     }
 }
@@ -188,7 +188,7 @@ void adjust_gadget(struct ObjGadget *gdgt, s32 a1, s32 a2) {
                 gdgt->varval.f = gdgt->unk28 * sp2C + gdgt->unk38;
                 break;
             case OBJ_VALUE_INT:
-                gdgt->varval.i = ((s32)(gdgt->unk28 * sp2C)) + gdgt->unk38;
+                gdgt->varval.i = ((s32) (gdgt->unk28 * sp2C)) + gdgt->unk38;
                 break;
             default:
                 fatal_printf("%s: Undefined ValueType", "adjust_gadget");
@@ -208,7 +208,7 @@ void reset_gadget(struct ObjGadget *gdgt) {
         fatal_printf("gadget has zero range (%f -> %f)\n", gdgt->unk38, gdgt->unk3C);
     }
 
-    sp34 = (f32)(1.0 / (gdgt->unk3C - gdgt->unk38));
+    sp34 = (f32) (1.0 / (gdgt->unk3C - gdgt->unk38));
 
     if (gdgt->unk4C != NULL) {
         vp = (struct ObjValPtrs *) gdgt->unk4C->link1C->obj;

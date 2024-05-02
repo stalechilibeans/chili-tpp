@@ -180,7 +180,7 @@ void bhv_generic_bowling_ball_spawner_loop(void) {
     {
         if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ,
                                             o->oBBallSpawnerMaxSpawnDist)) {
-            if ((s32)(random_float() * o->oBBallSpawnerSpawnOdds) == 0) {
+            if ((s32) (random_float() * o->oBBallSpawnerSpawnOdds) == 0) {
                 bowlingBall = spawn_object(o, MODEL_BOWLING_BALL, bhvBowlingBall);
                 bowlingBall->oBehParams2ndByte = o->oBehParams2ndByte;
             }
@@ -200,7 +200,7 @@ void bhv_thi_bowling_ball_spawner_loop(void) {
 
     if ((o->oTimer % 64) == 0) {
         if (is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, 12000)) {
-            if ((s32)(random_float() * 1.5) == 0) {
+            if ((s32) (random_float() * 1.5) == 0) {
                 bowlingBall = spawn_object(o, MODEL_BOWLING_BALL, bhvBowlingBall);
                 bowlingBall->oBehParams2ndByte = o->oBehParams2ndByte;
             }

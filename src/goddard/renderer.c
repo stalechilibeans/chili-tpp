@@ -25,12 +25,12 @@
 #define MAX_GD_DLS 1000
 #define OS_MESG_SI_COMPLETE 0x33333333
 
-#define GD_VIRTUAL_TO_PHYSICAL(addr) ((uintptr_t)(addr) &0x0FFFFFFF)
-#define GD_LOWER_24(addr) ((uintptr_t)(addr) &0x00FFFFFF)
-#define GD_LOWER_29(addr) (((uintptr_t)(addr)) & 0x1FFFFFFF)
+#define GD_VIRTUAL_TO_PHYSICAL(addr) ((uintptr_t) (addr) & 0x0FFFFFFF)
+#define GD_LOWER_24(addr) ((uintptr_t) (addr) & 0x00FFFFFF)
+#define GD_LOWER_29(addr) (((uintptr_t) (addr)) & 0x1FFFFFFF)
 
-#define MTX_INTPART_PACK(w1, w2) (((w1) &0xFFFF0000) | (((w2) >> 16) & 0xFFFF))
-#define MTX_FRACPART_PACK(w1, w2) ((((w1) << 16) & 0xFFFF0000) | ((w2) &0xFFFF))
+#define MTX_INTPART_PACK(w1, w2) (((w1) & 0xFFFF0000) | (((w2) >> 16) & 0xFFFF))
+#define MTX_FRACPART_PACK(w1, w2) ((((w1) << 16) & 0xFFFF0000) | ((w2) & 0xFFFF))
 #define LOOKAT_PACK(c) ((s32) MIN(((c) * (128.0)), 127.0) & 0xff)
 
 // structs
@@ -1077,7 +1077,7 @@ void Unknown8019C288(s32 stickX, s32 stickY) {
     struct GdControl *ctrl = &gGdCtrl; // 4
 
     ctrl->stickXf = (f32) stickX;
-    ctrl->stickYf = (f32)(stickY / 2);
+    ctrl->stickYf = (f32) (stickY / 2);
 }
 
 /* 24AAA8 -> 24AAE0; orig name: func_8019C2D8 */
@@ -1480,9 +1480,9 @@ void gd_draw_rect(f32 ulx, f32 uly, f32 lrx, f32 lry) {
     bound_on_active_view(&lrx, &lry);
 
     if (lrx > ulx && lry > uly) {
-        gDPFillRectangle(next_gfx(), (u32)(sActiveView->upperLeft.x + ulx),
-                         (u32)(uly + sActiveView->upperLeft.y), (u32)(sActiveView->upperLeft.x + lrx),
-                         (u32)(lry + sActiveView->upperLeft.y));
+        gDPFillRectangle(next_gfx(), (u32) (sActiveView->upperLeft.x + ulx),
+                         (u32) (uly + sActiveView->upperLeft.y), (u32) (sActiveView->upperLeft.x + lrx),
+                         (u32) (lry + sActiveView->upperLeft.y));
     }
 
     gDPPipeSync(next_gfx());
@@ -1497,17 +1497,18 @@ void gd_draw_border_rect(f32 ulx, f32 uly, f32 lrx, f32 lry) {
 
     if (lrx > ulx && lry > uly) {
         gDPFillRectangle(
-            next_gfx(), (u32)(sActiveView->upperLeft.x + ulx), (u32)(uly + sActiveView->upperLeft.y),
-            (u32)(sActiveView->upperLeft.x + ulx + 5.0f), (u32)(lry + sActiveView->upperLeft.y));
-        gDPFillRectangle(next_gfx(), (u32)(sActiveView->upperLeft.x + lrx - 5.0f),
-                         (u32)(uly + sActiveView->upperLeft.y), (u32)(sActiveView->upperLeft.x + lrx),
-                         (u32)(lry + sActiveView->upperLeft.y));
-        gDPFillRectangle(next_gfx(), (u32)(sActiveView->upperLeft.x + ulx),
-                         (u32)(uly + sActiveView->upperLeft.y), (u32)(sActiveView->upperLeft.x + lrx),
-                         (u32)(uly + sActiveView->upperLeft.y + 5.0f));
-        gDPFillRectangle(next_gfx(), (u32)(sActiveView->upperLeft.x + ulx),
-                         (u32)(lry + sActiveView->upperLeft.y - 5.0f),
-                         (u32)(sActiveView->upperLeft.x + lrx), (u32)(lry + sActiveView->upperLeft.y));
+            next_gfx(), (u32) (sActiveView->upperLeft.x + ulx), (u32) (uly + sActiveView->upperLeft.y),
+            (u32) (sActiveView->upperLeft.x + ulx + 5.0f), (u32) (lry + sActiveView->upperLeft.y));
+        gDPFillRectangle(next_gfx(), (u32) (sActiveView->upperLeft.x + lrx - 5.0f),
+                         (u32) (uly + sActiveView->upperLeft.y), (u32) (sActiveView->upperLeft.x + lrx),
+                         (u32) (lry + sActiveView->upperLeft.y));
+        gDPFillRectangle(next_gfx(), (u32) (sActiveView->upperLeft.x + ulx),
+                         (u32) (uly + sActiveView->upperLeft.y), (u32) (sActiveView->upperLeft.x + lrx),
+                         (u32) (uly + sActiveView->upperLeft.y + 5.0f));
+        gDPFillRectangle(next_gfx(), (u32) (sActiveView->upperLeft.x + ulx),
+                         (u32) (lry + sActiveView->upperLeft.y - 5.0f),
+                         (u32) (sActiveView->upperLeft.x + lrx),
+                         (u32) (lry + sActiveView->upperLeft.y));
     }
 
     gDPPipeSync(next_gfx());
@@ -1655,8 +1656,8 @@ void mat4_to_mtx(const Mat4f *src, Mtx *dst) {
 
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 2; j++) {
-            w1 = (s32)((*src)[i][j * 2] * 65536.0f);
-            w2 = (s32)((*src)[i][j * 2 + 1] * 65536.0f);
+            w1 = (s32) ((*src)[i][j * 2] * 65536.0f);
+            w2 = (s32) ((*src)[i][j * 2 + 1] * 65536.0f);
             *mtxInt = MTX_INTPART_PACK(w1, w2);
             mtxInt++;
             *mtxFrc = MTX_FRACPART_PACK(w1, w2);
@@ -1852,7 +1853,7 @@ Vtx *make_Vtx_if_new(f32 x, f32 y, f32 z, f32 alpha) {
     DL_CURRENT_VTX(sCurrentGdDl).n.n[0] = sVtxCvrtNormBuf[0];
     DL_CURRENT_VTX(sCurrentGdDl).n.n[1] = sVtxCvrtNormBuf[1];
     DL_CURRENT_VTX(sCurrentGdDl).n.n[2] = sVtxCvrtNormBuf[2];
-    DL_CURRENT_VTX(sCurrentGdDl).n.a = (u8)(alpha * 255.0f);
+    DL_CURRENT_VTX(sCurrentGdDl).n.a = (u8) (alpha * 255.0f);
 
     vtx = &DL_CURRENT_VTX(sCurrentGdDl);
     next_vtx();
@@ -1983,8 +1984,8 @@ void func_801A0478(s32 idx, // material GdDl number; offsets into hilite array
     }
     hilite = &sHilites[idx];
 
-    gDPSetPrimColor(next_gfx(), 0, 0, (s32)(colour->r * 255.0f), (s32)(colour->g * 255.0f),
-                    (s32)(colour->b * 255.0f), 255);
+    gDPSetPrimColor(next_gfx(), 0, 0, (s32) (colour->r * 255.0f), (s32) (colour->g * 255.0f),
+                    (s32) (colour->b * 255.0f), 255);
     sp40.z = cam->unkE8[0][2] + arg4->x;
     sp40.y = cam->unkE8[1][2] + arg4->y;
     sp40.x = cam->unkE8[2][2] + arg4->z;
@@ -2076,9 +2077,9 @@ s32 func_801A086C(s32 id, struct GdColour *colour, s32 material) {
             break;
     }
     // L801A0EF4
-    scaledColours[0] = (s32)(colour->r * sAmbScaleColour.r * 255.0f);
-    scaledColours[1] = (s32)(colour->g * sAmbScaleColour.g * 255.0f);
-    scaledColours[2] = (s32)(colour->b * sAmbScaleColour.b * 255.0f);
+    scaledColours[0] = (s32) (colour->r * sAmbScaleColour.r * 255.0f);
+    scaledColours[1] = (s32) (colour->g * sAmbScaleColour.g * 255.0f);
+    scaledColours[2] = (s32) (colour->b * sAmbScaleColour.b * 255.0f);
     // 801A0FE4
     DL_CURRENT_LIGHT(sCurrentGdDl).a.l.col[0] = scaledColours[0];
     DL_CURRENT_LIGHT(sCurrentGdDl).a.l.col[1] = scaledColours[1];
@@ -2121,16 +2122,16 @@ s32 func_801A086C(s32 id, struct GdColour *colour, s32 material) {
 
 /* 24FDB8 -> 24FE94; orig name: func_801A15E8; only from faces? */
 void set_Vtx_norm_buf_1(struct GdVec3f *norm) {
-    sVtxCvrtNormBuf[0] = (s8)(norm->x * 127.0f);
-    sVtxCvrtNormBuf[1] = (s8)(norm->y * 127.0f);
-    sVtxCvrtNormBuf[2] = (s8)(norm->z * 127.0f);
+    sVtxCvrtNormBuf[0] = (s8) (norm->x * 127.0f);
+    sVtxCvrtNormBuf[1] = (s8) (norm->y * 127.0f);
+    sVtxCvrtNormBuf[2] = (s8) (norm->z * 127.0f);
 }
 
 /* 24FE94 -> 24FF80; orig name: func_801A16C4; only from verts? */
 void set_Vtx_norm_buf_2(struct GdVec3f *norm) {
-    sVtxCvrtNormBuf[0] = (s8)(norm->x * 127.0f);
-    sVtxCvrtNormBuf[1] = (s8)(norm->y * 127.0f);
-    sVtxCvrtNormBuf[2] = (s8)(norm->z * 127.0f);
+    sVtxCvrtNormBuf[0] = (s8) (norm->x * 127.0f);
+    sVtxCvrtNormBuf[1] = (s8) (norm->y * 127.0f);
+    sVtxCvrtNormBuf[2] = (s8) (norm->z * 127.0f);
 
     //? are these stub functions?
     return; // @ 801A17A0
@@ -2155,13 +2156,13 @@ void func_801A180C(void) {
 
     vp = &DL_CURRENT_VP(sCurrentGdDl);
 
-    vp->vp.vscale[0] = (s16)(sActiveView->lowerRight.x * 2.0f);
-    vp->vp.vscale[1] = (s16)(sActiveView->lowerRight.y * 2.0f);
+    vp->vp.vscale[0] = (s16) (sActiveView->lowerRight.x * 2.0f);
+    vp->vp.vscale[1] = (s16) (sActiveView->lowerRight.y * 2.0f);
     vp->vp.vscale[2] = 0x1FF;
     vp->vp.vscale[3] = 0x000;
 
-    vp->vp.vtrans[0] = (s16)((sActiveView->upperLeft.x * 4.0f) + (sActiveView->lowerRight.x * 2.0f));
-    vp->vp.vtrans[1] = (s16)((sActiveView->upperLeft.y * 4.0f) + (sActiveView->lowerRight.y * 2.0f));
+    vp->vp.vtrans[0] = (s16) ((sActiveView->upperLeft.x * 4.0f) + (sActiveView->lowerRight.x * 2.0f));
+    vp->vp.vtrans[1] = (s16) ((sActiveView->upperLeft.y * 4.0f) + (sActiveView->lowerRight.y * 2.0f));
     vp->vp.vtrans[2] = 0x1FF;
     vp->vp.vtrans[3] = 0x000;
 
@@ -2191,9 +2192,9 @@ void Unknown801A1B30(void) {
     gDPPipeSync(next_gfx());
     gd_set_color_fb();
     gd_set_fill(&sActiveView->colour);
-    gDPFillRectangle(next_gfx(), (u32)(sActiveView->upperLeft.x), (u32)(sActiveView->upperLeft.y),
-                     (u32)(sActiveView->upperLeft.x + sActiveView->lowerRight.x - 1.0f),
-                     (u32)(sActiveView->upperLeft.y + sActiveView->lowerRight.y - 1.0f));
+    gDPFillRectangle(next_gfx(), (u32) (sActiveView->upperLeft.x), (u32) (sActiveView->upperLeft.y),
+                     (u32) (sActiveView->upperLeft.x + sActiveView->lowerRight.x - 1.0f),
+                     (u32) (sActiveView->upperLeft.y + sActiveView->lowerRight.y - 1.0f));
     gDPPipeSync(next_gfx());
 }
 
@@ -2206,9 +2207,9 @@ void Unknown801A1E70(void) {
     gDPSetColorImage(next_gfx(), G_IM_FMT_RGBA, G_IM_SIZ_16b, sActiveView->parent->lowerRight.x,
                      GD_LOWER_24(sActiveView->parent->zbuf));
     gDPSetFillColor(next_gfx(), GPACK_ZDZ(G_MAXFBZ, 0) << 16 | GPACK_ZDZ(G_MAXFBZ, 0));
-    gDPFillRectangle(next_gfx(), (u32)(sActiveView->upperLeft.x), (u32)(sActiveView->upperLeft.y),
-                     (u32)(sActiveView->upperLeft.x + sActiveView->lowerRight.x - 1.0f),
-                     (u32)(sActiveView->upperLeft.y + sActiveView->lowerRight.y - 1.0f));
+    gDPFillRectangle(next_gfx(), (u32) (sActiveView->upperLeft.x), (u32) (sActiveView->upperLeft.y),
+                     (u32) (sActiveView->upperLeft.x + sActiveView->lowerRight.x - 1.0f),
+                     (u32) (sActiveView->upperLeft.y + sActiveView->lowerRight.y - 1.0f));
     gDPPipeSync(next_gfx());
     gd_set_color_fb();
 }
@@ -2396,23 +2397,23 @@ void parse_p1_controller(void) {
     }
     // border checks? is this for the cursor finger movement?
     if ((f32) gdctrl->csrX < (sScreenView2->parent->upperLeft.x)) {
-        gdctrl->csrX = (s32)(sScreenView2->parent->upperLeft.x);
+        gdctrl->csrX = (s32) (sScreenView2->parent->upperLeft.x);
     }
 
     if ((f32) gdctrl->csrX
         > (sScreenView2->parent->upperLeft.x + sScreenView2->parent->lowerRight.x - 32.0f)) {
         gdctrl->csrX =
-            (s32)(sScreenView2->parent->upperLeft.x + sScreenView2->parent->lowerRight.x - 32.0f);
+            (s32) (sScreenView2->parent->upperLeft.x + sScreenView2->parent->lowerRight.x - 32.0f);
     }
 
     if ((f32) gdctrl->csrY < (sScreenView2->parent->upperLeft.y)) {
-        gdctrl->csrY = (s32)(sScreenView2->parent->upperLeft.y);
+        gdctrl->csrY = (s32) (sScreenView2->parent->upperLeft.y);
     }
 
     if ((f32) gdctrl->csrY
         > (sScreenView2->parent->upperLeft.y + sScreenView2->parent->lowerRight.y - 32.0f)) {
         gdctrl->csrY =
-            (s32)(sScreenView2->parent->upperLeft.y + sScreenView2->parent->lowerRight.y - 32.0f);
+            (s32) (sScreenView2->parent->upperLeft.y + sScreenView2->parent->lowerRight.y - 32.0f);
     }
 
     for (i = 0; i < sizeof(OSContPad); i++) {
@@ -2530,9 +2531,9 @@ void gd_setproperty(enum GdProperty prop, f32 f1, f32 f2, f32 f3) {
             sAmbScaleColour.b = f3;
             break;
         case GD_PROP_LIGHT_DIR:
-            sLightDirections[sLightId].x = (s32)(f1 * 120.f);
-            sLightDirections[sLightId].y = (s32)(f2 * 120.f);
-            sLightDirections[sLightId].z = (s32)(f3 * 120.f);
+            sLightDirections[sLightId].x = (s32) (f1 * 120.f);
+            sLightDirections[sLightId].y = (s32) (f2 * 120.f);
+            sLightDirections[sLightId].z = (s32) (f3 * 120.f);
             break;
         case GD_PROP_DIFUSE_COLOUR:
             sLightScaleColours[sLightId].r = f1;
@@ -2649,11 +2650,11 @@ s32 setup_view_buffers(const char *name, struct ObjView *view, UNUSED s32 ulx, U
             sprintf(buf, "%s CBuf", name);
             start_memtracker(buf);
             view->colourBufs[0] =
-                gd_malloc((u32)(2.0f * view->lowerRight.x * view->lowerRight.y + 64.0f), 0x20);
+                gd_malloc((u32) (2.0f * view->lowerRight.x * view->lowerRight.y + 64.0f), 0x20);
 
             if (view->flags & VIEW_2_COL_BUF) {
                 view->colourBufs[1] =
-                    gd_malloc((u32)(2.0f * view->lowerRight.x * view->lowerRight.y + 64.0f), 0x20);
+                    gd_malloc((u32) (2.0f * view->lowerRight.x * view->lowerRight.y + 64.0f), 0x20);
             } else {
                 view->colourBufs[1] = view->colourBufs[0];
             }
@@ -2675,7 +2676,7 @@ s32 setup_view_buffers(const char *name, struct ObjView *view, UNUSED s32 ulx, U
             start_memtracker(buf);
             if (view->flags & VIEW_ALLOC_ZBUF) {
                 view->zbuf =
-                    gd_malloc((u32)(2.0f * view->lowerRight.x * view->lowerRight.y + 64.0f), 0x40);
+                    gd_malloc((u32) (2.0f * view->lowerRight.x * view->lowerRight.y + 64.0f), 0x40);
                 if (view->zbuf == NULL) {
                     fatal_printf("Not enough DRAM for Z buffer\n");
                 }
@@ -2904,10 +2905,10 @@ void Unknown801A4B04(void) {
         D_801A86AC->prevScaledTotal = 20.0f;
     }
     if (D_801A86A4 != NULL) {
-        D_801A86A4->prevScaledTotal = (f32)((sDLGenTime * 50.0f) + 20.0f);
+        D_801A86A4->prevScaledTotal = (f32) ((sDLGenTime * 50.0f) + 20.0f);
     }
     if (D_801A86A8 != NULL) {
-        D_801A86A8->prevScaledTotal = (f32)((sDLGenTime * 50.0f) + 20.0f);
+        D_801A86A8->prevScaledTotal = (f32) ((sDLGenTime * 50.0f) + 20.0f);
     }
     sDLGenTime = get_scaled_timer_total("dlgen");
     sRCPTime = get_scaled_timer_total("rcp");
@@ -2977,9 +2978,9 @@ void Unknown801A4F58(void) {
     for (i = 0; i < (320 * 240); i++) { // L801A4FCC
         colour = cbufOff[i];
         if (colour) {
-            r = (s16)(colour >> 11 & 0x1F);
-            g = (s16)(colour >> 6 & 0x1F);
-            b = (s16)(colour >> 1 & 0x1F);
+            r = (s16) (colour >> 11 & 0x1F);
+            g = (s16) (colour >> 6 & 0x1F);
+            b = (s16) (colour >> 1 & 0x1F);
             if ((r -= 1) < 0) {
                 r = 0;
             }
@@ -2990,7 +2991,7 @@ void Unknown801A4F58(void) {
                 b = 0;
             }
 
-            colour = (s16)(r << 11 | g << 6 | b << 1);
+            colour = (s16) (r << 11 | g << 6 | b << 1);
             cbufOff[i] = colour;
             cbufOn[i] = colour;
         } else { // L801A50D8
@@ -3075,7 +3076,7 @@ void gd_init(void) {
     s8 *data; // 2c
 
     add_to_stacktrace("gd_init");
-    i = (u32)(sMemBlockPoolSize - DOUBLE_SIZE_ON_64_BIT(0x3E800));
+    i = (u32) (sMemBlockPoolSize - DOUBLE_SIZE_ON_64_BIT(0x3E800));
     data = gd_allocblock(i);
     gd_add_mem_to_heap(i, data, 0x10);
     D_801BB184 = (u16) 0xff;
@@ -3233,8 +3234,8 @@ void Unknown801A5AE0(s32 arg0) {
 
 /* 254328 -> 2543B8; orig name: func_801A5B58 */
 void set_Vtx_tc_buf(f32 tcS, f32 tcT) {
-    sVtxCvrtTCBuf[0] = (s16)(tcS * 512.0f);
-    sVtxCvrtTCBuf[1] = (s16)(tcT * 512.0f);
+    sVtxCvrtTCBuf[0] = (s16) (tcS * 512.0f);
+    sVtxCvrtTCBuf[1] = (s16) (tcT * 512.0f);
 }
 
 /* 2543B8 -> 2543F4 */
@@ -3545,7 +3546,7 @@ void make_timer_gadgets(void) {
         timer = get_timernum(i);
         d_makeobj(D_GADGET, timerNameBuf);
         d_set_obj_draw_flag(OBJ_IS_GRABBALE);
-        d_set_world_pos(20.0f, (f32)((i * 15) + 15), 0.0f);
+        d_set_world_pos(20.0f, (f32) ((i * 15) + 15), 0.0f);
         d_set_scale(50.0f, 14.0f, 0);
         d_set_type(4);
         d_set_parm_f(PARM_F_RANGE_LEFT, 0.0f);
@@ -3649,7 +3650,7 @@ struct GdObj *load_dynlist(struct DynList *dynlist) {
     }
 
     for (i = 0; i < sp34; i++) {
-        osMapTLB(i, OS_PM_64K, (void *) (uintptr_t)(0x04000000 + (i * 2 * 0x10000)),
+        osMapTLB(i, OS_PM_64K, (void *) (uintptr_t) (0x04000000 + (i * 2 * 0x10000)),
                  GD_LOWER_24(((uintptr_t) allocSegSpace) + (i * 2 * 0x10000)),
                  GD_LOWER_24(((uintptr_t) allocSegSpace) + (i * 2 * 0x10000) + 0x10000), -1);
     }

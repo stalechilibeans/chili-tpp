@@ -166,7 +166,7 @@ static s16 _Ldunscale(s16 *pex, printf_struct *px) {
     short xchar = (ps[_D0] & _DMASK) >> _DOFF;
     if (xchar == _DMAX) { /* NaN or INF */
         *pex = 0;
-        return (s16)(ps[_D0] & _DFRAC || ps[_D1] || ps[_D2] || ps[_D3] ? NAN : INF);
+        return (s16) (ps[_D0] & _DFRAC || ps[_D1] || ps[_D2] || ps[_D3] ? NAN : INF);
     } else if (0 < xchar) {
         ps[_D0] = (ps[_D0] & ~_DMASK) | (_DBIAS << _DOFF);
         *pex = xchar - (_DBIAS - 1);

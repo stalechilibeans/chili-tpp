@@ -1,31 +1,24 @@
 // sliding_platform_2.inc.c
 
 void *D_80331A24[] = {
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
+    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 };
 
 void bhv_sliding_plat_2_init(void) {
     s32 val04;
 
-    val04 = ((u16)(o->oBehParams >> 16) & 0x0380) >> 7;
+    val04 = ((u16) (o->oBehParams >> 16) & 0x0380) >> 7;
     o->collisionData = segmented_to_virtual(D_80331A24[val04]);
-    o->oBackAndForthPlatformUnkF8 = 50.0f * ((u16)(o->oBehParams >> 16) & 0x003F);
+    o->oBackAndForthPlatformUnkF8 = 50.0f * ((u16) (o->oBehParams >> 16) & 0x003F);
 
     if (val04 < 5 || val04 > 6) {
         o->oBackAndForthPlatformUnk100 = 15.0f;
-        if ((u16)(o->oBehParams >> 16) & 0x0040) {
+        if ((u16) (o->oBehParams >> 16) & 0x0040) {
             o->oMoveAngleYaw += 0x8000;
         }
     } else {
         o->oBackAndForthPlatformUnk100 = 10.0f;
-        if ((u16)(o->oBehParams >> 16) & 0x0040) {
+        if ((u16) (o->oBehParams >> 16) & 0x0040) {
             o->oBackAndForthPlatformUnkF4 = -1.0f;
         } else {
             o->oBackAndForthPlatformUnkF4 = 1.0f;

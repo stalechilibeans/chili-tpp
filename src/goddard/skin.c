@@ -318,9 +318,9 @@ void convert_gd_verts_to_Vn(struct ObjGroup *grp) {
         y = (s16) vtx->pos.y;
         z = (s16) vtx->pos.z;
 
-        nx = (u8)(vtx->normal.x * 255.0f);
-        ny = (u8)(vtx->normal.y * 255.0f);
-        nz = (u8)(vtx->normal.z * 255.0f);
+        nx = (u8) (vtx->normal.x * 255.0f);
+        ny = (u8) (vtx->normal.y * 255.0f);
+        nz = (u8) (vtx->normal.z * 255.0f);
 
         for (vtxlink = vtx->gbiVerts; vtxlink != NULL; vtxlink = vtxlink->prev) {
             vnPos = vtxlink->data->n.ob;
@@ -492,16 +492,16 @@ void gd_print_net(struct ObjNet *net) {
     gd_printf("MaxRadius: %f\n", net->unkE4);
     gd_print_mtx("Matrix:", &net->mat128);
     if (net->unk1A8 != NULL) {
-        gd_printf("ShapePtr: %x (%s)\n", (u32)(uintptr_t) net->unk1A8, net->unk1A8->name);
+        gd_printf("ShapePtr: %x (%s)\n", (u32) (uintptr_t) net->unk1A8, net->unk1A8->name);
     } else {
         gd_printf("ShapePtr: NULL\n");
     }
     gd_print_vec("Scale:", &net->unk1AC);
     gd_printf("Mass: %f\n", net->unk1B8);
     gd_printf("NumModes: %d\n", net->unk1BC);
-    gd_printf("NodeGroup: %x\n", (u32)(uintptr_t) net->unk1C8);
-    gd_printf("PlaneGroup: %x\n", (u32)(uintptr_t) net->unk1CC);
-    gd_printf("VertexGroup: %x\n", (u32)(uintptr_t) net->unk1D0);
+    gd_printf("NodeGroup: %x\n", (u32) (uintptr_t) net->unk1C8);
+    gd_printf("PlaneGroup: %x\n", (u32) (uintptr_t) net->unk1CC);
+    gd_printf("VertexGroup: %x\n", (u32) (uintptr_t) net->unk1D0);
 }
 
 /* 2422E0 -> 2422F8; orig name: func_80193B10 */

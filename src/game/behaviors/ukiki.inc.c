@@ -65,12 +65,12 @@ void idle_ukiki_taunt(void) {
 
     if (o->oSubAction == UKIKI_SUB_ACT_TAUNT_NONE) {
         // Subaction is between 1 and 4.
-        o->oSubAction = (s32)(random_float() * 4.0f + 1.0f);
+        o->oSubAction = (s32) (random_float() * 4.0f + 1.0f);
 
         // Counter keeps track of the iterations done, while ToBeDone
         // is the count of iterations to be done (between 2 and 5).
         o->oUkikiTauntCounter = 0;
-        o->oUkikiTauntsToBeDone = (s16)(random_float() * 4.0f + 2.0f);
+        o->oUkikiTauntsToBeDone = (s16) (random_float() * 4.0f + 2.0f);
     }
 
     // Switch goes from 1-4.

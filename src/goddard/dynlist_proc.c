@@ -47,12 +47,12 @@ struct DynObjInfo {
 #define Dyn1AsInt(dyn) ((dyn)->w1.word)
 #define Dyn1AsPtr(dyn) ((dyn)->w1.ptr)
 #define Dyn1AsStr(dyn) ((dyn)->w1.str)
-#define Dyn1AsID(dyn) ((DynId)((dyn)->w1.ptr))
+#define Dyn1AsID(dyn) ((DynId) ((dyn)->w1.ptr))
 
 #define Dyn2AsInt(dyn) ((dyn)->w2.word)
 #define Dyn2AsPtr(dyn) ((dyn)->w2.ptr)
 #define Dyn2AsStr(dyn) ((dyn)->w2.str)
-#define Dyn2AsID(dyn) ((DynId)((dyn)->w2.ptr))
+#define Dyn2AsID(dyn) ((DynId) ((dyn)->w2.ptr))
 
 #define DynVec(dyn) (&(dyn)->vec)
 #define DynVecX(dyn) ((dyn)->vec.x)
@@ -924,15 +924,15 @@ void alloc_animdata(struct ObjAnimator *animator) {
                     halfarr = &((s16(*)[9]) curAnimSrc->data)[dataIdx];
                     curMtxVec = &((struct AnimMtxVec *) allocSpace)[dataIdx];
 
-                    tri.p0.x = (f32)(*halfarr)[0] * allocMtxScale;
-                    tri.p0.y = (f32)(*halfarr)[1] * allocMtxScale;
-                    tri.p0.z = (f32)(*halfarr)[2] * allocMtxScale;
-                    tri.p1.x = (f32)(*halfarr)[3] * allocMtxScale;
-                    tri.p1.y = (f32)(*halfarr)[4] * allocMtxScale;
-                    tri.p1.z = (f32)(*halfarr)[5] * allocMtxScale;
-                    tri.p2.x = (f32)(*halfarr)[6];
-                    tri.p2.y = (f32)(*halfarr)[7];
-                    tri.p2.z = (f32)(*halfarr)[8];
+                    tri.p0.x = (f32) (*halfarr)[0] * allocMtxScale;
+                    tri.p0.y = (f32) (*halfarr)[1] * allocMtxScale;
+                    tri.p0.z = (f32) (*halfarr)[2] * allocMtxScale;
+                    tri.p1.x = (f32) (*halfarr)[3] * allocMtxScale;
+                    tri.p1.y = (f32) (*halfarr)[4] * allocMtxScale;
+                    tri.p1.z = (f32) (*halfarr)[5] * allocMtxScale;
+                    tri.p2.x = (f32) (*halfarr)[6];
+                    tri.p2.y = (f32) (*halfarr)[7];
+                    tri.p2.z = (f32) (*halfarr)[8];
 
                     gd_set_identity_mat4(&curMtxVec->matrix);
                     gd_rot_mat_about_vec(&curMtxVec->matrix, &tri.p1);
@@ -2405,10 +2405,10 @@ void d_link_with_ptr(void *ptr) {
             ((struct ObjView *) dynobj)->components = ptr;
             ((struct ObjView *) dynobj)->unk1C =
                 setup_view_buffers(((struct ObjView *) dynobj)->namePtr, ((struct ObjView *) dynobj),
-                                   (s32)((struct ObjView *) dynobj)->upperLeft.x,
-                                   (s32)((struct ObjView *) dynobj)->upperLeft.y,
-                                   (s32)((struct ObjView *) dynobj)->lowerRight.x,
-                                   (s32)((struct ObjView *) dynobj)->lowerRight.y);
+                                   (s32) ((struct ObjView *) dynobj)->upperLeft.x,
+                                   (s32) ((struct ObjView *) dynobj)->upperLeft.y,
+                                   (s32) ((struct ObjView *) dynobj)->lowerRight.x,
+                                   (s32) ((struct ObjView *) dynobj)->lowerRight.y);
             reset_nets_and_gadgets(((struct ObjView *) dynobj)->components);
             break;
         case OBJ_TYPE_FACES:

@@ -32,7 +32,7 @@ void bhv_water_bomb_spawner_update(void) {
     f32 latDistToMario;
     f32 spawnerRadius;
 
-    spawnerRadius = 50 * (u16)(o->oBehParams >> 16) + 200.0f;
+    spawnerRadius = 50 * (u16) (o->oBehParams >> 16) + 200.0f;
     latDistToMario = lateral_dist_between_objects(o, gMarioObject);
 
     // When mario is in range and a water bomb isn't already active

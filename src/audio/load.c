@@ -362,7 +362,7 @@ out2:
 
     for (i = sSampleDmaListSize1; (u32) i < gSampleDmaNumListItems; i++) {
         sSampleDmaReuseQueue2[i - sSampleDmaListSize1] = (u8) i;
-        sSampleDmas[i].reuseIndex = (u8)(i - sSampleDmaListSize1);
+        sSampleDmas[i].reuseIndex = (u8) (i - sSampleDmaListSize1);
     }
 
     // This probably meant to touch the range size1..size2 as well... but it
@@ -394,7 +394,7 @@ static
     void *patched;
     UNUSED u8 *mem; // unused on US
 
-#define PATCH(x, base) (patched = (void *) ((uintptr_t)(x) + (uintptr_t) base))
+#define PATCH(x, base) (patched = (void *) ((uintptr_t) (x) + (uintptr_t) base))
 
     if (sound->sample != NULL) {
         sample = sound->sample = PATCH(sound->sample, memBase);
@@ -432,15 +432,15 @@ static
         struct AudioBankSample *sample;                                                                \
         void *patched;                                                                                 \
         if ((*sound).sample != (void *) 0) {                                                           \
-            patched = (void *) (((uintptr_t)(*sound).sample) + ((uintptr_t)((u8 *) mem)));             \
+            patched = (void *) (((uintptr_t) (*sound).sample) + ((uintptr_t) ((u8 *) mem)));           \
             (*sound).sample = patched;                                                                 \
             sample = (*sound).sample;                                                                  \
             if ((*sample).loaded == 0) {                                                               \
-                patched = (void *) (((uintptr_t)(*sample).sampleAddr) + ((uintptr_t) offset));         \
+                patched = (void *) (((uintptr_t) (*sample).sampleAddr) + ((uintptr_t) offset));        \
                 (*sample).sampleAddr = patched;                                                        \
-                patched = (void *) (((uintptr_t)(*sample).loop) + ((uintptr_t)((u8 *) mem)));          \
+                patched = (void *) (((uintptr_t) (*sample).loop) + ((uintptr_t) ((u8 *) mem)));        \
                 (*sample).loop = patched;                                                              \
-                patched = (void *) (((uintptr_t)(*sample).book) + ((uintptr_t)((u8 *) mem)));          \
+                patched = (void *) (((uintptr_t) (*sample).book) + ((uintptr_t) ((u8 *) mem)));        \
                 (*sample).book = patched;                                                              \
                 (*sample).loaded = 1;                                                                  \
             }                                                                                          \
@@ -462,7 +462,7 @@ void patch_audio_bank(struct AudioBank *mem, u8 *offset, u32 numInstruments, u32
     u32 numDrums2;
 #endif
 
-#define PATCH(x, base) (patched = (void *) ((uintptr_t)(x) + (uintptr_t) base))
+#define PATCH(x, base) (patched = (void *) ((uintptr_t) (x) + (uintptr_t) base))
 #define PATCH_MEM(x) x = PATCH(x, mem)
 
     drums = mem->drums;
@@ -514,7 +514,7 @@ void patch_audio_bank(struct AudioBank *mem, u8 *offset, u32 numInstruments, u32
 #ifndef VERSION_EU
         l2:
 #else
-        do {
+    do {
 #endif
             if (*itInstrs != NULL) {
                 *itInstrs = (void *) ((uintptr_t) *itInstrs + (uintptr_t) mem);
@@ -526,15 +526,15 @@ void patch_audio_bank(struct AudioBank *mem, u8 *offset, u32 numInstruments, u32
                     PATCH_SOUND(&instrument->normalNotesSound, (u8 *) mem, offset);
                     PATCH_SOUND(&instrument->highNotesSound, (u8 *) mem, offset);
 #else
-                    patch_sound(&instrument->lowNotesSound, (u8 *) mem, offset);
-                    patch_sound(&instrument->normalNotesSound, (u8 *) mem, offset);
-                    patch_sound(&instrument->highNotesSound, (u8 *) mem, offset);
+                patch_sound(&instrument->lowNotesSound, (u8 *) mem, offset);
+                patch_sound(&instrument->normalNotesSound, (u8 *) mem, offset);
+                patch_sound(&instrument->highNotesSound, (u8 *) mem, offset);
 #endif
                     patched = instrument->envelope;
 #ifndef VERSION_EU
                     instrument->envelope = (void *) ((uintptr_t) mem + (uintptr_t) patched);
 #else
-                    instrument->envelope = (void *) ((uintptr_t) patched + (uintptr_t) mem);
+                instrument->envelope = (void *) ((uintptr_t) patched + (uintptr_t) mem);
 #endif
                     instrument->loaded = 1;
                 }
@@ -546,7 +546,7 @@ void patch_audio_bank(struct AudioBank *mem, u8 *offset, u32 numInstruments, u32
                 goto l2;
             }
 #else
-        } while (end != itInstrs);
+    } while (end != itInstrs);
 #endif
         }
     }
@@ -577,7 +577,7 @@ struct AudioBank *bank_load_immediate(s32 bankId, s32 arg1) {
     audio_dma_copy_immediate((uintptr_t) ctlData, buf, 0x10);
     numInstruments = buf[0];
     numDrums = buf[1];
-    audio_dma_copy_immediate((uintptr_t)(ctlData + 0x10), ret, alloc);
+    audio_dma_copy_immediate((uintptr_t) (ctlData + 0x10), ret, alloc);
     patch_audio_bank(ret, gAlTbl->seqArray[bankId].offset, numInstruments, numDrums);
     gCtlEntries[bankId].numInstruments = (u8) numInstruments;
     gCtlEntries[bankId].numDrums = (u8) numDrums;
@@ -619,7 +619,7 @@ struct AudioBank *bank_load_async(s32 bankId, s32 arg1, struct SequencePlayer *s
     gCtlEntries[bankId].instruments = ret->instruments;
     gCtlEntries[bankId].drums = 0;
     seqPlayer->bankDmaCurrMemAddr = (u8 *) ret;
-    seqPlayer->bankDmaCurrDevAddr = (uintptr_t)(ctlData + 0x10);
+    seqPlayer->bankDmaCurrDevAddr = (uintptr_t) (ctlData + 0x10);
     seqPlayer->bankDmaRemaining = alloc;
     if (1) {
     }
@@ -628,7 +628,7 @@ struct AudioBank *bank_load_async(s32 bankId, s32 arg1, struct SequencePlayer *s
     seqPlayer->loadingBankNumDrums = numDrums;
     seqPlayer->bankDmaCurrMemAddr = (u8 *) ret;
     seqPlayer->loadingBank = ret;
-    seqPlayer->bankDmaCurrDevAddr = (uintptr_t)(ctlData + 0x10);
+    seqPlayer->bankDmaCurrDevAddr = (uintptr_t) (ctlData + 0x10);
     seqPlayer->bankDmaRemaining = alloc;
 #endif
     mesgQueue = &seqPlayer->bankDmaMesgQueue;
@@ -689,7 +689,7 @@ void *sequence_dma_async(s32 seqId, s32 arg1, struct SequencePlayer *seqPlayer) 
         seqPlayer->seqDmaMesg = NULL;
 #endif
         seqPlayer->seqDmaInProgress = TRUE;
-        audio_dma_copy_async((uintptr_t)(seqData + 0x40), (u8 *) ptr + 0x40, seqLength - 0x40,
+        audio_dma_copy_async((uintptr_t) (seqData + 0x40), (u8 *) ptr + 0x40, seqLength - 0x40,
                              mesgQueue, &seqPlayer->seqDmaIoMesg);
         gSeqLoadStatus[seqId] = SOUND_LOAD_STATUS_IN_PROGRESS;
     }
@@ -950,7 +950,7 @@ void audio_init() {
     for (i = 0; i < NUMAIBUFFERS; i++) {
         gAiBuffers[i] = soundAlloc(&gAudioInitPool, AIBUFFER_LEN);
 
-        for (j = 0; j < (s32)(AIBUFFER_LEN / sizeof(s16)); j++) {
+        for (j = 0; j < (s32) (AIBUFFER_LEN / sizeof(s16)); j++) {
             gAiBuffers[i][j] = 0;
         }
     }

@@ -31,7 +31,7 @@ extern Gfx title_screen_bg_dl_0A000160[];
 extern Gfx title_screen_bg_dl_0A000178[];
 extern Gfx title_screen_bg_dl_0A000190[];
 extern const u8 *const mario_title_texture_table[];
-//extern const u8 *const game_over_texture_table[];
+// extern const u8 *const game_over_texture_table[];
 
 // intro geo bss
 s32 gGameOverFrameCounter;
@@ -54,7 +54,8 @@ float introBackgroundOffsetY[] = {
 };
 
 // table that points to either the "Super Mario 64" or "Game Over" tables
-//const u8 *const *introBackgroundTextureType[] = { mario_title_texture_table, game_over_texture_table };
+// const u8 *const *introBackgroundTextureType[] = { mario_title_texture_table, game_over_texture_table
+// };
 
 s8 introBackgroundIndexTable[] = {
     INTRO_BACKGROUND_SUPER_MARIO, INTRO_BACKGROUND_SUPER_MARIO, INTRO_BACKGROUND_SUPER_MARIO,

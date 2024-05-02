@@ -71,14 +71,14 @@ struct SPTask *create_next_audio_frame_task(void) {
 
     decrease_sample_dma_ttls();
     if (osRecvMesg(OSMesgQueues[2], &sp30, 0) != -1) {
-        gAudioResetPresetIdToLoad = (u8)(s32) sp30;
+        gAudioResetPresetIdToLoad = (u8) (s32) sp30;
         gAudioResetStatus = 5;
     }
 
     if (gAudioResetStatus != 0) {
         if (audio_shut_down_and_reset_step() == 0) {
             if (gAudioResetStatus == 0) {
-                osSendMesg(OSMesgQueues[3], (OSMesg)(s32) gAudioResetPresetIdToLoad, OS_MESG_NOBLOCK);
+                osSendMesg(OSMesgQueues[3], (OSMesg) (s32) gAudioResetPresetIdToLoad, OS_MESG_NOBLOCK);
             }
             return NULL;
         }
@@ -237,7 +237,7 @@ void func_802ad770(u32 arg0, s8 arg1) {
 }
 
 void func_802ad7a0(void) {
-    osSendMesg(OSMesgQueues[1], (OSMesg)(u32)((D_EU_80302014 & 0xff) << 8 | (D_EU_80302010 & 0xff)),
+    osSendMesg(OSMesgQueues[1], (OSMesg) (u32) ((D_EU_80302014 & 0xff) << 8 | (D_EU_80302010 & 0xff)),
                OS_MESG_NOBLOCK);
     D_EU_80302014 = D_EU_80302010;
 }

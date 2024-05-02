@@ -25,7 +25,7 @@ void bhv_bbh_tilting_trap_platform_loop(void) {
 #else
     if (gMarioObject->platform == o) {
 #endif
-        o->oAngleVelPitch = (s32)(o->oDistanceToMario * coss(o->oAngleToMario));
+        o->oAngleVelPitch = (s32) (o->oDistanceToMario * coss(o->oAngleToMario));
         o->oFaceAnglePitch += o->oAngleVelPitch;
     } else
 #ifndef VERSION_JP
@@ -38,25 +38,25 @@ void bhv_bbh_tilting_trap_platform_loop(void) {
         // reset to 0 without them.
         if ((absi(o->oFaceAnglePitch) < 3000) || (o->oTimer >= 16))
 #endif
-    {
-        // Make the platform return to the horizontal at a speed of
-        // 200 angle units/frame, and clamp it to 0 if it's within 200 units of 0.
-        o->oAngleVelPitch = 0;
+        {
+            // Make the platform return to the horizontal at a speed of
+            // 200 angle units/frame, and clamp it to 0 if it's within 200 units of 0.
+            o->oAngleVelPitch = 0;
 
-        if ((s16) o->oFaceAnglePitch > 0) {
-            if (o->oFaceAnglePitch < 200) {
-                o->oFaceAnglePitch = 0;
+            if ((s16) o->oFaceAnglePitch > 0) {
+                if (o->oFaceAnglePitch < 200) {
+                    o->oFaceAnglePitch = 0;
+                } else {
+                    o->oAngleVelPitch = -200;
+                }
             } else {
-                o->oAngleVelPitch = -200;
-            }
-        } else {
-            if (o->oFaceAnglePitch > -200) {
-                o->oFaceAnglePitch = 0;
-            } else {
-                o->oAngleVelPitch = 200;
+                if (o->oFaceAnglePitch > -200) {
+                    o->oFaceAnglePitch = 0;
+                } else {
+                    o->oAngleVelPitch = 200;
+                }
             }
         }
-    }
 
     // Update angle
     o->oFaceAnglePitch += o->oAngleVelPitch;

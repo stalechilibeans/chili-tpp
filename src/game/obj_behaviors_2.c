@@ -140,7 +140,7 @@ static void platform_on_track_update_pos_or_spawn_ball(s32 ballIndex, f32 x, f32
     f32 dz;
     f32 distToNextWaypoint;
 
-    if (ballIndex == 0 || ((u16)(o->oBehParams >> 16) & 0x0080)) {
+    if (ballIndex == 0 || ((u16) (o->oBehParams >> 16) & 0x0080)) {
         initialPrevWaypoint = o->oPlatformOnTrackPrevWaypoint;
         nextWaypoint = initialPrevWaypoint;
 
@@ -161,7 +161,7 @@ static void platform_on_track_update_pos_or_spawn_ball(s32 ballIndex, f32 x, f32
                     o->oPlatformOnTrackPrevWaypointFlags = WAYPOINT_FLAGS_END;
                 }
 
-                if (((u16)(o->oBehParams >> 16) & PLATFORM_ON_TRACK_BP_RETURN_TO_START)) {
+                if (((u16) (o->oBehParams >> 16) & PLATFORM_ON_TRACK_BP_RETURN_TO_START)) {
                     nextWaypoint = o->oPlatformOnTrackStartWaypoint;
                 } else {
                     return;
@@ -433,7 +433,7 @@ static s32 obj_face_roll_approach(s16 targetRoll, s16 deltaRoll) {
 static s32 obj_smooth_turn(s16 *angleVel, s32 *angle, s16 targetAngle, f32 targetSpeedProportion,
                            s16 accel, s16 minSpeed, s16 maxSpeed) {
     s16 currentSpeed;
-    s16 currentAngle = (s16)(*angle);
+    s16 currentAngle = (s16) (*angle);
 
     *angleVel =
         approach_s16_symmetric(*angleVel, (targetAngle - currentAngle) * targetSpeedProportion, accel);
@@ -442,7 +442,7 @@ static s32 obj_smooth_turn(s16 *angleVel, s32 *angle, s16 targetAngle, f32 targe
     clamp_s16(&currentSpeed, minSpeed, maxSpeed);
 
     *angle = approach_s16_symmetric(*angle, targetAngle, currentSpeed);
-    return (s16)(*angle) == targetAngle;
+    return (s16) (*angle) == targetAngle;
 }
 
 static void obj_roll_to_match_yaw_turn(s16 targetYaw, s16 maxRoll, s16 rollSpeed) {
@@ -452,7 +452,7 @@ static void obj_roll_to_match_yaw_turn(s16 targetYaw, s16 maxRoll, s16 rollSpeed
 }
 
 static s16 random_linear_offset(s16 base, s16 range) {
-    return base + (s16)(range * random_float());
+    return base + (s16) (range * random_float());
 }
 
 static s16 random_mod_offset(s16 base, s16 step, s16 mod) {
@@ -566,7 +566,7 @@ static s32 obj_resolve_object_collisions(s32 *targetYaw) {
             if (targetYaw != NULL && abs_angle_diff(o->oMoveAngleYaw, angle) < 0x4000) {
                 // Bounce off object (or it would, if the above atan2s bug
                 // were fixed)
-                *targetYaw = (s16)(angle - o->oMoveAngleYaw + angle + 0x8000);
+                *targetYaw = (s16) (angle - o->oMoveAngleYaw + angle + 0x8000);
                 return TRUE;
             }
         }
@@ -579,7 +579,7 @@ static s32 obj_bounce_off_walls_edges_objects(s32 *targetYaw) {
     if (o->oMoveFlags & OBJ_MOVE_HIT_WALL) {
         *targetYaw = cur_obj_reflect_move_angle_off_wall();
     } else if (o->oMoveFlags & OBJ_MOVE_HIT_EDGE) {
-        *targetYaw = (s16)(o->oMoveAngleYaw + 0x8000);
+        *targetYaw = (s16) (o->oMoveAngleYaw + 0x8000);
     } else if (!obj_resolve_object_collisions(targetYaw)) {
         return FALSE;
     }
@@ -656,8 +656,7 @@ static void obj_set_squished_action(void) {
 
 static s32 obj_die_if_above_lava_and_health_non_positive(void) {
     if (o->oMoveFlags & OBJ_MOVE_UNDERWATER_ON_GROUND) {
-        if (o->oGravity + o->oBuoyancy > 0.0f
-            || mcWaterCheck(o->oPosX, o->oPosZ) - o->oPosY < 150.0f) {
+        if (o->oGravity + o->oBuoyancy > 0.0f || mcWaterCheck(o->oPosX, o->oPosZ) - o->oPosY < 150.0f) {
             return FALSE;
         }
     } else if (!(o->oMoveFlags & OBJ_MOVE_ABOVE_LAVA)) {

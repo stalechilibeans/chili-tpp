@@ -796,7 +796,7 @@ static u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actio
             break;
 
         case ACT_TRIPLE_JUMP:
-            set_mario_y_vel_based_on_fspeed(m, 69.0f, 0.0f); //this feels all wrong
+            set_mario_y_vel_based_on_fspeed(m, 69.0f, 0.0f); // this feels all wrong
             m->forwardVel *= 0.8f;
             break;
 
@@ -1441,7 +1441,7 @@ void set_submerged_cam_preset_and_spawn_bubbles(struct MarioState *m) {
     s16 camPreset;
 
     if ((m->action & ACT_GROUP_MASK) == ACT_GROUP_SUBMERGED) {
-        heightBelowWater = (f32)(m->waterLevel - 80) - m->pos[1];
+        heightBelowWater = (f32) (m->waterLevel - 80) - m->pos[1];
         camPreset = m->area->camera->mode;
 
         if ((m->action & ACT_FLAG_METAL_WATER)) {
@@ -1460,7 +1460,7 @@ void set_submerged_cam_preset_and_spawn_bubbles(struct MarioState *m) {
             // As long as Mario isn't drowning or at the top
             // of the water with his head out, spawn bubbles.
             if ((m->action & ACT_FLAG_INTANGIBLE) == 0) {
-                if ((m->pos[1] < (f32)(m->waterLevel - 160)) || (m->faceAngle[0] < -0x800)) {
+                if ((m->pos[1] < (f32) (m->waterLevel - 160)) || (m->faceAngle[0] < -0x800)) {
                     m->particleFlags |= PARTICLE_BUBBLE;
                 }
             }
@@ -1821,8 +1821,7 @@ void init_mario(void) {
     gMarioState->riddenObj = NULL;
     gMarioState->usedObj = NULL;
 
-    gMarioState->waterLevel =
-        mcWaterCheck(gMarioSpawnInfo->startPos[0], gMarioSpawnInfo->startPos[2]);
+    gMarioState->waterLevel = mcWaterCheck(gMarioSpawnInfo->startPos[0], gMarioSpawnInfo->startPos[2]);
 
     gMarioState->area = gCurrentArea;
     gMarioState->marioObj = gMarioObject;
@@ -1831,8 +1830,8 @@ void init_mario(void) {
     vec3s_set(gMarioState->angleVel, 0, 0, 0);
     vec3s_to_vec3f(gMarioState->pos, gMarioSpawnInfo->startPos);
     vec3f_set(gMarioState->vel, 0, 0, 0);
-    gMarioState->floorHeight =
-        mcBGGroundCheck(gMarioState->pos[0], gMarioState->pos[1], gMarioState->pos[2], &gMarioState->floor);
+    gMarioState->floorHeight = mcBGGroundCheck(gMarioState->pos[0], gMarioState->pos[1],
+                                               gMarioState->pos[2], &gMarioState->floor);
 
     if (gMarioState->pos[1] < gMarioState->floorHeight) {
         gMarioState->pos[1] = gMarioState->floorHeight;

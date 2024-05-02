@@ -16,7 +16,7 @@ void spawn_triangle_break_particles(s16 numTris, s16 triModel, f32 triSize, s16 
             triangle->oAngleVelYaw = 0x500;
             triangle->oForwardVel = 30.0f;
         } else {
-            triangle->oAngleVelPitch = 0x80 * (s32)(random_float() + 50.0f);
+            triangle->oAngleVelPitch = 0x80 * (s32) (random_float() + 50.0f);
             triangle->oForwardVel = 30.0f;
         }
         obj_scale(triangle, triSize);

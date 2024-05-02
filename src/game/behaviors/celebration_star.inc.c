@@ -29,8 +29,8 @@ void bhv_celebration_star_init(void) {
 }
 
 void celeb_star_act_spin_around_mario(void) {
-    o->oPosX = o->oHomeX + sins(o->oMoveAngleYaw) * (f32)(o->oCelebStarDiameterOfRotation / 2);
-    o->oPosZ = o->oHomeZ + coss(o->oMoveAngleYaw) * (f32)(o->oCelebStarDiameterOfRotation / 2);
+    o->oPosX = o->oHomeX + sins(o->oMoveAngleYaw) * (f32) (o->oCelebStarDiameterOfRotation / 2);
+    o->oPosZ = o->oHomeZ + coss(o->oMoveAngleYaw) * (f32) (o->oCelebStarDiameterOfRotation / 2);
     o->oPosY += 5.0f;
     o->oAnimState++;
     o->oFaceAngleYaw = gMarioObject->header.gfx.angle[1];

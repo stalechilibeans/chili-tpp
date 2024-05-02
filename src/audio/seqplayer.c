@@ -550,7 +550,7 @@ void seq_channel_layer_process_script(struct SequenceChannelLayer *layer) {
             case 0xca: // layer_setpan
                 temp_a0_5 = *(state->pc++);
                 if (cmd == 0xc1) {
-                    layer->velocitySquare = (f32)(temp_a0_5 * temp_a0_5);
+                    layer->velocitySquare = (f32) (temp_a0_5 * temp_a0_5);
                 } else {
 #ifdef VERSION_EU
                     layer->pan = temp_a0_5;
@@ -669,11 +669,11 @@ void seq_channel_layer_process_script(struct SequenceChannelLayer *layer) {
 
                 adsr = &layer->adsr;
                 if (((uintptr_t) gBankLoadedPool.persistent.pool.start <= (uintptr_t) inst
-                     && (uintptr_t) inst <= (uintptr_t)(gBankLoadedPool.persistent.pool.start
-                                                        + gBankLoadedPool.persistent.pool.size))
+                     && (uintptr_t) inst <= (uintptr_t) (gBankLoadedPool.persistent.pool.start
+                                                         + gBankLoadedPool.persistent.pool.size))
                     || ((uintptr_t) gBankLoadedPool.temporary.pool.start <= (uintptr_t) inst
-                        && (uintptr_t) inst <= (uintptr_t)(gBankLoadedPool.temporary.pool.start
-                                                           + gBankLoadedPool.temporary.pool.size))) {
+                        && (uintptr_t) inst <= (uintptr_t) (gBankLoadedPool.temporary.pool.start
+                                                            + gBankLoadedPool.temporary.pool.size))) {
                     adsr->envelope = inst->envelope;
                     adsr->releaseRate = inst->releaseRate;
                     *instOut = inst;
@@ -741,7 +741,7 @@ void seq_channel_layer_process_script(struct SequenceChannelLayer *layer) {
                 switch (cmd & 0xf0) {
                     case 0xd0: // layer_setshortnotevelocityfromtable
                         sp3A = seqPlayer->shortNoteVelocityTable[loBits];
-                        layer->velocitySquare = (f32)(sp3A * sp3A);
+                        layer->velocitySquare = (f32) (sp3A * sp3A);
                         break;
                     case 0xe0: // layer_setshortnotedurationfromtable
                         layer->noteDuration = seqPlayer->shortNoteDurationTable[loBits];
@@ -1094,11 +1094,11 @@ u8 get_instrument(struct SequenceChannel *seqChannel, u8 instId, struct Instrume
     }
 
     if (((uintptr_t) gBankLoadedPool.persistent.pool.start <= (uintptr_t) inst
-         && (uintptr_t) inst <= (uintptr_t)(gBankLoadedPool.persistent.pool.start
-                                            + gBankLoadedPool.persistent.pool.size))
+         && (uintptr_t) inst <= (uintptr_t) (gBankLoadedPool.persistent.pool.start
+                                             + gBankLoadedPool.persistent.pool.size))
         || ((uintptr_t) gBankLoadedPool.temporary.pool.start <= (uintptr_t) inst
-            && (uintptr_t) inst <= (uintptr_t)(gBankLoadedPool.temporary.pool.start
-                                               + gBankLoadedPool.temporary.pool.size))) {
+            && (uintptr_t) inst <= (uintptr_t) (gBankLoadedPool.temporary.pool.start
+                                                + gBankLoadedPool.temporary.pool.size))) {
         adsr->envelope = inst->envelope;
         adsr->releaseRate = inst->releaseRate;
         *instOut = inst;
@@ -1951,7 +1951,7 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
                                 seqPlayer->fadeTimer = u16v;
                                 seqPlayer->state = temp;
                                 seqPlayer->fadeVelocity =
-                                    (0.0f - seqPlayer->fadeVolume) / (s32)(u16v & 0xFFFFu);
+                                    (0.0f - seqPlayer->fadeVolume) / (s32) (u16v & 0xFFFFu);
                                 break;
                         }
                         break;
@@ -2000,7 +2000,7 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
                     case 0xda: // seq_changevol
                         temp = m64_read_u8(state);
                         seqPlayer->fadeVolume =
-                            seqPlayer->fadeVolume + (f32)(s8) temp / US_FLOAT(127.0);
+                            seqPlayer->fadeVolume + (f32) (s8) temp / US_FLOAT(127.0);
                         break;
 #endif
 
@@ -2023,7 +2023,7 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
 
                     case 0xd5: // seq_setmutescale
                         temp = m64_read_u8(state);
-                        seqPlayer->muteVolumeScale = (f32)(s8) temp / US_FLOAT(127.0);
+                        seqPlayer->muteVolumeScale = (f32) (s8) temp / US_FLOAT(127.0);
                         break;
 
                     case 0xd4: // seq_mute

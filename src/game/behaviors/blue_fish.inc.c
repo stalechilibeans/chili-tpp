@@ -17,7 +17,7 @@ void bhv_blue_fish_movement_loop(void) {
             if (o->oTimer == 0) {
                 o->oBlueFishRandomAngle = random_sign() << 11;
                 o->oBlueFishRandomVel = random_float() * 2;
-                o->oBlueFishRandomTime = (s32)(random_float() * 30) & 0xFE;
+                o->oBlueFishRandomTime = (s32) (random_float() * 30) & 0xFE;
 
                 // Adjusts pitch velocity or sets to zero dependant on outcome of randomSwitch.
                 randomSwitch = random_float() * 5;
@@ -47,7 +47,7 @@ void bhv_blue_fish_movement_loop(void) {
         // Animates and adjusts fish yaw angle.
         case BLUE_FISH_ACT_TURN:
             cur_obj_init_animation_with_accel_and_sound(0, 2.0f);
-            o->oMoveAngleYaw = (s32)(o->oBlueFishRandomAngle + o->oMoveAngleYaw);
+            o->oMoveAngleYaw = (s32) (o->oBlueFishRandomAngle + o->oMoveAngleYaw);
             if (o->oTimer == 15) {
                 o->oAction++;
             }
@@ -71,7 +71,7 @@ void bhv_blue_fish_movement_loop(void) {
         // Animates and turns fish around
         case BLUE_FISH_ACT_TURN_BACK:
             cur_obj_init_animation_with_accel_and_sound(0, 2.0f);
-            o->oMoveAngleYaw = (s32)(o->oBlueFishRandomAngle + o->oMoveAngleYaw);
+            o->oMoveAngleYaw = (s32) (o->oBlueFishRandomAngle + o->oMoveAngleYaw);
 
             // Sets the fish back to the BLUE_FISH_ACT_DIVE phase.
             if (o->oTimer == 15) {

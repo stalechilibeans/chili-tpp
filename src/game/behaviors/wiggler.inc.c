@@ -266,7 +266,7 @@ static void wiggler_act_walk(void) {
 
         // If moving at high speeds, could overflow. But can't reach such speeds
         // in practice
-        yawTurnSpeed = (s16)(30.0f * o->oForwardVel);
+        yawTurnSpeed = (s16) (30.0f * o->oForwardVel);
         cur_obj_rotate_yaw_toward(o->oWigglerTargetYaw, yawTurnSpeed);
         obj_face_yaw_approach(o->oMoveAngleYaw, 2 * yawTurnSpeed);
 

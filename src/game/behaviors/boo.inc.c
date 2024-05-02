@@ -161,7 +161,7 @@ static void boo_set_move_yaw_for_during_hit(s32 hurt) {
     } else if (coss((s16) o->oMoveAngleYaw - (s16) o->oAngleToMario) < 0.0f) {
         o->oBooMoveYawDuringHit = o->oMoveAngleYaw;
     } else {
-        o->oBooMoveYawDuringHit = (s16)(o->oMoveAngleYaw + 0x8000);
+        o->oBooMoveYawDuringHit = (s16) (o->oMoveAngleYaw + 0x8000);
     }
 }
 
@@ -392,7 +392,7 @@ static void boo_act_1(void) {
 
     if (o->oTimer == 0) {
         o->oBooNegatedAggressiveness = -random_float() * 5.0f;
-        o->oBooTurningSpeed = (s32)(random_float() * 128.0f);
+        o->oBooTurningSpeed = (s32) (random_float() * 128.0f);
     }
 
     boo_chase_mario(-100.0f, o->oBooTurningSpeed + 0x180, 0.5f);

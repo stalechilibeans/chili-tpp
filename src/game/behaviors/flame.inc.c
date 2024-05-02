@@ -3,7 +3,7 @@
 void bhv_small_piranha_flame_loop(void) {
     f32 sp2C;
 
-    if ((u16)(o->oBehParams >> 16) == 0) {
+    if ((u16) (o->oBehParams >> 16) == 0) {
         if (o->oTimer > 0) {
             obj_mark_for_deletion(o);
         } else {

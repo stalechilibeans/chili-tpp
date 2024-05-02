@@ -86,11 +86,11 @@ static void swoop_act_move(void) {
         obj_move_pitch_approach(o->oSwoopTargetPitch, 140);
 
         // Jitter yaw a bit
-        cur_obj_rotate_yaw_toward(o->oSwoopTargetYaw + (s32)(3000 * coss(4000 * gGlobalTimer)), 1200);
+        cur_obj_rotate_yaw_toward(o->oSwoopTargetYaw + (s32) (3000 * coss(4000 * gGlobalTimer)), 1200);
         obj_roll_to_match_yaw_turn(o->oSwoopTargetYaw, 0x3000, 500);
 
         // Jitter roll a bit
-        o->oFaceAngleRoll += (s32)(1000 * coss(20000 * gGlobalTimer));
+        o->oFaceAngleRoll += (s32) (1000 * coss(20000 * gGlobalTimer));
     }
 }
 

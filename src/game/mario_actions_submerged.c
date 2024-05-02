@@ -141,7 +141,7 @@ static void apply_water_current(struct MarioState *m, Vec3f step) {
             s16 pitchToWhirlpool = atan2s(lateralDist, dy);
             s16 yawToWhirlpool = atan2s(dz, dx);
 
-            yawToWhirlpool -= (s16)(0x2000 * 1000.0f / (distance + 1000.0f));
+            yawToWhirlpool -= (s16) (0x2000 * 1000.0f / (distance + 1000.0f));
 
             if (whirlpool->strength >= 0) {
                 if (gCurrLevelNum == LEVEL_DDD && gCurrAreaIndex == 2) {
@@ -251,7 +251,7 @@ static void update_swimming_speed(struct MarioState *m, f32 decelThreshold) {
 }
 
 static void update_swimming_yaw(struct MarioState *m, s32 arg) {
-    s16 targetYawVel = -(s16)(10.0f * m->controller->stickX);
+    s16 targetYawVel = -(s16) (10.0f * m->controller->stickX);
 
     if (targetYawVel > 0) {
         if (m->angleVel[1] < 0) {
@@ -286,7 +286,7 @@ static void update_swimming_yaw(struct MarioState *m, s32 arg) {
 }
 
 static void update_swimming_pitch(struct MarioState *m) {
-    s16 targetPitch = -(s16)(252.0f * m->controller->stickY);
+    s16 targetPitch = -(s16) (252.0f * m->controller->stickY);
 
     s16 pitchVel;
     if (m->faceAngle[0] < 0) {
@@ -307,8 +307,8 @@ static void update_swimming_pitch(struct MarioState *m) {
 }
 
 static void common_idle_step(struct MarioState *m, s32 animation, s32 arg) {
-    s16 targetPitch = -(s16)(252.0f);
-    s16 targetSpeed = (s16)(32.0f * m->controller->stickY);
+    s16 targetPitch = -(s16) (252.0f);
+    s16 targetSpeed = (s16) (32.0f * m->controller->stickY);
 
     update_swimming_yaw(m, arg);
     update_swimming_speed(m, MIN_SWIM_SPEED);
@@ -494,7 +494,7 @@ static void common_swimming_step(struct MarioState *m, s16 swimStrength) {
 
     m->marioBodyState->headAngle[0] = approach_s32(m->marioBodyState->headAngle[0], 0, 0x200, 0x200);
 
-    //float_surface_gfx(m);
+    // float_surface_gfx(m);
     set_swimming_at_surface_particles(m, PARTICLE_WAVE_TRAIL);
 }
 
@@ -508,7 +508,7 @@ static void play_swimming_noise(struct MarioState *m) {
 }
 
 static s32 check_water_jump(struct MarioState *m) {
-    s32 probe = (s32)(m->pos[1] + 1.5f);
+    s32 probe = (s32) (m->pos[1] + 1.5f);
 
     if (m->input & INPUT_A_PRESSED) {
         if (probe >= m->waterLevel - 100 && m->faceAngle[0] >= 0 && m->controller->stickY < -63.0f) {
@@ -885,7 +885,7 @@ static void common_water_knockback_step(struct MarioState *m, s32 animation, u32
 
     if (is_anim_at_end(m)) {
         if (arg3 > 0) {
-            //m->invincTimer = 30;
+            // m->invincTimer = 30;
         }
 
         set_mario_action(m, m->health >= 0x100 ? endAction : ACT_WATER_DEATH, 0);
@@ -913,7 +913,7 @@ static s32 act_water_shocked(struct MarioState *m) {
     }
 
     if (m->actionTimer >= 6) {
-        //m->invincTimer = 30;
+        // m->invincTimer = 30;
         set_mario_action(m, m->health < 0x100 ? ACT_WATER_DEATH : ACT_WATER_IDLE, 0);
     }
 
@@ -1070,7 +1070,7 @@ static s32 act_caught_in_whirlpool(struct MarioState *m) {
         angleChange = 0x1800;
     } else if (distance < 256.0f) {
         newDistance = distance - (12.0f - distance / 32.0f);
-        angleChange = (s16)(0x1C00 - distance * 20.0f);
+        angleChange = (s16) (0x1C00 - distance * 20.0f);
     } else {
         newDistance = distance - 4.0f;
         angleChange = 0x800;
@@ -1137,7 +1137,7 @@ static void update_metal_water_walking_speed(struct MarioState *m) {
     }
 
     m->faceAngle[1] =
-        m->intendedYaw - approach_s32((s16)(m->intendedYaw - m->faceAngle[1]), 0, 0x800, 0x800);
+        m->intendedYaw - approach_s32((s16) (m->intendedYaw - m->faceAngle[1]), 0, 0x800, 0x800);
 
     m->slideVelX = m->forwardVel * sins(m->faceAngle[1]);
     m->slideVelZ = m->forwardVel * coss(m->faceAngle[1]);
@@ -1254,7 +1254,7 @@ static s32 act_metal_water_walking(struct MarioState *m) {
         return set_mario_action(m, ACT_METAL_WATER_STANDING, 0);
     }
 
-    if ((val04 = (s32)(m->forwardVel / 4.0f * 0x10000)) < 0x1000) {
+    if ((val04 = (s32) (m->forwardVel / 4.0f * 0x10000)) < 0x1000) {
         val04 = 0x1000;
     }
 
@@ -1296,7 +1296,7 @@ static s32 act_hold_metal_water_walking(struct MarioState *m) {
 
     m->intendedMag *= 0.4f;
 
-    if ((val04 = (s32)(m->forwardVel / 2.0f * 0x10000)) < 0x1000) {
+    if ((val04 = (s32) (m->forwardVel / 2.0f * 0x10000)) < 0x1000) {
         val04 = 0x1000;
     }
 

@@ -64,7 +64,7 @@ s32 check_common_hold_idle_cancels(struct MarioState *m) {
 
     if (m->heldObj->oInteractionSubtype & INT_SUBTYPE_DROP_IMMEDIATELY) {
         m->heldObj->oInteractionSubtype =
-            (s32)(m->heldObj->oInteractionSubtype & ~INT_SUBTYPE_DROP_IMMEDIATELY);
+            (s32) (m->heldObj->oInteractionSubtype & ~INT_SUBTYPE_DROP_IMMEDIATELY);
         return set_mario_action(m, ACT_PLACING_DOWN, 0);
     }
 
@@ -726,7 +726,7 @@ s32 act_shockwave_bounce(struct MarioState *m) {
     }
 
     sp1E = (m->actionTimer % 0x10) << 0xC;
-    sp18 = (f32)(((f32)(6 - m->actionTimer / 8) * 8.0f) + 4.0f);
+    sp18 = (f32) (((f32) (6 - m->actionTimer / 8) * 8.0f) + 4.0f);
     mario_set_forward_vel(m, 0);
     vec3f_set(m->vel, 0.0f, 0.0f, 0.0f);
     if (sins(sp1E) >= 0.0f) {

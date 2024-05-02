@@ -50,6 +50,6 @@ void bhv_ttc_cog_update(void) {
             break;
     }
 
-    o->oAngleVelYaw = (s32)(o->oTTCCogSpeed * o->oTTCCogDir);
+    o->oAngleVelYaw = (s32) (o->oTTCCogSpeed * o->oTTCCogDir);
     o->oFaceAngleYaw += o->oAngleVelYaw;
 }

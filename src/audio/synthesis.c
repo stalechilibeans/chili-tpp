@@ -759,7 +759,7 @@ u64 *synthesis_process_notes(u16 *aiBuf, s32 bufLen, u64 *cmd) {
                 resamplingRate = note->frequency * US_FLOAT(.5);
             }
 
-            resamplingRateFixedPoint = (u16)(s32)(resamplingRate * 32768.0f);
+            resamplingRateFixedPoint = (u16) (s32) (resamplingRate * 32768.0f);
             samplesLenFixedPoint = note->samplePosFrac + (resamplingRateFixedPoint * bufLen) * 2;
             note->samplePosFrac = samplesLenFixedPoint & 0xFFFF; // 16-bit store, can't reuse
 #else
@@ -888,15 +888,15 @@ u64 *synthesis_process_notes(u16 *aiBuf, s32 bufLen, u64 *cmd) {
                             if (audioBookSample->loaded == 0x81) {
                                 v0_2 = sampleAddr + temp * 9;
                             } else {
-                                v0_2 = dma_sample_data((uintptr_t)(sampleAddr + temp * 9), t0 * 9,
+                                v0_2 = dma_sample_data((uintptr_t) (sampleAddr + temp * 9), t0 * 9,
                                                        flags, &synthesisState->sampleDmaIndex);
                             }
 #else
                         temp = (note->samplePosInt - s2 + 0x10) / 16;
-                        v0_2 = dma_sample_data((uintptr_t)(sampleAddr + temp * 9), t0 * 9, flags,
+                        v0_2 = dma_sample_data((uintptr_t) (sampleAddr + temp * 9), t0 * 9, flags,
                                                &note->sampleDmaIndex);
 #endif
-                            a3 = (u32)((uintptr_t) v0_2 & 0xf);
+                            a3 = (u32) ((uintptr_t) v0_2 & 0xf);
                             aSetBuffer(cmd++, 0, DMEM_ADDR_COMPRESSED_ADPCM_DATA, 0, t0 * 9 + a3);
                             aLoadBuffer(cmd++, VIRTUAL_TO_PHYSICAL2(v0_2 - a3));
                         } else {
@@ -935,7 +935,7 @@ u64 *synthesis_process_notes(u16 *aiBuf, s32 bufLen, u64 *cmd) {
                                 cmd++, flags,
                                 VIRTUAL_TO_PHYSICAL2(synthesisState->synthesisBuffers->adpcmdecState));
                             aDMEMMove(cmd++, DMEM_ADDR_UNCOMPRESSED_NOTE + s5Aligned + (s2 * 2),
-                                      DMEM_ADDR_UNCOMPRESSED_NOTE + s5, (nSamplesInThisIteration) *2);
+                                      DMEM_ADDR_UNCOMPRESSED_NOTE + s5, (nSamplesInThisIteration) * 2);
                         }
 #else
                     if (nAdpcmSamplesProcessed == 0) {
@@ -950,7 +950,7 @@ u64 *synthesis_process_notes(u16 *aiBuf, s32 bufLen, u64 *cmd) {
                         aADPCMdec(cmd++, flags,
                                   VIRTUAL_TO_PHYSICAL2(note->synthesisBuffers->adpcmdecState));
                         aDMEMMove(cmd++, DMEM_ADDR_UNCOMPRESSED_NOTE + ALIGN(s5, 5) + (s2 * 2),
-                                  DMEM_ADDR_UNCOMPRESSED_NOTE + s5, (nSamplesInThisIteration) *2);
+                                  DMEM_ADDR_UNCOMPRESSED_NOTE + s5, (nSamplesInThisIteration) * 2);
                     }
 #endif
 
@@ -1495,13 +1495,13 @@ void note_set_vel_pan_reverb(struct Note *note, f32 velocity, f32 pan, u8 reverb
     f32 volLeft;
     f32 volRight;
 #ifdef VERSION_JP
-    panIndex = MIN((s32)(pan * 127.5), 127);
+    panIndex = MIN((s32) (pan * 127.5), 127);
 #else
-    panIndex = (s32)(pan * 127.5f) & 127;
+    panIndex = (s32) (pan * 127.5f) & 127;
 #endif
     if (note->stereoHeadsetEffects && gSoundMode == SOUND_MODE_HEADSET) {
         s8 smallPanIndex;
-        s8 temp = (s8)(pan * 10.0f);
+        s8 temp = (s8) (pan * 10.0f);
         if (temp < 9) {
             smallPanIndex = temp;
         } else {
@@ -1543,11 +1543,11 @@ void note_set_vel_pan_reverb(struct Note *note, f32 velocity, f32 pan, u8 reverb
         velocity = 0;
     }
 #ifdef VERSION_JP
-    note->targetVolLeft = (u16)(velocity * volLeft) & ~0x80FF; // 0x7F00, but that doesn't match
-    note->targetVolRight = (u16)(velocity * volRight) & ~0x80FF;
+    note->targetVolLeft = (u16) (velocity * volLeft) & ~0x80FF; // 0x7F00, but that doesn't match
+    note->targetVolRight = (u16) (velocity * volRight) & ~0x80FF;
 #else
-    note->targetVolLeft = (u16)(s32)(velocity * volLeft) & ~0x80FF;
-    note->targetVolRight = (u16)(s32)(velocity * volRight) & ~0x80FF;
+    note->targetVolLeft = (u16) (s32) (velocity * volLeft) & ~0x80FF;
+    note->targetVolRight = (u16) (s32) (velocity * volRight) & ~0x80FF;
 #endif
     if (note->targetVolLeft == 0) {
         note->targetVolLeft++;

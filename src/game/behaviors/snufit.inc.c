@@ -75,7 +75,7 @@ void snufit_act_idle(void) {
 
     // This line would could cause a crash in certain PU situations,
     // if the game would not have already crashed.
-    marioDist = (s32)(o->oDistanceToMario / 10.0f);
+    marioDist = (s32) (o->oDistanceToMario / 10.0f);
     if (o->oTimer > marioDist && o->oDistanceToMario < 800.0f) {
 
         // Controls an alternating scaling factor in a cos.
@@ -154,8 +154,8 @@ void bhv_snufit_loop(void) {
 
         o->oSnufitYOffset = -0x20;
         o->oSnufitZOffset = o->oSnufitRecoil + 180;
-        o->oSnufitBodyScale = (s16)(o->oSnufitBodyBaseScale + 666
-                                    + o->oSnufitBodyBaseScale * coss(o->oSnufitBodyScalePeriod));
+        o->oSnufitBodyScale = (s16) (o->oSnufitBodyBaseScale + 666
+                                     + o->oSnufitBodyBaseScale * coss(o->oSnufitBodyScalePeriod));
 
         if (o->oSnufitBodyScale > 1000) {
             o->oSnufitScale = (o->oSnufitBodyScale - 1000) / 1000.0f + 1.0f;

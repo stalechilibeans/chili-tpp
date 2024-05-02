@@ -603,8 +603,8 @@ static void koopa_the_quick_act_race(void) {
         if (cur_obj_follow_path(0) == PATH_REACHED_END) {
             o->oAction = KOOPA_THE_QUICK_ACT_DECELERATE;
         } else {
-            downhillSteepness = 1.0f + sins((s16)(f32) o->oPathedTargetPitch);
-            cur_obj_rotate_yaw_toward(o->oPathedTargetYaw, (s32)(o->oKoopaAgility * 150.0f));
+            downhillSteepness = 1.0f + sins((s16) (f32) o->oPathedTargetPitch);
+            cur_obj_rotate_yaw_toward(o->oPathedTargetYaw, (s32) (o->oKoopaAgility * 150.0f));
 
             switch (o->oSubAction) {
                 case KOOPA_THE_QUICK_SUB_ACT_START_RUN:

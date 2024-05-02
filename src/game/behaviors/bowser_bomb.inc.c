@@ -44,9 +44,9 @@ void bhv_bowser_bomb_smoke_loop(void) {
         cur_obj_scale((f32) o->oTimer / 14.0f * 9.0 + 1.0);
 
     if (o->oTimer == 28) {
-       o->oPosY = o->oPosY;
-       o->oVelY = 0.0f;
-    } 
+        o->oPosY = o->oPosY;
+        o->oVelY = 0.0f;
+    }
 
     if (o->oTimer == 45)
         o->activeFlags = 0;

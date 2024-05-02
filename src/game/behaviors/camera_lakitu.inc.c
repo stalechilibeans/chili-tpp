@@ -82,7 +82,7 @@ static void camera_lakitu_intro_act_show_dialog(void) {
                 s16 turnAmount = 0x4000
                                  - atan2s(o->oCameraLakituCircleRadius,
                                           o->oDistanceToMario - o->oCameraLakituCircleRadius);
-                if ((s16)(o->oMoveAngleYaw - o->oAngleToMario) < 0) {
+                if ((s16) (o->oMoveAngleYaw - o->oAngleToMario) < 0) {
                     turnAmount = -turnAmount;
                 }
 

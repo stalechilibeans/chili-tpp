@@ -394,7 +394,7 @@ void obj_splash(s32 waterY, s32 objY) {
     u32 globalTimer = gGlobalTimer;
 
     // Spawns waves if near surface of water and plays a noise if entering.
-    if ((f32)(waterY + 30) > o->oPosY && o->oPosY > (f32)(waterY - 30)) {
+    if ((f32) (waterY + 30) > o->oPosY && o->oPosY > (f32) (waterY - 30)) {
         spawn_object(o, MODEL_IDLE_WATER_WAVE, bhvObjectWaterWave);
 
         if (o->oVelY < -20.0f) {
@@ -496,7 +496,7 @@ s32 is_point_within_radius_of_mario(f32 x, f32 y, f32 z, s32 dist) {
     f32 mGfxZ = gMarioObject->header.gfx.pos[2];
 
     if ((x - mGfxX) * (x - mGfxX) + (y - mGfxY) * (y - mGfxY) + (z - mGfxZ) * (z - mGfxZ)
-        < (f32)(dist * dist)) {
+        < (f32) (dist * dist)) {
         return TRUE;
     }
 
@@ -512,7 +512,7 @@ s32 is_point_close_to_object(struct Object *obj, f32 x, f32 y, f32 z, s32 dist) 
     f32 objZ = obj->oPosZ;
 
     if ((x - objX) * (x - objX) + (y - objY) * (y - objY) + (z - objZ) * (z - objZ)
-        < (f32)(dist * dist)) {
+        < (f32) (dist * dist)) {
         return TRUE;
     }
 
@@ -559,9 +559,9 @@ void obj_return_and_displace_home(struct Object *obj, f32 homeX, UNUSED f32 home
     s16 angleToNewHome;
     f32 homeDistX, homeDistZ;
 
-    if ((s32)(random_float() * 50.0f) == 0) {
-        obj->oHomeX = (f32)(baseDisp * 2) * random_float() - (f32) baseDisp + homeX;
-        obj->oHomeZ = (f32)(baseDisp * 2) * random_float() - (f32) baseDisp + homeZ;
+    if ((s32) (random_float() * 50.0f) == 0) {
+        obj->oHomeX = (f32) (baseDisp * 2) * random_float() - (f32) baseDisp + homeX;
+        obj->oHomeZ = (f32) (baseDisp * 2) * random_float() - (f32) baseDisp + homeZ;
     }
 
     homeDistX = obj->oHomeX - obj->oPosX;

@@ -381,7 +381,7 @@ s32 cur_obj_rotate_yaw_toward(s16 target, s16 increment) {
     startYaw = (s16) o->oMoveAngleYaw;
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, target, increment);
 
-    if ((o->oAngleVelYaw = (s16)((s16) o->oMoveAngleYaw - startYaw)) == 0) {
+    if ((o->oAngleVelYaw = (s16) ((s16) o->oMoveAngleYaw - startYaw)) == 0) {
         return TRUE;
     } else {
         return FALSE;
@@ -503,7 +503,7 @@ struct Object *spawn_water_droplet(struct Object *parent, struct WaterDropletPar
     }
 
     if (params->flags & WATER_DROPLET_FLAG_RAND_ANGLE_INCR_PLUS_8000) {
-        newObj->oMoveAngleYaw = (s16)(newObj->oMoveAngleYaw + 0x8000)
+        newObj->oMoveAngleYaw = (s16) (newObj->oMoveAngleYaw + 0x8000)
                                 + (s16) random_f32_around_zero(params->moveAngleRange);
     }
 
@@ -746,7 +746,7 @@ void cur_obj_init_animation_with_sound(s32 animIndex) {
 
 void cur_obj_init_animation_with_accel_and_sound(s32 animIndex, f32 accel) {
     struct Animation **anims = o->oAnimations;
-    s32 animAccel = (s32)(accel * 65536.0f);
+    s32 animAccel = (s32) (accel * 65536.0f);
     geo_obj_init_animation_accel(&o->header.gfx, &anims[animIndex], animAccel);
     o->oSoundStateID = animIndex;
 }
@@ -1282,7 +1282,7 @@ static s32 cur_obj_move_xz(f32 steepSlopeNormalY, s32 careAboutEdgesAndSteepSlop
 }
 
 static void cur_obj_move_update_underwater_flags(void) {
-    f32 decelY = (f32)(sqrtf(o->oVelY * o->oVelY) * (o->oDragStrength * 7.0f)) / 100.0L;
+    f32 decelY = (f32) (sqrtf(o->oVelY * o->oVelY) * (o->oDragStrength * 7.0f)) / 100.0L;
 
     if (o->oVelY > 0) {
         o->oVelY -= decelY;
@@ -1690,7 +1690,7 @@ static s32 cur_obj_detect_steep_floor(s16 steepAngleDegrees) {
     struct Surface *intendedFloor;
     f32 intendedX, intendedFloorHeight, intendedZ;
     f32 deltaFloorHeight;
-    f32 steepNormalY = coss((s16)(steepAngleDegrees * (0x10000 / 360)));
+    f32 steepNormalY = coss((s16) (steepAngleDegrees * (0x10000 / 360)));
 
     if (o->oForwardVel != 0) {
         intendedX = o->oPosX + o->oVelX;

@@ -610,9 +610,9 @@ void Unknown801985E8(struct ObjShape *shape) {
 
     func_8017BE60(&sp18);
 
-    D_801BAD30.x = (f32)((sp18.p0.x + sp18.p1.x) / 2.0); //? 2.0f
-    D_801BAD30.y = (f32)((sp18.p0.y + sp18.p1.y) / 2.0); //? 2.0f
-    D_801BAD30.z = (f32)((sp18.p0.z + sp18.p1.z) / 2.0); //? 2.0f
+    D_801BAD30.x = (f32) ((sp18.p0.x + sp18.p1.x) / 2.0); //? 2.0f
+    D_801BAD30.y = (f32) ((sp18.p0.y + sp18.p1.y) / 2.0); //? 2.0f
+    D_801BAD30.z = (f32) ((sp18.p0.z + sp18.p1.z) / 2.0); //? 2.0f
 
     gd_print_vec("c=", &D_801BAD30);
 

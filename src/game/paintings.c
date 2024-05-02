@@ -164,9 +164,8 @@ struct Painting *sHmcPaintings[] = {
 };
 
 struct Painting *sInsideCastlePaintings[] = {
-    NULL, &ccm_painting, &wf_painting,  &jrb_painting, &lll_painting,
-    NULL, NULL, NULL, NULL, NULL,
-    NULL, NULL, NULL, NULL, NULL,
+    NULL, &ccm_painting, &wf_painting, &jrb_painting, &lll_painting, NULL, NULL, NULL,
+    NULL, NULL,          NULL,         NULL,          NULL,          NULL, NULL,
 };
 
 struct Painting *sTtmPaintings[] = {

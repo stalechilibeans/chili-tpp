@@ -60,7 +60,7 @@ void bubba_act_1(void) {
         } else if (o->oBubbaUnk100 < 15) {
             o->oAnimState = 1;
         } else if (o->oBubbaUnk100 == 20) {
-            val06 = 10000 - (s16)(20.0f * (mcWaterCheck(o->oPosX, o->oPosZ) - o->oPosY));
+            val06 = 10000 - (s16) (20.0f * (mcWaterCheck(o->oPosX, o->oPosZ) - o->oPosY));
             o->oBubbaUnk1AC -= val06;
             o->oMoveAnglePitch = o->oBubbaUnk1AC;
             o->oBubbaUnkF4 = 40.0f;
@@ -77,7 +77,7 @@ void bubba_act_1(void) {
     } else {
         if (abs_angle_diff(gMarioObject->oFaceAngleYaw, o->oAngleToMario) < 0x3000) {
             val04 = 0x4000 - atan2s(800.0f, o->oDistanceToMario - 800.0f);
-            if ((s16)(o->oMoveAngleYaw - o->oAngleToMario) < 0) {
+            if ((s16) (o->oMoveAngleYaw - o->oAngleToMario) < 0) {
                 val04 = -val04;
             }
 

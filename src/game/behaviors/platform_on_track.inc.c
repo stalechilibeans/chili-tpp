@@ -19,9 +19,15 @@ static void *sPlatformOnTrackCollisionModels[] = {
  * Paths for the different instances of these platforms.
  */
 static void *sPlatformOnTrackPaths[] = {
-    NULL, NULL, ccm_seg7_trajectory_0701669C,
-    NULL, NULL, lll_seg7_trajectory_0702856C,
-    lll_seg7_trajectory_07028660, NULL, NULL,
+    NULL,
+    NULL,
+    ccm_seg7_trajectory_0701669C,
+    NULL,
+    NULL,
+    lll_seg7_trajectory_0702856C,
+    lll_seg7_trajectory_07028660,
+    NULL,
+    NULL,
 };
 
 /**
@@ -38,7 +44,7 @@ static void platform_on_track_reset(void) {
  * begin blinking, and finally reset.
  */
 static void platform_on_track_mario_not_on_platform(void) {
-    if (!((u16)(o->oBehParams >> 16) & PLATFORM_ON_TRACK_BP_DONT_DISAPPEAR)) {
+    if (!((u16) (o->oBehParams >> 16) & PLATFORM_ON_TRACK_BP_DONT_DISAPPEAR)) {
         // Once oTimer reaches 150, blink 40 times
         if (cur_obj_wait_then_blink(150, 40)) {
             platform_on_track_reset();
@@ -52,8 +58,8 @@ static void platform_on_track_mario_not_on_platform(void) {
  */
 void bhv_platform_on_track_init(void) {
     if (!(o->activeFlags & ACTIVE_FLAG_IN_DIFFERENT_ROOM)) {
-        s16 pathIndex = (u16)(o->oBehParams >> 16) & PLATFORM_ON_TRACK_BP_MASK_PATH;
-        o->oPlatformOnTrackType = ((u16)(o->oBehParams >> 16) & PLATFORM_ON_TRACK_BP_MASK_TYPE) >> 4;
+        s16 pathIndex = (u16) (o->oBehParams >> 16) & PLATFORM_ON_TRACK_BP_MASK_PATH;
+        o->oPlatformOnTrackType = ((u16) (o->oBehParams >> 16) & PLATFORM_ON_TRACK_BP_MASK_TYPE) >> 4;
 
         o->oPlatformOnTrackIsNotSkiLift = o->oPlatformOnTrackType - PLATFORM_ON_TRACK_TYPE_SKI_LIFT;
 
@@ -136,7 +142,7 @@ static void platform_on_track_act_move_along_track(void) {
 
     // Fall after reaching the last waypoint if desired
     if (o->oPlatformOnTrackPrevWaypointFlags == WAYPOINT_FLAGS_END
-        && !((u16)(o->oBehParams >> 16) & PLATFORM_ON_TRACK_BP_RETURN_TO_START)) {
+        && !((u16) (o->oBehParams >> 16) & PLATFORM_ON_TRACK_BP_RETURN_TO_START)) {
         o->oAction = PLATFORM_ON_TRACK_ACT_FALL;
     } else {
         // The ski lift should pause or stop after reaching a special waypoint
@@ -167,7 +173,7 @@ static void platform_on_track_act_move_along_track(void) {
                 o->oHomeX = o->oPosX;
                 o->oHomeY = o->oPosY;
                 o->oHomeZ = o->oPosZ;
-                o->oPlatformOnTrackBaseBallIndex = (u16)(o->oPlatformOnTrackBaseBallIndex + 1);
+                o->oPlatformOnTrackBaseBallIndex = (u16) (o->oPlatformOnTrackBaseBallIndex + 1);
 
                 platform_on_track_update_pos_or_spawn_ball(5, o->oHomeX, o->oHomeY, o->oHomeZ);
             }
@@ -183,7 +189,7 @@ static void platform_on_track_act_move_along_track(void) {
         //  after reappearing
 
         // Turn face yaw and compute yaw vel
-        if (!((u16)(o->oBehParams >> 16) & PLATFORM_ON_TRACK_BP_DONT_TURN_YAW)) {
+        if (!((u16) (o->oBehParams >> 16) & PLATFORM_ON_TRACK_BP_DONT_TURN_YAW)) {
             s16 targetFaceYaw = o->oMoveAngleYaw + 0x4000;
             s16 yawSpeed = abs_angle_diff(targetFaceYaw, o->oFaceAngleYaw) / 20;
 
@@ -194,7 +200,7 @@ static void platform_on_track_act_move_along_track(void) {
         }
 
         // Turn face roll and compute roll vel
-        if (((u16)(o->oBehParams >> 16) & PLATFORM_ON_TRACK_BP_DONT_TURN_ROLL)) {
+        if (((u16) (o->oBehParams >> 16) & PLATFORM_ON_TRACK_BP_DONT_TURN_ROLL)) {
             s16 rollSpeed = abs_angle_diff(o->oMoveAnglePitch, o->oFaceAngleRoll) / 20;
 
             initialAngle = o->oFaceAngleRoll;
@@ -250,7 +256,7 @@ static void platform_on_track_rock_ski_lift(void) {
     // Tilt away from the moving direction and toward mario
     if (gMarioObject->platform == o) {
         targetRoll = o->oForwardVel * sins(o->oMoveAngleYaw) * -50.0f
-                     + (s32)(o->oDistanceToMario * sins(o->oAngleToMario - o->oFaceAngleYaw) * -4.0f);
+                     + (s32) (o->oDistanceToMario * sins(o->oAngleToMario - o->oFaceAngleYaw) * -4.0f);
     }
 
     oscillate_toward(

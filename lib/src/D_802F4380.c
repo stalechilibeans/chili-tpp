@@ -62,7 +62,7 @@ u32 D_802F4380() {
     }
     if (sp30->cmdType == 0) {
         if (sp30->transferMode == 3) {
-            if ((s32)(sp2c->C1ErrNum + 17) < sp30->sectorNum) {
+            if ((s32) (sp2c->C1ErrNum + 17) < sp30->sectorNum) {
                 sp30->unk10 = 0;
                 func_802F4A20();
                 return 1;

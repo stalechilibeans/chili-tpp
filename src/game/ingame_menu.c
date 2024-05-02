@@ -355,7 +355,7 @@ void render_multi_text_string(s16 *xPos, s16 *yPos, s8 multiTextID) // EU: 802AD
 #ifdef VERSION_US
         render_generic_char(textLengths[multiTextID].str[i]);
         create_dl_translation_matrix(
-            MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[textLengths[multiTextID].str[i]]), 0.0f, 0.0f);
+            MENU_MTX_NOPUSH, (f32) (gDialogCharWidths[textLengths[multiTextID].str[i]]), 0.0f, 0.0f);
 #elif defined(VERSION_EU)
         render_generic_char_at_pos(*xPos, *yPos, textLengths[multiTextID].str[i]);
         *xPos += gDialogCharWidths[textLengths[multiTextID].str[i]];
@@ -459,7 +459,7 @@ void print_generic_string(s16 x, s16 y, const u8 *str) {
             case DIALOG_CHAR_SLASH:
 #ifdef VERSION_US
                 create_dl_translation_matrix(
-                    MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[DIALOG_CHAR_SPACE] * 2), 0.0f, 0.0f);
+                    MENU_MTX_NOPUSH, (f32) (gDialogCharWidths[DIALOG_CHAR_SPACE] * 2), 0.0f, 0.0f);
 #elif defined(VERSION_EU)
                 xCoord += gDialogCharWidths[DIALOG_CHAR_SPACE] * 2;
 #endif
@@ -486,7 +486,7 @@ void print_generic_string(s16 x, s16 y, const u8 *str) {
                 break;
 #else
                 create_dl_translation_matrix(MENU_MTX_NOPUSH,
-                                             (f32)(gDialogCharWidths[DIALOG_CHAR_SPACE]), 0.0f, 0.0f);
+                                             (f32) (gDialogCharWidths[DIALOG_CHAR_SPACE]), 0.0f, 0.0f);
 #endif
 #endif
                 break; // ? needed to match
@@ -507,7 +507,7 @@ void print_generic_string(s16 x, s16 y, const u8 *str) {
 #if defined(VERSION_JP) || defined(VERSION_SH)
                 create_dl_translation_matrix(MENU_MTX_NOPUSH, 10.0f, 0.0f, 0.0f);
 #else
-                create_dl_translation_matrix(MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[str[strPos]]),
+                create_dl_translation_matrix(MENU_MTX_NOPUSH, (f32) (gDialogCharWidths[str[strPos]]),
                                              0.0f, 0.0f);
                 break; // what an odd difference. US added a useless break here.
 #endif
@@ -802,7 +802,7 @@ s16 get_str_x_pos_from_center(s16 centerPos, u8 *str, UNUSED f32 scale) {
     }
     // return the x position of where the string starts as half the string's
     // length from the position of the provided center.
-    return (s16)(centerPos - (s16)(spacesWidth / 2.0));
+    return (s16) (centerPos - (s16) (spacesWidth / 2.0));
 }
 #endif
 
@@ -849,7 +849,7 @@ void print_hud_my_score_coins(s32 useCourseCoinScore, s8 fileNum, s8 courseNum, 
     s16 numCoins;
 
     if (!useCourseCoinScore) {
-        numCoins = (u16)(save_file_get_max_coin_score(courseNum) & 0xFFFF);
+        numCoins = (u16) (save_file_get_max_coin_score(courseNum) & 0xFFFF);
     } else {
         numCoins = save_file_get_course_coin_score(fileNum, courseNum);
     }
@@ -1128,7 +1128,7 @@ void render_star_count_dialog_text(s8 *xMatrix, s16 *linePos)
 #else
         if (xMatrix[0] != 1) {
             create_dl_translation_matrix(
-                MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[DIALOG_CHAR_SPACE] * xMatrix[0]), 0, 0);
+                MENU_MTX_NOPUSH, (f32) (gDialogCharWidths[DIALOG_CHAR_SPACE] * xMatrix[0]), 0, 0);
         }
 
         render_generic_char(tensDigit);
@@ -1157,7 +1157,7 @@ void render_star_count_dialog_text(s8 *xMatrix, s16 *linePos)
 #else
     if (xMatrix[0] != 1) {
         create_dl_translation_matrix(
-            MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[DIALOG_CHAR_SPACE] * (xMatrix[0] - 1)), 0, 0);
+            MENU_MTX_NOPUSH, (f32) (gDialogCharWidths[DIALOG_CHAR_SPACE] * (xMatrix[0] - 1)), 0, 0);
     }
 
     render_generic_char(onesDigit);
@@ -1443,11 +1443,11 @@ void handle_dialog_text_and_pages(s8 colorMode, struct DialogEntry *dialog, s8 l
                     if (linePos || xMatrix != 1) {
                         create_dl_translation_matrix(
                             MENU_MTX_NOPUSH,
-                            (f32)(gDialogCharWidths[DIALOG_CHAR_SPACE] * (xMatrix - 1)), 0, 0);
+                            (f32) (gDialogCharWidths[DIALOG_CHAR_SPACE] * (xMatrix - 1)), 0, 0);
                     }
 
                     render_generic_char(strChar);
-                    create_dl_translation_matrix(MENU_MTX_NOPUSH, (f32)(gDialogCharWidths[strChar]), 0,
+                    create_dl_translation_matrix(MENU_MTX_NOPUSH, (f32) (gDialogCharWidths[strChar]), 0,
                                                  0);
                     xMatrix = 1;
                     linePos++;

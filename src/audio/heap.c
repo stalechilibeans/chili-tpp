@@ -564,10 +564,10 @@ void func_eu_802e27e4_unused(f32 arg0, f32 arg1, u16 *arg2) {
     s32 i;
     f32 tmp[16];
 
-    tmp[0] = (f32)(arg1 * 262159.0f);
-    tmp[8] = (f32)(arg0 * 262159.0f);
-    tmp[1] = (f32)((arg1 * arg0) * 262159.0f);
-    tmp[9] = (f32)(((arg0 * arg0) + arg1) * 262159.0f);
+    tmp[0] = (f32) (arg1 * 262159.0f);
+    tmp[8] = (f32) (arg0 * 262159.0f);
+    tmp[1] = (f32) ((arg1 * arg0) * 262159.0f);
+    tmp[9] = (f32) (((arg0 * arg0) + arg1) * 262159.0f);
 
     for (i = 2; i < 8; i++) {
         //! @bug they probably meant to store the value to tmp[i] and tmp[8 + i]
@@ -633,7 +633,7 @@ s32 audio_shut_down_and_reset_step(void) {
                 decrease_reverb_gain();
             } else {
                 for (i = 0; i < NUMAIBUFFERS; i++) {
-                    for (j = 0; j < (s32)(AIBUFFER_LEN / sizeof(s16)); j++) {
+                    for (j = 0; j < (s32) (AIBUFFER_LEN / sizeof(s16)); j++) {
                         gAiBuffers[i][j] = 0;
                     }
                 }
@@ -750,7 +750,7 @@ void audio_reset_session(void) {
         gCurrAudioFrameDmaCount = 0;
 
         for (j = 0; j < NUMAIBUFFERS; j++) {
-            for (k = 0; k < (s32)(AIBUFFER_LEN / sizeof(s16)); k++) {
+            for (k = 0; k < (s32) (AIBUFFER_LEN / sizeof(s16)); k++) {
                 gAiBuffers[j][k] = 0;
             }
         }
@@ -780,7 +780,7 @@ void audio_reset_session(void) {
     gMaxSimultaneousNotes = preset->maxSimultaneousNotes;
     gVolume = preset->volume;
     gTempoInternalToExternal =
-        (u32)(gAudioBufferParameters.updatesPerFrame * 2880000.0f / gTatumsPerBeat / D_EU_802298D0);
+        (u32) (gAudioBufferParameters.updatesPerFrame * 2880000.0f / gTatumsPerBeat / D_EU_802298D0);
 
     gAudioBufferParameters.presetUnk4 = preset->unk1;
     gAudioBufferParameters.samplesPerFrameTarget *= gAudioBufferParameters.presetUnk4;
@@ -829,7 +829,7 @@ void audio_reset_session(void) {
 #ifdef VERSION_JP
     gTempoInternalToExternal = updatesPerFrame * 3600 / gTatumsPerBeat;
 #else
-    gTempoInternalToExternal = (u32)(updatesPerFrame * 2880000.0f / gTatumsPerBeat / 16.713f);
+    gTempoInternalToExternal = (u32) (updatesPerFrame * 2880000.0f / gTatumsPerBeat / 16.713f);
 #endif
     gMaxAudioCmds = gMaxSimultaneousNotes * 20 * updatesPerFrame + 320;
 #endif

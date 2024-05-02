@@ -210,7 +210,7 @@ void bobomb_thrown_loop(void) {
 
 void curr_obj_random_blink(s32 *blinkTimer) {
     if (*blinkTimer == 0) {
-        if ((s16)(random_float() * 100.0f) == 0) {
+        if ((s16) (random_float() * 100.0f) == 0) {
             o->oAnimState = 1;
             *blinkTimer = 1;
         }
@@ -268,9 +268,9 @@ void bhv_bobomb_loop(void) {
 }
 
 void bhv_bobomb_fuse_smoke_init(void) {
-    o->oPosX += (s32)(random_float() * 80.0f) - 40;
-    o->oPosY += (s32)(random_float() * 80.0f) + 60;
-    o->oPosZ += (s32)(random_float() * 80.0f) - 40;
+    o->oPosX += (s32) (random_float() * 80.0f) - 40;
+    o->oPosY += (s32) (random_float() * 80.0f) + 60;
+    o->oPosZ += (s32) (random_float() * 80.0f) - 40;
     cur_obj_scale(1.2f);
 }
 

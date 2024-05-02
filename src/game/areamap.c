@@ -124,9 +124,10 @@ void create_areamap_arrow_dlist(Gfx **dlist, UNUSED struct AreaMapData *areaMap)
     make_vertex(verts, 2, 4, 4, 0, 256, 0, 255, 0, 0, 255);
     make_vertex(verts, 3, -4, 4, 0, 0, 0, 255, 0, 0, 255);
 
-    guTranslate(translate, (f32)(sMapX + (gMarioState->pos[0] / 256) * areaMap->side_g + areaMap->xo_g),
-                (f32)(sMapY - (gMarioState->pos[2] / 256) * areaMap->side_g + areaMap->zo_g), 0.0f);
-    guRotate(rotate, (f32)(gMarioState->faceAngle[1] / 180) + 180, 0.0f, 0.0f, 1.0f);
+    guTranslate(translate,
+                (f32) (sMapX + (gMarioState->pos[0] / 256) * areaMap->side_g + areaMap->xo_g),
+                (f32) (sMapY - (gMarioState->pos[2] / 256) * areaMap->side_g + areaMap->zo_g), 0.0f);
+    guRotate(rotate, (f32) (gMarioState->faceAngle[1] / 180) + 180, 0.0f, 0.0f, 1.0f);
 
     gSPMatrix((*dlist)++, translate, G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_PUSH);
     gSPMatrix((*dlist)++, rotate, G_MTX_MODELVIEW | G_MTX_MUL | G_MTX_NOPUSH);

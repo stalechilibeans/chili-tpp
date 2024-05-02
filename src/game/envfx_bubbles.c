@@ -92,8 +92,8 @@ void envfx_update_flower(Vec3s centerPos) {
         if ((gEnvFxBuffer + i)->isAlive == 0) {
             (gEnvFxBuffer + i)->xPos = random_flower_offset() + centerX;
             (gEnvFxBuffer + i)->zPos = random_flower_offset() + centerZ;
-            (gEnvFxBuffer + i)->yPos = mcGroundCheck((gEnvFxBuffer + i)->xPos, 10000.0f,
-                                                                  (gEnvFxBuffer + i)->zPos, &floorGeo);
+            (gEnvFxBuffer + i)->yPos =
+                mcGroundCheck((gEnvFxBuffer + i)->xPos, 10000.0f, (gEnvFxBuffer + i)->zPos, &floorGeo);
             (gEnvFxBuffer + i)->isAlive = 1;
             (gEnvFxBuffer + i)->animFrame = random_float() * 5.0f;
         } else if ((timer & 0x03) == 0) {
@@ -140,8 +140,8 @@ void envfx_set_lava_bubble_position(s32 index, Vec3s centerPos) {
         (gEnvFxBuffer + index)->zPos = -16000 - (gEnvFxBuffer + index)->zPos;
     }
 
-    floorY =
-        mcBGGroundCheck((gEnvFxBuffer + index)->xPos, centerY + 500, (gEnvFxBuffer + index)->zPos, &surface);
+    floorY = mcBGGroundCheck((gEnvFxBuffer + index)->xPos, centerY + 500, (gEnvFxBuffer + index)->zPos,
+                             &surface);
     if (surface == NULL) {
         (gEnvFxBuffer + index)->yPos = -10000;
         return;
@@ -181,7 +181,7 @@ void envfx_update_lava(Vec3s centerPos) {
         }
     }
 
-    if ((chance = (s32)(random_float() * 16.0f)) == 8) {
+    if ((chance = (s32) (random_float() * 16.0f)) == 8) {
         play_sound(SOUND_GENERAL_QUIET_BUBBLE2, gDefaultSoundArgs);
     }
 }
@@ -255,14 +255,14 @@ void envfx_update_whirlpool(void) {
         } else {
             (gEnvFxBuffer + i)->angleAndDist[1] -= 40;
             (gEnvFxBuffer + i)->angleAndDist[0] +=
-                (s16)(3000 - (gEnvFxBuffer + i)->angleAndDist[1] * 2) + 0x400;
+                (s16) (3000 - (gEnvFxBuffer + i)->angleAndDist[1] * 2) + 0x400;
             (gEnvFxBuffer + i)->xPos =
                 gEnvFxBubbleConfig[ENVFX_STATE_SRC_X]
                 + sins((gEnvFxBuffer + i)->angleAndDist[0]) * (gEnvFxBuffer + i)->angleAndDist[1];
             (gEnvFxBuffer + i)->zPos =
                 gEnvFxBubbleConfig[ENVFX_STATE_SRC_Z]
                 + coss((gEnvFxBuffer + i)->angleAndDist[0]) * (gEnvFxBuffer + i)->angleAndDist[1];
-            (gEnvFxBuffer + i)->bubbleY -= 40 - ((s16)(gEnvFxBuffer + i)->angleAndDist[1] / 100);
+            (gEnvFxBuffer + i)->bubbleY -= 40 - ((s16) (gEnvFxBuffer + i)->angleAndDist[1] / 100);
             (gEnvFxBuffer + i)->yPos = (i + gEnvFxBuffer)->bubbleY;
 
             envfx_rotate_around_whirlpool(&(gEnvFxBuffer + i)->xPos, &(gEnvFxBuffer + i)->yPos,

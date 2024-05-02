@@ -192,7 +192,7 @@ void fish_group_act_move(void) {
         if (o->oDistanceToMario < 600.0f) {
             distance = 1;
         } else {
-            distance = (s32)(1.0 / (o->oDistanceToMario / 600.0));
+            distance = (s32) (1.0 / (o->oDistanceToMario / 600.0));
         }
         distance *= 127;
         cur_obj_play_sound_2(SOUND_GENERAL_MOVING_WATER);
@@ -236,7 +236,7 @@ void fish_group_act_move(void) {
  */
 void fish_group_act_animate(void) {
     cur_obj_init_animation_with_accel_and_sound(0, 1.0f);
-    o->header.gfx.unk38.animFrame = (s16)(random_float() * 28.0f);
+    o->header.gfx.unk38.animFrame = (s16) (random_float() * 28.0f);
     o->oFishDepthDistance = random_float() * 300.0f;
     cur_obj_scale(random_float() * 0.4 + 0.8);
     o->oAction = FISH_ACT_ACTIVE;

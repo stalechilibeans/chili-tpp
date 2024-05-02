@@ -7,9 +7,7 @@
  * Collision models for the different seesaw platforms.
  */
 static void *sSeesawPlatformCollisionModels[] = {
-    NULL, NULL, NULL,
-    NULL, NULL, NULL,
-    NULL, NULL,
+    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 };
 
 /**

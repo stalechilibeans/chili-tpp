@@ -431,7 +431,7 @@ static s32 bhv_cmd_set_random_int(void) {
     s32 min = BHV_CMD_GET_2ND_S16(0);
     s32 range = BHV_CMD_GET_1ST_S16(1);
 
-    cur_obj_set_int(field, (s32)(range * random_float()) + min);
+    cur_obj_set_int(field, (s32) (range * random_float()) + min);
 
     gCurBhvCommand += 2;
     return BHV_PROC_CONTINUE;
@@ -705,7 +705,7 @@ static void bhv_cmd_set_int_random_from_table(s32 tableSize) {
         table[i + 1] = BHV_CMD_GET_2ND_S16(i + 1);
     }
 
-    cur_obj_set_int(field, table[(s32)(tableSize * random_float())]);
+    cur_obj_set_int(field, table[(s32) (tableSize * random_float())]);
 
     // Does not increment gCurBhvCommand or return a bhv status
 }

@@ -355,7 +355,7 @@ void check_face_bad_vtx(struct ObjFace *face) {
             return;
         }
         if ((uintptr_t) vtx->gbiVerts == 0x3F800000) {
-            fatal_printf("bad2 %x,%d,%d,%d\n", (u32)(uintptr_t) vtx, vtx->scaleFactor, vtx->id,
+            fatal_printf("bad2 %x,%d,%d,%d\n", (u32) (uintptr_t) vtx, vtx->scaleFactor, vtx->id,
                          vtx->header.type);
         }
     }
@@ -1264,7 +1264,7 @@ void find_thisface_verts(struct ObjFace *face, struct ObjGroup *verts) {
             if (link->obj->type == OBJ_TYPE_VERTICES || link->obj->type == OBJ_TYPE_PARTICLES) {
                 // it seems that the vertices in a face are first pointer-sized indices
                 // to a given vertix or particle link in the second argument's group.
-                if (linkVtxIdx++ == (u32)(uintptr_t) face->vertices[i]) {
+                if (linkVtxIdx++ == (u32) (uintptr_t) face->vertices[i]) {
                     break;
                 }
             }

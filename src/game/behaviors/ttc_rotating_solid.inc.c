@@ -48,7 +48,7 @@ void bhv_ttc_rotating_solid_update(void) {
         } else if (o->oTTCRotatingSolidVelY > 0.0f && o->oPosY >= o->oHomeY) {
             // 4. Rotate
             s32 targetRoll =
-                (s32)((f32) o->oTTCRotatingSolidNumTurns / o->oTTCRotatingSolidNumSides * 0x10000);
+                (s32) ((f32) o->oTTCRotatingSolidNumTurns / o->oTTCRotatingSolidNumSides * 0x10000);
             s32 startRoll = o->oFaceAngleRoll;
 
             obj_face_roll_approach(targetRoll, 0x4B0);

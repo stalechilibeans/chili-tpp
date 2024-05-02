@@ -253,8 +253,8 @@ void piranha_plant_act_biting(void) {
     o->oMoveAngleYaw = approach_s16_symmetric(o->oMoveAngleYaw, o->oAngleToMario, 0x400);
 
     if (o->oDistanceToMario > 615.0f) {
-            o->header.gfx.unk38.animFrame = 0;
-            o->oAction = PIRANHA_PLANT_ACT_STOPPED_BITING;
+        o->header.gfx.unk38.animFrame = 0;
+        o->oAction = PIRANHA_PLANT_ACT_STOPPED_BITING;
     }
 
     // If the player is wearing the Metal Cap and interacts with the Piranha

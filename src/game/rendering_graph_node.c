@@ -727,7 +727,7 @@ static int obj_is_in_view(struct GraphNodeObject *node, Mat4 matrix) {
 
     if (geo != NULL && geo->type == GRAPH_NODE_TYPE_CULLING_RADIUS) {
         cullingRadius =
-            (f32)((struct GraphNodeCullingRadius *) geo)->cullingRadius; //! Why is there a f32 cast?
+            (f32) ((struct GraphNodeCullingRadius *) geo)->cullingRadius; //! Why is there a f32 cast?
     } else {
         cullingRadius = 300;
     }

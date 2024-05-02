@@ -49,21 +49,37 @@ static s32 BG_WallCheck(struct SurfaceNode *bgcheck_list, struct WallCollisionDa
         bgcheck_list = bgcheck_list->next;
 
         if (wall->normal.x < -0.707 || 0.707 < wall->normal.x) {
-            x1 = -(wall->vertex1[2]); x2 = -(wall->vertex2[2]); x3 = -(wall->vertex3[2]);
-            y1 = wall->vertex1[1]; y2 = wall->vertex2[1]; y3 = wall->vertex3[1];
+            x1 = -(wall->vertex1[2]);
+            x2 = -(wall->vertex2[2]);
+            x3 = -(wall->vertex3[2]);
+            y1 = wall->vertex1[1];
+            y2 = wall->vertex2[1];
+            y3 = wall->vertex3[1];
             g_flag = 0;
-            if (gaiseki(-pz, py, x1, y1, x2, y2) > 0) g_flag++;
-            if (gaiseki(-pz, py, x2, y2, x3, y3) > 0) g_flag++;
-            if (gaiseki(-pz, py, x3, y3, x1, y1) > 0) g_flag++;
-            if (g_flag == 1 || g_flag == 2) continue;
+            if (gaiseki(-pz, py, x1, y1, x2, y2) > 0)
+                g_flag++;
+            if (gaiseki(-pz, py, x2, y2, x3, y3) > 0)
+                g_flag++;
+            if (gaiseki(-pz, py, x3, y3, x1, y1) > 0)
+                g_flag++;
+            if (g_flag == 1 || g_flag == 2)
+                continue;
         } else {
-            x1 = wall->vertex1[0]; x2 = wall->vertex2[0]; x3 = wall->vertex3[0];
-            y1 = wall->vertex1[1]; y2 = wall->vertex2[1]; y3 = wall->vertex3[1];
+            x1 = wall->vertex1[0];
+            x2 = wall->vertex2[0];
+            x3 = wall->vertex3[0];
+            y1 = wall->vertex1[1];
+            y2 = wall->vertex2[1];
+            y3 = wall->vertex3[1];
             g_flag = 0;
-            if (gaiseki(px, py, x1, y1, x2, y2) > 0) g_flag++;
-            if (gaiseki(px, py, x2, y2, x3, y3) > 0) g_flag++;
-            if (gaiseki(px, py, x3, y3, x1, y1) > 0) g_flag++;
-            if (g_flag == 1 || g_flag == 2) continue;
+            if (gaiseki(px, py, x1, y1, x2, y2) > 0)
+                g_flag++;
+            if (gaiseki(px, py, x2, y2, x3, y3) > 0)
+                g_flag++;
+            if (gaiseki(px, py, x3, y3, x1, y1) > 0)
+                g_flag++;
+            if (g_flag == 1 || g_flag == 2)
+                continue;
         }
 
         A = wall->normal.x;
@@ -72,7 +88,7 @@ static s32 BG_WallCheck(struct SurfaceNode *bgcheck_list, struct WallCollisionDa
         D = wall->originOffset;
 
         dR = A * px + B * py + C * pz + D;
-        dRf = dR >=0 ? dR : -dR;
+        dRf = dR >= 0 ? dR : -dR;
 
         if (dRf < r) {
             wallcheckp->x += A * (r - dR);
@@ -104,11 +120,15 @@ s32 WallCheck(f32 *wX, f32 *wY, f32 *wZ, f32 offsetY, f32 r) {
 
     wall.offsetY = offsetY;
     wall.radius = r;
-    wall.x = *wX; wall.y = *wY; wall.z = *wZ;
+    wall.x = *wX;
+    wall.y = *wY;
+    wall.z = *wZ;
 
     wallcount = mcWallCheck(&wall);
 
-    *wX = wall.x; *wY = wall.y; *wZ = wall.z;
+    *wX = wall.x;
+    *wY = wall.y;
+    *wZ = wall.z;
 
     return wallcount;
 }
@@ -122,8 +142,10 @@ s32 mcWallCheck(struct WallCollisionData *wall) {
     s32 wallcount = 0;
     wall->numWalls = 0;
 
-    if (wall->x < -LEVEL_BOUNDARY_MAX || LEVEL_BOUNDARY_MAX < wall->x) return wallcount;
-    if (wall->z < -LEVEL_BOUNDARY_MAX || LEVEL_BOUNDARY_MAX < wall->z) return wallcount;
+    if (wall->x < -LEVEL_BOUNDARY_MAX || LEVEL_BOUNDARY_MAX < wall->x)
+        return wallcount;
+    if (wall->z < -LEVEL_BOUNDARY_MAX || LEVEL_BOUNDARY_MAX < wall->z)
+        return wallcount;
 
     area_x = (wall->x + LEVEL_BOUNDARY_MAX) / CELL_SIZE;
     area_z = (wall->z + LEVEL_BOUNDARY_MAX) / CELL_SIZE;
@@ -143,7 +165,8 @@ s32 mcWallCheck(struct WallCollisionData *wall) {
 /**
  * Iterate through the list of ceilings and find the first ceiling over a given point.
  */
-static struct Surface *BG_RoofCheck(struct SurfaceNode *bgcheck_list, s32 x, s32 y, s32 z, f32 *planeY) {
+static struct Surface *BG_RoofCheck(struct SurfaceNode *bgcheck_list, s32 x, s32 y, s32 z,
+                                    f32 *planeY) {
     struct Surface *bgcheck_data, *bgcheck_hitdata;
     f32 x1, z1, x2, z2, x3, z3;
     f32 A, B, C, D, roofY;
@@ -154,12 +177,19 @@ static struct Surface *BG_RoofCheck(struct SurfaceNode *bgcheck_list, s32 x, s32
         bgcheck_data = bgcheck_list->surface;
         bgcheck_list = bgcheck_list->next;
 
-        x1 = bgcheck_data->vertex1[0]; x2 = bgcheck_data->vertex2[0]; x3 = bgcheck_data->vertex3[0];
-        z1 = bgcheck_data->vertex1[2]; z2 = bgcheck_data->vertex2[2]; z3 = bgcheck_data->vertex3[2];
+        x1 = bgcheck_data->vertex1[0];
+        x2 = bgcheck_data->vertex2[0];
+        x3 = bgcheck_data->vertex3[0];
+        z1 = bgcheck_data->vertex1[2];
+        z2 = bgcheck_data->vertex2[2];
+        z3 = bgcheck_data->vertex3[2];
 
-        if (gaiseki(x, z, x1, z1, x2, z2) > 0) continue;
-        if (gaiseki(x, z, x2, z2, x3, z3) > 0) continue;
-        if (gaiseki(x, z, x3, z3, x1, z1) > 0) continue;
+        if (gaiseki(x, z, x1, z1, x2, z2) > 0)
+            continue;
+        if (gaiseki(x, z, x2, z2, x3, z3) > 0)
+            continue;
+        if (gaiseki(x, z, x3, z3, x1, z1) > 0)
+            continue;
 
         A = bgcheck_data->normal.x;
         B = bgcheck_data->normal.y;
@@ -167,7 +197,8 @@ static struct Surface *BG_RoofCheck(struct SurfaceNode *bgcheck_list, s32 x, s32
         D = bgcheck_data->originOffset;
         roofY = -(A * x + C * z + D) / B;
 
-        if (y - (roofY - (-78.0f)) > 0) continue;
+        if (y - (roofY - (-78.0f)) > 0)
+            continue;
 
         *planeY = roofY;
         bgcheck_hitdata = bgcheck_data;
@@ -196,14 +227,16 @@ f32 mcBGRoofCheck(f32 px, f32 py, f32 pz, struct Surface **bgdata) {
     f32 planeY_dynamic = 20000.0f;
     *bgdata = NULL;
 
-    if (px < -LEVEL_BOUNDARY_MAX || LEVEL_BOUNDARY_MAX < px) return planeY;
-    if (pz < -LEVEL_BOUNDARY_MAX || LEVEL_BOUNDARY_MAX < pz) return planeY;
+    if (px < -LEVEL_BOUNDARY_MAX || LEVEL_BOUNDARY_MAX < px)
+        return planeY;
+    if (pz < -LEVEL_BOUNDARY_MAX || LEVEL_BOUNDARY_MAX < pz)
+        return planeY;
 
     bgcheck_list = gDynamicSurfacePartition[SPATIAL_PARTITION_CEILS].next;
     bgcheck_data_dynamic = BG_RoofCheck(bgcheck_list, px, py, pz, &planeY_dynamic);
 
-    area_x = (s16)((px + LEVEL_BOUNDARY_MAX) / CELL_SIZE);
-    area_z = (s16)((pz + LEVEL_BOUNDARY_MAX) / CELL_SIZE);
+    area_x = (s16) ((px + LEVEL_BOUNDARY_MAX) / CELL_SIZE);
+    area_z = (s16) ((pz + LEVEL_BOUNDARY_MAX) / CELL_SIZE);
     bgcheck_list = gStaticSurfacePartition[area_z][area_x][SPATIAL_PARTITION_CEILS].next;
     bgcheck_data = BG_RoofCheck(bgcheck_list, px, py, pz, &planeY);
 
@@ -242,7 +275,8 @@ f32 mcRoofCheck(f32 px, f32 py, f32 pz, struct Plane **hitplane) {
 /**
  * Iterate through the list of floors and find the first floor under a given point.
  */
-static struct Surface *BG_GroundCheck(struct SurfaceNode *bgcheck_list, s32 x, s32 y, s32 z, f32 *planeY) {
+static struct Surface *BG_GroundCheck(struct SurfaceNode *bgcheck_list, s32 x, s32 y, s32 z,
+                                      f32 *planeY) {
     struct Surface *bgcheck_data, *bgcheck_hitdata;
     f32 x1, z1, x2, z2, x3, z3;
     f32 A, B, C, D, groundY;
@@ -253,12 +287,19 @@ static struct Surface *BG_GroundCheck(struct SurfaceNode *bgcheck_list, s32 x, s
         bgcheck_data = bgcheck_list->surface;
         bgcheck_list = bgcheck_list->next;
 
-        x1 = bgcheck_data->vertex1[0]; x2 = bgcheck_data->vertex2[0]; x3 = bgcheck_data->vertex3[0];
-        z1 = bgcheck_data->vertex1[2]; z2 = bgcheck_data->vertex2[2]; z3 = bgcheck_data->vertex3[2];
+        x1 = bgcheck_data->vertex1[0];
+        x2 = bgcheck_data->vertex2[0];
+        x3 = bgcheck_data->vertex3[0];
+        z1 = bgcheck_data->vertex1[2];
+        z2 = bgcheck_data->vertex2[2];
+        z3 = bgcheck_data->vertex3[2];
 
-        if (gaiseki(x, z, x1, z1, x2, z2) < 0) continue;
-        if (gaiseki(x, z, x2, z2, x3, z3) < 0) continue;
-        if (gaiseki(x, z, x3, z3, x1, z1) < 0) continue;
+        if (gaiseki(x, z, x1, z1, x2, z2) < 0)
+            continue;
+        if (gaiseki(x, z, x2, z2, x3, z3) < 0)
+            continue;
+        if (gaiseki(x, z, x3, z3, x1, z1) < 0)
+            continue;
 
         A = bgcheck_data->normal.x;
         B = bgcheck_data->normal.y;
@@ -266,7 +307,8 @@ static struct Surface *BG_GroundCheck(struct SurfaceNode *bgcheck_list, s32 x, s
         D = bgcheck_data->originOffset;
         groundY = -(A * x + C * z + D) / B;
 
-        if (y - (groundY + -78.0f) < 0) continue;
+        if (y - (groundY + -78.0f) < 0)
+            continue;
 
         *planeY = groundY;
         bgcheck_hitdata = bgcheck_data;
@@ -324,18 +366,21 @@ f32 mcBGGroundCheck(f32 px, f32 py, f32 pz, struct Surface **bgdata) {
     f32 planeY_dynamic = -11000.0f;
     *bgdata = NULL;
 
-    if (px < -LEVEL_BOUNDARY_MAX || LEVEL_BOUNDARY_MAX < px) return planeY;
-    if (pz < -LEVEL_BOUNDARY_MAX || LEVEL_BOUNDARY_MAX < pz) return planeY;
+    if (px < -LEVEL_BOUNDARY_MAX || LEVEL_BOUNDARY_MAX < px)
+        return planeY;
+    if (pz < -LEVEL_BOUNDARY_MAX || LEVEL_BOUNDARY_MAX < pz)
+        return planeY;
 
     bgcheck_list = gDynamicSurfacePartition[SPATIAL_PARTITION_FLOORS].next;
     bgcheck_data_dynamic = BG_GroundCheck(bgcheck_list, px, py, pz, &planeY_dynamic);
 
-    area_x = (s16)((px + LEVEL_BOUNDARY_MAX) / CELL_SIZE);
-    area_z = (s16)((pz + LEVEL_BOUNDARY_MAX) / CELL_SIZE);
+    area_x = (s16) ((px + LEVEL_BOUNDARY_MAX) / CELL_SIZE);
+    area_z = (s16) ((pz + LEVEL_BOUNDARY_MAX) / CELL_SIZE);
     bgcheck_list = gStaticSurfacePartition[area_z][area_x][SPATIAL_PARTITION_FLOORS].next;
     bgcheck_data = BG_GroundCheck(bgcheck_list, px, py, pz, &planeY);
 
-    if (bgcheck_data == NULL) gNumFindFloorMisses++;
+    if (bgcheck_data == NULL)
+        gNumFindFloorMisses++;
 
     if (planeY_dynamic > planeY) {
         bgcheck_data = bgcheck_data_dynamic;

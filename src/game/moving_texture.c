@@ -124,10 +124,14 @@ s32 gWdwWaterLevelSet = FALSE;
  * An array for converting a movtex texture id to a pointer that can
  * be passed to gDPSetTextureImage.
  */
-u8 *gMovtexIdToTexture[] = { texture_waterbox_water,     NULL,
-                             texture_waterbox_jrb_water, NULL,
-                             texture_waterbox_lava,      NULL,
-                             NULL,                       NULL };
+u8 *gMovtexIdToTexture[] = { texture_waterbox_water,
+                             NULL,
+                             texture_waterbox_jrb_water,
+                             NULL,
+                             texture_waterbox_lava,
+                             NULL,
+                             NULL,
+                             NULL };
 
 extern Gfx castle_grounds_dl_waterfall[];
 extern s16 castle_grounds_movtex_tris_waterfall[];

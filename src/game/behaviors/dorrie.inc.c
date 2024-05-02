@@ -37,7 +37,7 @@ void dorrie_act_move(void) {
             targetSpeed = 10;
         } else {
             circularTurn = 0x4000 - atan2s(2000.0f, o->oDorrieDistToHome - 2000.0f);
-            if ((s16)(o->oMoveAngleYaw - o->oDorrieAngleToHome) < 0) {
+            if ((s16) (o->oMoveAngleYaw - o->oDorrieAngleToHome) < 0) {
                 circularTurn = -circularTurn;
             }
 
@@ -47,7 +47,7 @@ void dorrie_act_move(void) {
 
         obj_forward_vel_approach(targetSpeed, 0.5f);
         o->oDorrieYawVel =
-            approach_s16_symmetric(o->oDorrieYawVel, (s16)(targetYaw - o->oMoveAngleYaw) / 50, 5);
+            approach_s16_symmetric(o->oDorrieYawVel, (s16) (targetYaw - o->oMoveAngleYaw) / 50, 5);
         o->oMoveAngleYaw += o->oDorrieYawVel;
     }
 

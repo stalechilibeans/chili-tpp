@@ -355,10 +355,10 @@ void mario_blow_off_cap(struct MarioState *m, f32 capSpeed) {
 
         capObject->oPosY += (m->action & ACT_FLAG_SHORT_HITBOX) ? 120.0f : 180.0f;
         capObject->oForwardVel = capSpeed;
-        capObject->oMoveAngleYaw = (s16)(m->faceAngle[1] + 0x400);
+        capObject->oMoveAngleYaw = (s16) (m->faceAngle[1] + 0x400);
 
         if (m->forwardVel < 0.0f) {
-            capObject->oMoveAngleYaw = (s16)(capObject->oMoveAngleYaw + 0x8000);
+            capObject->oMoveAngleYaw = (s16) (capObject->oMoveAngleYaw + 0x8000);
         }
     }
 }
@@ -469,7 +469,6 @@ u32 bully_knock_back_mario(struct MarioState *mario) {
                               bully->oMoveAngleYaw, marioToBullyRatio, bully->hitboxRadius + 2.0f);
 
     transfer_bully_speed(&marioData, &bullyData);
-
 
     newMarioYaw = atan2s(marioData.velZ, marioData.velX);
     newBullyYaw = atan2s(bullyData.velZ, bullyData.velX);
@@ -856,7 +855,7 @@ u32 interact_warp(struct MarioState *m, UNUSED u32 interactType, struct Object *
                 queue_rumble_data(12, 80);
             }
 #else
-            if (gCurrLevelNum != LEVEL_CASTLE) {    
+            if (gCurrLevelNum != LEVEL_CASTLE) {
                 play_sound(o->collisionData == segmented_to_virtual(warp_pipe_seg3_collision_03009AC8)
                                ? SOUND_MENU_ENTER_PIPE
                                : SOUND_MENU_ENTER_HOLE,
@@ -1191,9 +1190,9 @@ u32 interact_bully(struct MarioState *m, UNUSED u32 interactType, struct Object 
         if (m->forwardVel < 0.0f) {
             o->oMoveAngleYaw = m->faceAngle[1];
         } else {
-            o->oMoveAngleYaw = m->faceAngle[1] - (m->faceAngle[1] * 2);    
+            o->oMoveAngleYaw = m->faceAngle[1] - (m->faceAngle[1] * 2);
         }
-            o->oForwardVel = (3392.0f / o->hitboxRadius) / 2.5f;
+        o->oForwardVel = (3392.0f / o->hitboxRadius) / 2.5f;
 
         attack_object(o, interaction);
         bounce_back_from_attack(m, interaction);
@@ -1467,9 +1466,9 @@ u32 interact_pole(struct MarioState *m, UNUSED u32 interactType, struct Object *
             //! @bug Using m->forwardVel here is assumed to be 0.0f due to the set from earlier.
             //       This is fixed in the Shindou version.
 #ifdef VERSION_SH
-            marioObj->oMarioPoleYawVel = (s32)(velConv * 0x100 + 0x1000);
+            marioObj->oMarioPoleYawVel = (s32) (velConv * 0x100 + 0x1000);
 #else
-            marioObj->oMarioPoleYawVel = (s32)(m->forwardVel * 0x100 + 0x1000);
+            marioObj->oMarioPoleYawVel = (s32) (m->forwardVel * 0x100 + 0x1000);
 #endif
             reset_mario_pitch(m);
 #ifdef VERSION_SH
@@ -1625,7 +1624,7 @@ u32 mario_can_talk(struct MarioState *m, u32 arg) {
 
 u32 check_read_sign(struct MarioState *m, struct Object *o) {
     if ((m->input & READ_MASK) && mario_can_talk(m, 0) && object_facing_mario(m, o, SIGN_RANGE)) {
-        s16 facingDYaw = (s16)(o->oMoveAngleYaw + 0x8000) - m->faceAngle[1];
+        s16 facingDYaw = (s16) (o->oMoveAngleYaw + 0x8000) - m->faceAngle[1];
         if (facingDYaw >= -SIGN_RANGE && facingDYaw <= SIGN_RANGE) {
             f32 targetX = o->oPosX + 105.0f * sins(o->oMoveAngleYaw);
             f32 targetZ = o->oPosZ + 105.0f * coss(o->oMoveAngleYaw);

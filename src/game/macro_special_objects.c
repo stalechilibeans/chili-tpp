@@ -16,7 +16,7 @@
  * that can be used by in-game objects.
  */
 s16 convert_rotation(s16 inRotation) {
-    u16 rotation = ((u16)(inRotation & 0xFF));
+    u16 rotation = ((u16) (inRotation & 0xFF));
     rotation <<= 8;
 
     if (rotation == 0x3F00) {

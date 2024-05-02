@@ -137,7 +137,7 @@ void print_all_memtrackers(void) {
 
     for (i = 0; i < ARRAY_COUNT(sMemTrackers); i++) {
         if (sMemTrackers[i].name != NULL) {
-            gd_printf("'%s' = %dk\n", sMemTrackers[i].name, (s32)(sMemTrackers[i].total / 1024.0f));
+            gd_printf("'%s' = %dk\n", sMemTrackers[i].name, (s32) (sMemTrackers[i].total / 1024.0f));
         }
     }
 }
@@ -621,7 +621,7 @@ char *sprint_val_withspecifiers(char *str, union PrintVal val, char *specifiers)
             str = sprint_num_as_hex(str, val.i);
         } else if (cur == 'f') {
             intPart = (s32) val.f;
-            fracPart = (s32)((val.f - (f32) intPart) * (f32) int_sci_notation(10, fracPrec));
+            fracPart = (s32) ((val.f - (f32) intPart) * (f32) int_sci_notation(10, fracPrec));
             sPadNumPrint = FALSE;
             str = sprint_num(str, intPart, int_sci_notation(10, intPrec));
             *str++ = '.';

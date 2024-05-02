@@ -27,7 +27,7 @@ void butterfly_step(s32 speed) {
     o->oPosZ += o->oVelZ;
 
     if (o->oAction == BUTTERFLY_ACT_FOLLOW_MARIO)
-        o->oPosY -= o->oVelY + coss((s32)(yPhase * 655.36)) * 20.0f / 4;
+        o->oPosY -= o->oVelY + coss((s32) (yPhase * 655.36)) * 20.0f / 4;
     else
         o->oPosY -= o->oVelY;
 

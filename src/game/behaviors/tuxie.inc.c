@@ -136,7 +136,7 @@ void small_penguin_act_1(void) {
 void small_penguin_act_3(void) {
     if (o->oTimer > 5) {
         if (o->oTimer == 6)
-        cur_obj_init_animation_with_sound(1);
+            cur_obj_init_animation_with_sound(1);
         if (o->oTimer > 25)
             if (!mario_is_dive_sliding())
                 o->oAction = 4;
@@ -164,7 +164,7 @@ void small_penguin_act_0(void) {
     }
 
     if (o->oTimer == 0) {
-        o->oSmallPenguinUnk110 = (s32)(random_float() * 0x400);
+        o->oSmallPenguinUnk110 = (s32) (random_float() * 0x400);
         o->oSmallPenguinUnk108 = random_float() * 100.0f;
         o->oSmallPenguinUnk104 = random_float();
         o->oForwardVel = 0.0f;

@@ -61,7 +61,7 @@ static s32 read_eeprom_data(void *buffer, s32 size) {
 
     if (gEepromProbe != 0) {
         s32 triesLeft = 4;
-        u32 offset = (u32)((u8 *) buffer - (u8 *) &gSaveBuffer) / 8;
+        u32 offset = (u32) ((u8 *) buffer - (u8 *) &gSaveBuffer) / 8;
 
         do {
 #ifdef VERSION_SH
@@ -89,7 +89,7 @@ static s32 write_eeprom_data(void *buffer, s32 size) {
 
     if (gEepromProbe != 0) {
         s32 triesLeft = 4;
-        u32 offset = (u32)((u8 *) buffer - (u8 *) &gSaveBuffer) >> 3;
+        u32 offset = (u32) ((u8 *) buffer - (u8 *) &gSaveBuffer) >> 3;
 
         do {
 #ifdef VERSION_SH

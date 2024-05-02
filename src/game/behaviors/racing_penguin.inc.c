@@ -86,7 +86,7 @@ static void racing_penguin_act_race(void) {
         obj_forward_vel_approach(targetSpeed, 0.4f);
 
         cur_obj_init_animation_with_sound(1);
-        cur_obj_rotate_yaw_toward(o->oPathedTargetYaw, (s32)(15.0f * o->oForwardVel));
+        cur_obj_rotate_yaw_toward(o->oPathedTargetYaw, (s32) (15.0f * o->oForwardVel));
 
         if (cur_obj_check_if_at_animation_end() && (o->oMoveFlags & 0x00000003)) {
             spawn_object_relative_with_scale(0, 0, -100, 0, 4.0f, o, MODEL_SMOKE, bhvWhitePuffSmoke2);

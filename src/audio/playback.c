@@ -59,8 +59,8 @@ void note_set_vel_pan_reverb(struct Note *note, f32 velocity, u8 pan, u8 reverb)
     velocity = MAX(0.0f, velocity);
     velocity = MIN(32767.f, velocity);
 
-    sub->targetVolLeft = ((s32)(velocity * volLeft) & 0xffff) >> 5;
-    sub->targetVolRight = ((s32)(velocity * volRight) & 0xffff) >> 5;
+    sub->targetVolLeft = ((s32) (velocity * volLeft) & 0xffff) >> 5;
+    sub->targetVolRight = ((s32) (velocity * volRight) & 0xffff) >> 5;
 
     if (sub->reverbVol != reverb) {
         sub->reverbVol = reverb;
@@ -99,7 +99,7 @@ void note_set_resampling_rate(struct Note *note, f32 resamplingRateInput) {
             resamplingRate = resamplingRateInput * 0.5f;
         }
     }
-    note->noteSubEu.resamplingRateFixedPoint = (s32)(resamplingRate * 32768.0f);
+    note->noteSubEu.resamplingRateFixedPoint = (s32) (resamplingRate * 32768.0f);
 }
 
 struct AudioBankSound *instrument_get_audio_bank_sound(struct Instrument *instrument, s32 semitone) {
@@ -134,11 +134,11 @@ struct Instrument *get_instrument_inner(s32 bankId, s32 instId) {
     }
 
     if (((uintptr_t) gBankLoadedPool.persistent.pool.start <= (uintptr_t) inst
-         && (uintptr_t) inst <= (uintptr_t)(gBankLoadedPool.persistent.pool.start
-                                            + gBankLoadedPool.persistent.pool.size))
+         && (uintptr_t) inst <= (uintptr_t) (gBankLoadedPool.persistent.pool.start
+                                             + gBankLoadedPool.persistent.pool.size))
         || ((uintptr_t) gBankLoadedPool.temporary.pool.start <= (uintptr_t) inst
-            && (uintptr_t) inst <= (uintptr_t)(gBankLoadedPool.temporary.pool.start
-                                               + gBankLoadedPool.temporary.pool.size))) {
+            && (uintptr_t) inst <= (uintptr_t) (gBankLoadedPool.temporary.pool.start
+                                                + gBankLoadedPool.temporary.pool.size))) {
         return inst;
     }
 

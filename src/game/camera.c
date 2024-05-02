@@ -2369,8 +2369,7 @@ s32 exit_c_up(struct Camera *c) {
                         }
 
                         // Stop checking this direction if there is a wall blocking the way
-                        if (WallCheck(&curPos[0], &curPos[1], &curPos[2], 20.f, 50.f)
-                            == 1) {
+                        if (WallCheck(&curPos[0], &curPos[1], &curPos[2], 20.f, 50.f) == 1) {
                             break;
                         }
                     }
@@ -2434,8 +2433,8 @@ void move_mario_head_c_up(UNUSED struct Camera *c) {
     UNUSED s16 pitch = sCUpCameraPitch;
     UNUSED s16 yaw = sModeOffsetYaw;
 
-    sCUpCameraPitch += (s16)(gPlayer1Controller->stickY * 10.f);
-    sModeOffsetYaw -= (s16)(gPlayer1Controller->stickX * 10.f);
+    sCUpCameraPitch += (s16) (gPlayer1Controller->stickY * 10.f);
+    sModeOffsetYaw -= (s16) (gPlayer1Controller->stickX * 10.f);
 
     // Bound looking up to nearly 80 degrees.
     if (sCUpCameraPitch > 0x38E3) {
@@ -2559,11 +2558,11 @@ void mode_cannon_camera(struct Camera *c) {
     UNUSED u8 unused[24];
     s8 timer;
     timer++;
-    
+
     if (timer == 1) {
-    sLakituPitch = 0;
-    gCameraMovementFlags &= ~CAM_MOVING_INTO_MODE;
-    c->nextYaw = update_in_cannon(c, c->focus, c->pos);
+        sLakituPitch = 0;
+        gCameraMovementFlags &= ~CAM_MOVING_INTO_MODE;
+        c->nextYaw = update_in_cannon(c, c->focus, c->pos);
     }
     if (gPlayer1Controller->buttonPressed & A_BUTTON) {
         set_camera_mode(c, CAMERA_MODE_BEHIND_MARIO, 1);
@@ -2761,7 +2760,7 @@ void update_lakitu(struct Camera *c) {
         if (c->mode != CAMERA_MODE_C_UP && c->cutscene == 0) {
             gCheckingSurfaceCollisionsForCamera = TRUE;
             distToFloor = mcBGGroundCheck(gLakituState.pos[0], gLakituState.pos[1] + 20.0f,
-                                     gLakituState.pos[2], &floor);
+                                          gLakituState.pos[2], &floor);
             if (distToFloor != -11000.f) {
                 if (gLakituState.pos[1] < (distToFloor += 100.0f)) {
                     gLakituState.pos[1] = distToFloor;
@@ -3169,7 +3168,7 @@ void init_camera(struct Camera *c) {
     offset_rotated(c->pos, sMarioCamState->pos, marioOffset, sMarioCamState->faceAngle);
     if (c->mode != CAMERA_MODE_BEHIND_MARIO) {
         c->pos[1] = mcBGGroundCheck(sMarioCamState->pos[0], sMarioCamState->pos[1] + 100.f,
-                               sMarioCamState->pos[2], &floor)
+                                    sMarioCamState->pos[2], &floor)
                     + 125.f;
     }
     vec3f_copy(c->focus, sMarioCamState->pos);
@@ -6271,7 +6270,7 @@ s16 camera_course_processing(struct Camera *c) {
                         set_camera_mode_radial(c, 60);
                 }
                 break;
-            
+
             case AREA_BBH:
                 // if camera is fixed at bbh_room_13_balcony_camera (but as floats)
                 if (vec3f_compare(sFixedModeBasePosition, 210.f, 420.f, 3109.f) == 1) {
@@ -6518,14 +6517,16 @@ void find_mario_floor_and_ceil(struct PlayerGeometry *pg) {
     s16 tempCheckingSurfaceCollisionsForCamera = gCheckingSurfaceCollisionsForCamera;
     gCheckingSurfaceCollisionsForCamera = TRUE;
 
-    if (mcBGGroundCheck(sMarioCamState->pos[0], sMarioCamState->pos[1] + 10.f, sMarioCamState->pos[2], &surf)
+    if (mcBGGroundCheck(sMarioCamState->pos[0], sMarioCamState->pos[1] + 10.f, sMarioCamState->pos[2],
+                        &surf)
         != -11000.f) {
         pg->currFloorType = surf->type;
     } else {
         pg->currFloorType = 0;
     }
 
-    if (mcBGRoofCheck(sMarioCamState->pos[0], sMarioCamState->pos[1] - 10.f, sMarioCamState->pos[2], &surf)
+    if (mcBGRoofCheck(sMarioCamState->pos[0], sMarioCamState->pos[1] - 10.f, sMarioCamState->pos[2],
+                      &surf)
         != 20000.f) {
         pg->currCeilType = surf->type;
     } else {
@@ -6534,9 +6535,9 @@ void find_mario_floor_and_ceil(struct PlayerGeometry *pg) {
 
     gCheckingSurfaceCollisionsForCamera = FALSE;
     pg->currFloorHeight = mcBGGroundCheck(sMarioCamState->pos[0], sMarioCamState->pos[1] + 10.f,
-                                     sMarioCamState->pos[2], &pg->currFloor);
+                                          sMarioCamState->pos[2], &pg->currFloor);
     pg->currCeilHeight = mcBGRoofCheck(sMarioCamState->pos[0], sMarioCamState->pos[1] - 10.f,
-                                   sMarioCamState->pos[2], &pg->currCeil);
+                                       sMarioCamState->pos[2], &pg->currCeil);
     pg->waterHeight = mcWaterCheck(sMarioCamState->pos[0], sMarioCamState->pos[2]);
     gCheckingSurfaceCollisionsForCamera = tempCheckingSurfaceCollisionsForCamera;
 }
@@ -6754,8 +6755,8 @@ void player2_rotate_cam(struct Camera *c, s16 minPitch, s16 maxPitch, s16 minYaw
     s16 pitch, yaw, pitchCap;
 
     // Change the camera rotation to match the 2nd player's stick
-    approach_s16_asymptotic_bool(&sCreditsPlayer2Yaw, -(s16)(gPlayer2Controller->stickX * 250.f), 4);
-    approach_s16_asymptotic_bool(&sCreditsPlayer2Pitch, -(s16)(gPlayer2Controller->stickY * 265.f), 4);
+    approach_s16_asymptotic_bool(&sCreditsPlayer2Yaw, -(s16) (gPlayer2Controller->stickX * 250.f), 4);
+    approach_s16_asymptotic_bool(&sCreditsPlayer2Pitch, -(s16) (gPlayer2Controller->stickY * 265.f), 4);
     vec3f_get_dist_and_angle(c->pos, c->focus, &distCamToFocus, &pitch, &yaw);
 
     pitchCap = 0x3800 - pitch;
@@ -9681,7 +9682,7 @@ BAD_RETURN(s32) cutscene_exit_painting_move_to_floor(struct Camera *c) {
 
     vec3f_copy(floorHeight, sMarioCamState->pos);
     floorHeight[1] = mcBGGroundCheck(sMarioCamState->pos[0], sMarioCamState->pos[1] + 10.f,
-                                sMarioCamState->pos[2], &floor);
+                                     sMarioCamState->pos[2], &floor);
 
     if (floor != NULL) {
         floorHeight[1] = floorHeight[1] + (sMarioCamState->pos[1] - floorHeight[1]) * 0.7f + 125.f;
@@ -10007,12 +10008,11 @@ struct Cutscene sCutsceneDoorPull[] = { { cutscene_door_start, 1 },
 /**
  * Cutscene that plays when mario pushes open a door.
  */
-struct Cutscene sCutsceneDoorPush[] = { { cutscene_door_start, 1 },
-                                        { cutscene_door_fix_cam, 19 },
-                                        { unused_cam_to_mario, 1 },
-                                        { cutscene_door_move_behind_mario, 1 },
-                                        { cutscene_door_follow_mario, 50 },
-                                        { cutscene_door_end, 0 } };
+struct Cutscene sCutsceneDoorPush[] = {
+    { cutscene_door_start, 1 },         { cutscene_door_fix_cam, 19 },
+    { unused_cam_to_mario, 1 },         { cutscene_door_move_behind_mario, 1 },
+    { cutscene_door_follow_mario, 50 }, { cutscene_door_end, 0 }
+};
 
 /**
  * Cutscene that plays when mario pulls open a door that has some special mode requirement on the other
@@ -10914,8 +10914,8 @@ static UNUSED void unused_displace_obj_randomly(struct Object *o, f32 xRange, f3
 static UNUSED void unused_rotate_obj_randomly(struct Object *o, f32 pitchRange, f32 yawRange) {
     f32 rnd = random_float();
 
-    o->oMoveAnglePitch += (s16)(rnd * pitchRange - pitchRange / 2.f);
-    o->oMoveAngleYaw += (s16)(rnd * yawRange - yawRange / 2.f);
+    o->oMoveAnglePitch += (s16) (rnd * pitchRange - pitchRange / 2.f);
+    o->oMoveAngleYaw += (s16) (rnd * yawRange - yawRange / 2.f);
 }
 
 /**

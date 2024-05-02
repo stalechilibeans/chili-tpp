@@ -54,7 +54,7 @@ void bhv_mr_blizzard_init(void) {
 
 static void mr_blizzard_act_0(void) {
     if (o->oMrBlizzardUnkF8 == NULL && cur_obj_init_anim_check_frame(0, 5)) {
-        o->oMrBlizzardUnkF8 = spawn_object_relative(0, -70, (s32)(o->oMrBlizzardUnk10C + 153.0f), 0, o,
+        o->oMrBlizzardUnkF8 = spawn_object_relative(0, -70, (s32) (o->oMrBlizzardUnk10C + 153.0f), 0, o,
                                                     MODEL_WHITE_PARTICLE, bhvMrBlizzardSnowball);
     } else if (cur_obj_check_anim_frame(10)) {
         o->prevObj = o->oMrBlizzardUnkF8;
@@ -314,7 +314,7 @@ static void mr_blizzard_snowball_act_1(void) {
                 val04 = 800.0f;
             }
 
-            o->oMoveAngleYaw = (s32)(o->parentObj->oMoveAngleYaw + 4000 - val04 * 4.0f);
+            o->oMoveAngleYaw = (s32) (o->parentObj->oMoveAngleYaw + 4000 - val04 * 4.0f);
             o->oForwardVel = 40.0f;
             o->oVelY = -20.0f + val04 * 0.075f;
         }

@@ -31,10 +31,10 @@ s32 sNumActiveFirePiranhaPlants;
 s32 sNumKilledFirePiranhaPlants;
 
 void bhv_fire_piranha_plant_init(void) {
-    o->oFirePiranhaPlantNeutralScale = D_80331B5C[(u16)(o->oBehParams >> 16)];
+    o->oFirePiranhaPlantNeutralScale = D_80331B5C[(u16) (o->oBehParams >> 16)];
     obj_set_hitbox(o, &sFirePiranhaPlantHitbox);
 
-    if ((u16)(o->oBehParams >> 16) != 0) {
+    if ((u16) (o->oBehParams >> 16) != 0) {
         o->oFlags |= 0x00004000;
         o->oHealth = 1;
 
@@ -64,7 +64,7 @@ static void fire_piranha_plant_act_hide(void) {
             sNumActiveFirePiranhaPlants -= 1;
             o->oFirePiranhaPlantActive = FALSE;
 
-            if ((u16)(o->oBehParams >> 16) != 0 && o->oHealth == 0) {
+            if ((u16) (o->oBehParams >> 16) != 0 && o->oHealth == 0) {
                 if (++sNumKilledFirePiranhaPlants == 5) {
                     spawn_default_star(-6300.0f, -1850.0f, -6300.0f);
                 }
@@ -105,8 +105,8 @@ static void fire_piranha_plant_act_grow(void) {
             if (obj_is_rendering_enabled()) {
                 if (cur_obj_check_anim_frame(56)) {
                     cur_obj_play_sound_2(SOUND_OBJ_FLAME_BLOWN);
-                    obj_spit_fire(0, (s32)(30.0f * o->oFirePiranhaPlantNeutralScale),
-                                  (s32)(140.0f * o->oFirePiranhaPlantNeutralScale),
+                    obj_spit_fire(0, (s32) (30.0f * o->oFirePiranhaPlantNeutralScale),
+                                  (s32) (140.0f * o->oFirePiranhaPlantNeutralScale),
                                   2.5f * o->oFirePiranhaPlantNeutralScale, MODEL_RED_FLAME_SHADOW,
                                   20.0f, 15.0f, 0x1000);
                 }
