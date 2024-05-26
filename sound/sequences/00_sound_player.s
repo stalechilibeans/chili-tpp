@@ -447,6 +447,7 @@ chan_setlayer 0, .layer_2AE
 chan_end
 
 .layer_2AE:
+
 layer_note1 46, 0x18, 255
 layer_end
 
