@@ -1600,10 +1600,9 @@ chan_setinstr 1
 chan_end
 
 .layer_988:
-layer_note1 41, 0x8, 105
 layer_somethingon
 .layer_98C:
-layer_note1 39, 0x12c, 70
+layer_note1 40, 0x8, 105
 layer_jump .layer_98C
 layer_end
 
@@ -1640,7 +1639,7 @@ chan_end
 .layer_9C3:
 layer_somethingon
 .layer_9C4:
-layer_note1 39, 0x12c, 68
+layer_note1 40, 0x8, 105
 layer_jump .layer_9C4
 layer_end
 
@@ -1655,10 +1654,9 @@ chan_setinstr 4
 chan_end
 
 .layer_9DD:
-layer_note1 42, 0xc, 75
 layer_somethingon
 .layer_9E1:
-layer_note1 39, 0x12c, 76
+layer_note1 40, 0x8, 105
 layer_jump .layer_9E1
 layer_end
 
@@ -1671,7 +1669,7 @@ chan_end
 .layer_9F1:
 layer_somethingon
 .layer_9F2:
-layer_note1 39, 0x12c, 80
+layer_note1 40, 0x8, 105
 layer_jump .layer_9F2
 layer_end
 
@@ -1684,7 +1682,7 @@ chan_end
 .layer_A02:
 layer_somethingon
 .layer_A03:
-layer_note1 39, 0x12c, 100
+layer_note1 40, 0x8, 105
 layer_jump .layer_A03
 layer_end
 
@@ -1699,10 +1697,9 @@ chan_setinstr 7
 chan_end
 
 .layer_A1C:
-layer_note1 42, 0xc, 100
 layer_somethingon
 .layer_A20:
-layer_note1 39, 0x12c, 81
+layer_note1 40, 0x8, 105
 layer_jump .layer_A20
 layer_end
 
