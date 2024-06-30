@@ -995,7 +995,8 @@ s32 act_turning_around(struct MarioState *m) {
         return begin_walking_action(m, 8.0f, ACT_FINISH_TURNING_AROUND, 0);
     }
 
-    play_sound(SOUND_MOVING_TERRAIN_SLIDE, m->marioObj->header.gfx.cameraToObject);
+    play_sound(SOUND_MOVING_TERRAIN_SLIDE + m->terrainSoundAddend,
+               m->marioObj->header.gfx.cameraToObject);
 
     switch (perform_ground_step(m)) {
         case GROUND_STEP_LEFT_GROUND:
@@ -1072,7 +1073,8 @@ s32 act_braking(struct MarioState *m) {
             break;
     }
 
-    play_sound(SOUND_MOVING_TERRAIN_SLIDE, m->marioObj->header.gfx.cameraToObject);
+    play_sound(SOUND_MOVING_TERRAIN_SLIDE + m->terrainSoundAddend,
+               m->marioObj->header.gfx.cameraToObject);
     set_mario_animation(m, MARIO_ANIM_SKID_ON_GROUND);
     return FALSE;
 }
@@ -1169,7 +1171,8 @@ s32 act_hold_decelerating(struct MarioState *m) {
 
     if (slopeClass == SURFACE_CLASS_VERY_SLIPPERY) {
         set_mario_animation(m, MARIO_ANIM_IDLE_WITH_LIGHT_OBJ);
-        play_sound(SOUND_MOVING_TERRAIN_SLIDE, m->marioObj->header.gfx.cameraToObject);
+        play_sound(SOUND_MOVING_TERRAIN_SLIDE + m->terrainSoundAddend,
+               m->marioObj->header.gfx.cameraToObject);
         m->particleFlags |= PARTICLE_DUST;
     } else {
         //! (Speed Crash) This crashes if Mario has more speed than 2^15 speed.
@@ -1346,7 +1349,8 @@ void common_slide_action(struct MarioState *m, u32 endAction, u32 airAction, s32
     Vec3f val14;
 
     vec3f_copy(val14, m->pos);
-    play_sound(SOUND_MOVING_TERRAIN_SLIDE, m->marioObj->header.gfx.cameraToObject);
+    play_sound(SOUND_MOVING_TERRAIN_SLIDE + m->terrainSoundAddend,
+               m->marioObj->header.gfx.cameraToObject);
 
 #ifdef VERSION_SH
     reset_rumble_timers();
@@ -1471,7 +1475,8 @@ s32 act_slide_kick_slide(struct MarioState *m) {
             break;
     }
 
-    play_sound(SOUND_MOVING_TERRAIN_SLIDE, m->marioObj->header.gfx.cameraToObject);
+    play_sound(SOUND_MOVING_TERRAIN_SLIDE + m->terrainSoundAddend,
+               m->marioObj->header.gfx.cameraToObject);
     m->particleFlags |= PARTICLE_DUST;
     return FALSE;
 }

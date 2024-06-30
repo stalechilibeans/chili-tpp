@@ -653,16 +653,7 @@ void unused_set_camera_pitch_shake_env(s16 shake) {
  */
 f32 calc_y_to_curr_floor(f32 *posOff, f32 posMul, f32 posBound, f32 *focOff, f32 focMul, f32 focBound) {
     f32 floorHeight = sMarioGeometry.currFloorHeight;
-    f32 waterHeight;
     UNUSED s32 filler;
-
-    if (!(sMarioCamState->action & ACT_FLAG_METAL_WATER)) {
-        //! @bug this should use sMarioGeometry.waterHeight
-        if (floorHeight
-            < (waterHeight = mcWaterCheck(sMarioCamState->pos[0], sMarioCamState->pos[2]))) {
-            floorHeight = waterHeight;
-        }
-    }
 
     if (sMarioCamState->action & ACT_FLAG_ON_POLE) {
         if (sMarioGeometry.currFloorHeight >= gMarioStates[0].usedObj->oPosY
@@ -1793,7 +1784,7 @@ s16 update_slide_camera(struct Camera *c) {
 
     // Focus on mario
     vec3f_copy(c->focus, sMarioCamState->pos);
-    c->focus[1] += 50.f;
+    c->focus[1] += 125.f;
 
     vec3f_get_dist_and_angle(c->focus, c->pos, &distCamToFocus, &camPitch, &camYaw);
     maxCamDist = 800.f;

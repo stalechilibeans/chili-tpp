@@ -583,7 +583,7 @@ chan_setlayer 0, .layer_364
 chan_end
 
 .layer_364:
-layer_note1 39, 0x18, 68
+layer_note1 39, 0x18, 80
 layer_end
 
 .sound_action_step_ice:
@@ -1585,7 +1585,7 @@ chan_end
 .layer_96E:
 layer_somethingon
 .layer_96F:
-layer_note1 40, 0x12c, 95
+layer_note1 40, 0x8, 105
 layer_jump .layer_96F
 layer_end
 
