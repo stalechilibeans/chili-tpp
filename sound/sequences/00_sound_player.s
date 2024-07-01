@@ -1639,7 +1639,7 @@ chan_end
 .layer_9C3:
 layer_somethingon
 .layer_9C4:
-layer_note1 40, 0x8, 105
+layer_note1 40, 0x8, 88
 layer_jump .layer_9C4
 layer_end
 
