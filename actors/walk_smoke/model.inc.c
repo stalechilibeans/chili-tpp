@@ -61,61 +61,26 @@ const Gfx smoke_seg4_dl_04021718[] = {
 // 0x04021730 - 0x04021748
 const Gfx smoke_seg4_dl_04021730[] = {
     gsDPPipeSync(),
-    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401DEA0),
+    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401E6A0),
     gsSPBranchList(smoke_seg4_dl_040216A0),
 };
 
 // 0x04021748 - 0x04021760
 const Gfx smoke_seg4_dl_04021748[] = {
     gsDPPipeSync(),
-    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401E6A0),
+    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401EEA0),
     gsSPBranchList(smoke_seg4_dl_040216A0),
 };
 
 // 0x04021760 - 0x04021778
 const Gfx smoke_seg4_dl_04021760[] = {
     gsDPPipeSync(),
-    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401E6A0),
+    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401F6A0),
     gsSPBranchList(smoke_seg4_dl_040216A0),
 };
 
 // 0x04021778 - 0x04021790
 const Gfx smoke_seg4_dl_04021778[] = {
-    gsDPPipeSync(),
-    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401EEA0),
-    gsSPBranchList(smoke_seg4_dl_040216A0),
-};
-
-// 0x04021790 - 0x040217A8
-const Gfx smoke_seg4_dl_04021790[] = {
-    gsDPPipeSync(),
-    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401EEA0),
-    gsSPBranchList(smoke_seg4_dl_040216A0),
-};
-
-// 0x040217A8 - 0x040217C0
-const Gfx smoke_seg4_dl_040217A8[] = {
-    gsDPPipeSync(),
-    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401F6A0),
-    gsSPBranchList(smoke_seg4_dl_040216A0),
-};
-
-// custom_1
-const Gfx smoke_seg4_dl_custom_1[] = {
-    gsDPPipeSync(),
-    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401F6A0),
-    gsSPBranchList(smoke_seg4_dl_040216A0),
-};
-
-// custom_2
-const Gfx smoke_seg4_dl_custom_2[] = {
-    gsDPPipeSync(),
-    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401FEA0),
-    gsSPBranchList(smoke_seg4_dl_040216A0),
-};
-
-// custom_3
-const Gfx smoke_seg4_dl_custom_3[] = {
     gsDPPipeSync(),
     gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401FEA0),
     gsSPBranchList(smoke_seg4_dl_040216A0),

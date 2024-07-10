@@ -189,17 +189,11 @@ extern const Gfx stomp_smoke_seg4_dl_04025300[];
 
 // walk_smoke
 extern const GeoLayout smoke_geo[];
-extern const Gfx smoke_seg4_dl_040216A0[];
 extern const Gfx smoke_seg4_dl_04021718[];
 extern const Gfx smoke_seg4_dl_04021730[];
 extern const Gfx smoke_seg4_dl_04021748[];
 extern const Gfx smoke_seg4_dl_04021760[];
 extern const Gfx smoke_seg4_dl_04021778[];
-extern const Gfx smoke_seg4_dl_04021790[];
-extern const Gfx smoke_seg4_dl_040217A8[];
-extern const Gfx smoke_seg4_dl_custom_1[];
-extern const Gfx smoke_seg4_dl_custom_2[];
-extern const Gfx smoke_seg4_dl_custom_3[];
 
 // water_splash
 extern const GeoLayout water_splash_geo[];
