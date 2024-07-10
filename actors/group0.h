@@ -199,6 +199,7 @@ extern const Gfx smoke_seg4_dl_04021790[];
 extern const Gfx smoke_seg4_dl_040217A8[];
 extern const Gfx smoke_seg4_dl_custom_1[];
 extern const Gfx smoke_seg4_dl_custom_2[];
+extern const Gfx smoke_seg4_dl_custom_3[];
 
 // water_splash
 extern const GeoLayout water_splash_geo[];
