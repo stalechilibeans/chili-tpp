@@ -209,7 +209,6 @@ void bhv_jrb_sliding_box_loop(void);
 void bhv_ship_part_3_loop(void);
 void bhv_sunken_ship_part_loop(void);
 void bhv_white_puff_1_loop(void);
-void bhv_white_puff_2_loop(void);
 void bhv_blue_coin_switch_loop(void);
 void bhv_hidden_blue_coin_loop(void);
 void bhv_openable_cage_door_loop(void);

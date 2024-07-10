@@ -10,37 +10,27 @@ static const Vtx smoke_seg4_vertex_0401DE60[] = {
 
 // 0x0401DEA0
 ALIGNED8 static const u8 smoke_seg4_texture_0401DEA0[] = {
-#include "actors/walk_smoke/walk_smoke_0_custom.ia16.inc.c"
+#include "actors/walk_smoke/walk_smoke_0.ia16.inc.c"
 };
 
 // 0x0401E6A0
 ALIGNED8 static const u8 smoke_seg4_texture_0401E6A0[] = {
-#include "actors/walk_smoke/walk_smoke_1_custom.ia16.inc.c"
+#include "actors/walk_smoke/walk_smoke_1.ia16.inc.c"
 };
 
 // 0x0401EEA0
 ALIGNED8 static const u8 smoke_seg4_texture_0401EEA0[] = {
-#include "actors/walk_smoke/walk_smoke_2_custom.ia16.inc.c"
+#include "actors/walk_smoke/walk_smoke_2.ia16.inc.c"
 };
 
 // 0x0401F6A0
 ALIGNED8 static const u8 smoke_seg4_texture_0401F6A0[] = {
-#include "actors/walk_smoke/walk_smoke_3_custom.ia16.inc.c"
+#include "actors/walk_smoke/walk_smoke_3.ia16.inc.c"
 };
 
 // 0x0401FEA0
 ALIGNED8 static const u8 smoke_seg4_texture_0401FEA0[] = {
-#include "actors/walk_smoke/walk_smoke_4_custom.ia16.inc.c"
-};
-
-// 0x040206A0
-ALIGNED8 static const u8 smoke_seg4_texture_040206A0[] = {
-#include "actors/walk_smoke/walk_smoke_5_custom.ia16.inc.c"
-};
-
-// 0x04020EA0
-ALIGNED8 static const u8 smoke_seg4_texture_04020EA0[] = {
-#include "actors/walk_smoke/walk_smoke_6_custom.ia16.inc.c"
+#include "actors/walk_smoke/walk_smoke_4.ia16.inc.c"
 };
 
 // 0x040216A0 - 0x04021718
@@ -78,34 +68,48 @@ const Gfx smoke_seg4_dl_04021730[] = {
 // 0x04021748 - 0x04021760
 const Gfx smoke_seg4_dl_04021748[] = {
     gsDPPipeSync(),
-    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401EEA0),
+    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401E6A0),
     gsSPBranchList(smoke_seg4_dl_040216A0),
 };
 
 // 0x04021760 - 0x04021778
 const Gfx smoke_seg4_dl_04021760[] = {
     gsDPPipeSync(),
-    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401F6A0),
+    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401EEA0),
     gsSPBranchList(smoke_seg4_dl_040216A0),
 };
 
 // 0x04021778 - 0x04021790
 const Gfx smoke_seg4_dl_04021778[] = {
     gsDPPipeSync(),
-    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401FEA0),
+    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401EEA0),
     gsSPBranchList(smoke_seg4_dl_040216A0),
 };
 
 // 0x04021790 - 0x040217A8
 const Gfx smoke_seg4_dl_04021790[] = {
     gsDPPipeSync(),
-    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_040206A0),
+    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401F6A0),
     gsSPBranchList(smoke_seg4_dl_040216A0),
 };
 
 // 0x040217A8 - 0x040217C0
 const Gfx smoke_seg4_dl_040217A8[] = {
     gsDPPipeSync(),
-    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_04020EA0),
+    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401F6A0),
+    gsSPBranchList(smoke_seg4_dl_040216A0),
+};
+
+// custom_1
+const Gfx smoke_seg4_dl_custom_1[] = {
+    gsDPPipeSync(),
+    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401FEA0),
+    gsSPBranchList(smoke_seg4_dl_040216A0),
+};
+
+// custom_2
+const Gfx smoke_seg4_dl_custom_2[] = {
+    gsDPPipeSync(),
+    gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_16b, 1, smoke_seg4_texture_0401FEA0),
     gsSPBranchList(smoke_seg4_dl_040216A0),
 };
