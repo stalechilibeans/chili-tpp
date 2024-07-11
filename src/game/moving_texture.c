@@ -418,8 +418,8 @@ Gfx *movtex_gen_quads_id(s16 id, s16 y, void *movetexQuadsSegmented) {
 }
 
 extern u8 ccm_movtex_penguin_puddle_water[];
-extern u8 inside_castle_movtex_green_room_water[];
-extern u8 inside_castle_movtex_moat_water[];
+//extern u8 inside_castle_movtex_green_room_water[];
+//extern u8 inside_castle_movtex_moat_water[];
 extern u8 castle_grounds_movtex_water[];
 extern u8 lll_movtex_volcano_floor_lava[];
 extern u8 ddd_movtex_area1_water[];
@@ -434,10 +434,6 @@ void *get_quad_collection_from_id(u32 id) {
     switch (id) {
         case CCM_MOVTEX_PENGUIN_PUDDLE_WATER:
             return ccm_movtex_penguin_puddle_water;
-        case INSIDE_CASTLE_MOVTEX_GREEN_ROOM_WATER:
-            return inside_castle_movtex_green_room_water;
-        case INSIDE_CASTLE_MOVTEX_MOAT_WATER:
-            return inside_castle_movtex_moat_water;
         case CASTLE_GROUNDS_MOVTEX_WATER:
             return castle_grounds_movtex_water;
         case LLL_MOVTEX_VOLCANO_FLOOR_LAVA:

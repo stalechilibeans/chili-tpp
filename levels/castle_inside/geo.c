@@ -14,11 +14,11 @@
 
 #include "levels/castle_inside/header.h"
 
-#include "levels/castle_inside/areas/1/custom/geoinclude.h"
+#include "levels/castle_inside/areas/1/custom/geo.inc.c"
 
-#include "levels/castle_inside/star_door/geo.inc.c"
-#include "levels/castle_inside/trap_door/geo.inc.c"
-#include "levels/castle_inside/areas/2/pendulum/geo.inc.c" // Another weird case
-#include "levels/castle_inside/clock_minute_hand/geo.inc.c"
-#include "levels/castle_inside/clock_hour_hand/geo.inc.c"
-#include "levels/castle_inside/water_level_pillar/geo.inc.c"
+#include "levels/castle_inside/star_door/geo.inc.c" // me when
+#include "levels/castle_inside/trap_door/geo.inc.c" // i can't get rid of
+#include "levels/castle_inside/areas/2/pendulum/geo.inc.c" // shit
+#include "levels/castle_inside/clock_minute_hand/geo.inc.c"// god
+#include "levels/castle_inside/clock_hour_hand/geo.inc.c" // it pisses me off
+#include "levels/castle_inside/water_level_pillar/geo.inc.c" //fucking hell
