@@ -14,4 +14,4 @@
 
 #include "levels/castle_courtyard/header.h"
 
-#include "levels/castle_courtyard/areas/1/custom/geoinclude.h"
+#include "levels/castle_courtyard/areas/1/geo.inc.c"

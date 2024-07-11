@@ -10,6 +10,9 @@
 
 #include "make_const_nonconst.h"
 #include "levels/castle_courtyard/texture.inc.c"
-#include "levels/castle_courtyard/areas/1/custom/datainclude.h"
+#include "levels/castle_courtyard/areas/1/1/model.inc.c"
+#include "levels/castle_courtyard/areas/1/2/model.inc.c"
+#include "levels/castle_courtyard/areas/1/3/model.inc.c"
+#include "levels/castle_courtyard/areas/1/collision.inc.c"
 #include "levels/castle_courtyard/areas/1/movtext.inc.c"
 #include "levels/castle_courtyard/areamap.inc.c"
