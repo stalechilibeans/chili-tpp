@@ -117,24 +117,10 @@ struct Painting
     f32 size;
 };
 
-extern struct Painting cotmc_painting;
-
-extern struct Painting bob_painting;
 extern struct Painting ccm_painting;
 extern struct Painting wf_painting;
 extern struct Painting jrb_painting;
 extern struct Painting lll_painting;
-extern struct Painting ssl_painting;
-extern struct Painting hmc_painting;
-extern struct Painting ddd_painting;
-extern struct Painting wdw_painting;
-extern struct Painting thi_tiny_painting;
-extern struct Painting ttm_painting;
-extern struct Painting ttc_painting;
-extern struct Painting sl_painting;
-extern struct Painting thi_huge_painting;
-
-extern struct Painting ttm_slide_painting;
 
 extern u16 gAreaUpdateCounter;
 extern f32 gPaintingMarioYEntry;
