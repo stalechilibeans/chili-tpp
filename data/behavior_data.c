@@ -318,10 +318,10 @@
     BC_PTR(dropletParams)
 
 
-const BehaviorScript bhvStarDoor[] = {
+const BehaviorScript bhvStarDoor[] = { //fix this ya dumb fuck
     BEGIN(OBJ_LIST_SURFACE),
     SET_INT(oInteractType, INTERACT_DOOR),
-    LOAD_COLLISION_DATA(inside_castle_seg7_collision_star_door),
+    //LOAD_COLLISION_DATA(inside_castle_seg7_collision_star_door),
     SET_INT(oInteractionSubtype, INT_SUBTYPE_STAR_DOOR),
     OR_INT(oFlags, (OBJ_FLAG_ACTIVE_FROM_AFAR | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
     SET_HITBOX(/*Radius*/ 80, /*Height*/ 100),
@@ -2071,10 +2071,10 @@ const BehaviorScript bhvInvisibleObjectsUnderBridge[] = {
     BREAK(),
 };
 
-const BehaviorScript bhvWaterLevelPillar[] = {
+const BehaviorScript bhvWaterLevelPillar[] = { //fix this ya dumb fuck
     BEGIN(OBJ_LIST_SURFACE),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
-    LOAD_COLLISION_DATA(inside_castle_seg7_collision_water_level_pillar),
+    //LOAD_COLLISION_DATA(inside_castle_seg7_collision_water_level_pillar),
     CALL_NATIVE(bhv_water_level_pillar_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_water_level_pillar_loop),
