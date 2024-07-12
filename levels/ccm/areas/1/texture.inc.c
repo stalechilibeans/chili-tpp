@@ -1817,7 +1817,3 @@ ALIGNED8 u8 snow_slider_Snow_Brick_rgba16[] = {
 	0x7c, 0xa7, 0x6c, 0x21, 0x95, 0x2b, 0x8d, 0x29, 
 	
 };
-
-ALIGNED8 u8 snow_slider_Fence_rgba16[] = {
-#include "levels/ccm/fence.rgba16.inc.c"
-};
