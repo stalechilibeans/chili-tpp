@@ -14,14 +14,12 @@
 
 #include "levels/ccm/header.h"
 
-#include "levels/ccm/areas/1/custom/geoinclude.h"
+#include "levels/ccm/areas/1/geo.inc.c"
+
 #include "levels/ccm/areas/2/geo.inc.c"
 #include "levels/ccm/areas/3/geo.inc.c"
 #include "levels/ccm/areas/4/geo.inc.c"
 
-#include "levels/ccm/ropeway_lift/geo.inc.c"
-#include "levels/ccm/snowman_base/geo.inc.c"
-#include "levels/ccm/snowman_head/geo.inc.c"
 #include "levels/ccm/blue_smiley/geo.inc.c"
 #include "levels/ccm/yellow_smiley/geo.inc.c"
 #include "levels/ccm/star_smiley/geo.inc.c"

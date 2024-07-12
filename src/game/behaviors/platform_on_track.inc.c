@@ -10,7 +10,7 @@
  */
 static void *sPlatformOnTrackCollisionModels[] = {
     /* PLATFORM_ON_TRACK_TYPE_CARPET    */ NULL,
-    /* PLATFORM_ON_TRACK_TYPE_SKI_LIFT  */ ccm_seg7_collision_070163F8,
+    /* PLATFORM_ON_TRACK_TYPE_SKI_LIFT  */ NULL,
     /* PLATFORM_ON_TRACK_TYPE_CHECKERED */ checkerboard_platform_seg8_collision_0800D710,
     /* PLATFORM_ON_TRACK_TYPE_GRATE     */ NULL,
 };
@@ -21,7 +21,7 @@ static void *sPlatformOnTrackCollisionModels[] = {
 static void *sPlatformOnTrackPaths[] = {
     NULL,
     NULL,
-    ccm_seg7_trajectory_0701669C,
+    NULL,
     NULL,
     NULL,
     lll_seg7_trajectory_0702856C,
