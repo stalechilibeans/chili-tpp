@@ -824,8 +824,8 @@ s32 act_walking(struct MarioState *m) {
     vec3f_copy(startPos, m->pos);
     update_walking_speed(m);
 
-    if (m->actionState != 0 && (m->forwardVel < m->intendedMag * 0.85f))
-        m->forwardVel = m->intendedMag * 0.85f;
+    if (m->actionState != 0 && (m->forwardVel < m->intendedMag * 1.0f))
+        m->forwardVel = m->intendedMag * 1.0f;
 
     m->actionState = 0;
 
