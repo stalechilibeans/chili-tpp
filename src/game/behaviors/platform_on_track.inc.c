@@ -15,6 +15,7 @@ static void *sPlatformOnTrackCollisionModels[] = {
     /* PLATFORM_ON_TRACK_TYPE_GRATE     */ NULL,
 };
 
+//take this out later
 /**
  * Paths for the different instances of these platforms.
  */
@@ -24,8 +25,8 @@ static void *sPlatformOnTrackPaths[] = {
     NULL,
     NULL,
     NULL,
-    lll_seg7_trajectory_0702856C,
-    lll_seg7_trajectory_07028660,
+    NULL,
+    NULL,
     NULL,
     NULL,
 };

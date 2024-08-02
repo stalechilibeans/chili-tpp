@@ -15,6 +15,7 @@ const GeoLayout fire_bubble_geo[] = {
          GEO_OPEN_NODE(),
             GEO_CAMERA(1, 0, 2000, 6000, 0, 0, -8192, geo_camera_main),
             GEO_OPEN_NODE(),
+               GEO_DISPLAY_LIST(LAYER_TRANSPARENT, FireBubbleShit_mesh),
                GEO_DISPLAY_LIST(LAYER_OPAQUE, fire_bubble_1_dl_mesh),
                GEO_DISPLAY_LIST(LAYER_ALPHA, lll_seg7_dl_070138F8),
                GEO_DISPLAY_LIST(LAYER_ALPHA, lll_seg7_dl_070137C0),

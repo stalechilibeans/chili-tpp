@@ -128,17 +128,13 @@ u8 *gMovtexIdToTexture[] = { texture_waterbox_water,
                              NULL,
                              texture_waterbox_jrb_water,
                              NULL,
-                             texture_waterbox_lava,
+                             NULL,
                              NULL,
                              NULL,
                              NULL };
 
 extern Gfx castle_grounds_dl_waterfall[];
 extern s16 castle_grounds_movtex_tris_waterfall[];
-extern s16 lll_movtex_tris_lava_floor[];
-extern Gfx lll_dl_lava_floor[];
-extern s16 lll_movtex_tris_lavafall_volcano[];
-extern Gfx lll_dl_lavafall_volcano[];
 
 /**
  * MovtexObjects that have no color attributes per vertex (though the mesh
@@ -157,20 +153,6 @@ struct MovtexObject gMovtexNonColored[] = {
     { 0x00000000, 0x00000000, 0, 1, NULL, NULL, NULL, 0x00, 0x00, 0x00, 0x00, 0x00000000 },
     { 0x00000000, 0x00000000, 0, 1, NULL, NULL, NULL, 0x00, 0x00, 0x00, 0x00, 0x00000000 },
     { 0x00000000, 0x00000000, 0, 1, NULL, NULL, NULL, 0x00, 0x00, 0x00, 0x00, 0x00000000 },
-
-    // Lava floor in Lethal Lava Land and the lava fall in the volcano
-    //! Note that the lava floor in the volcano is actually a quad.
-    // The quad collection index LLL_MOVTEX_VOLCANO_FLOOR_LAVA is actually
-    // 2 | MOVTEX_AREA_LLL, suggesting that the lava floor of LLL used to be a
-    // quad too, with index 1.
-    // It was probably too large however, resulting in overflowing texture
-    // coordinates or other artifacts, so they converted it to a movtex
-    // mesh with 9 vertices, subdividing the rectangle into 4 smaller ones.
-    { MOVTEX_LLL_LAVA_FLOOR, TEXTURE_LAVA, 9, lll_movtex_tris_lava_floor, dl_waterbox_rgba16_begin,
-      dl_waterbox_end, lll_dl_lava_floor, 0xff, 0xff, 0xff, 0xc8, LAYER_TRANSPARENT },
-    { MOVTEX_VOLCANO_LAVA_FALL, TEXTURE_LAVA, 16, lll_movtex_tris_lavafall_volcano,
-      dl_waterbox_rgba16_begin, dl_waterbox_end, lll_dl_lavafall_volcano, 0xff, 0xff, 0xff, 0xb4,
-      LAYER_TRANSPARENT_INTER },
 
     { 0x00000000, 0x00000000, 0, 1, NULL, NULL, NULL, 0x00, 0x00, 0x00, 0x00, 0x00000000 },
     { 0x00000000, 0x00000000, 0, 1, NULL, NULL, NULL, 0x00, 0x00, 0x00, 0x00, 0x00000000 },
@@ -421,7 +403,6 @@ Gfx *movtex_gen_quads_id(s16 id, s16 y, void *movetexQuadsSegmented) {
 //extern u8 inside_castle_movtex_green_room_water[];
 //extern u8 inside_castle_movtex_moat_water[];
 extern u8 castle_grounds_movtex_water[];
-extern u8 lll_movtex_volcano_floor_lava[];
 extern u8 ddd_movtex_area1_water[];
 extern u8 ddd_movtex_area2_water[];
 extern u8 wf_movtex_water[];
@@ -434,8 +415,6 @@ void *get_quad_collection_from_id(u32 id) {
     switch (id) {
         case CASTLE_GROUNDS_MOVTEX_WATER:
             return castle_grounds_movtex_water;
-        case LLL_MOVTEX_VOLCANO_FLOOR_LAVA:
-            return lll_movtex_volcano_floor_lava;
         case DDD_MOVTEX_AREA1_WATER:
             return ddd_movtex_area1_water;
         case DDD_MOVTEX_AREA2_WATER:

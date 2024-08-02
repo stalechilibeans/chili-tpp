@@ -34,12 +34,7 @@ extern struct Animation *spiny_egg_seg5_anims_050157E4[];
 extern struct ObjectNode *gObjectLists;
 extern u8 dorrie_seg6_collision_0600FBB8[];
 extern u8 dorrie_seg6_collision_0600F644[];
-//extern u8 ccm_seg7_trajectory_penguin_race[];
-//extern u8 ccm_seg7_collision_070163F8[];
 extern u8 checkerboard_platform_seg8_collision_0800D710[];
-//extern u8 ccm_seg7_trajectory_0701669C[];
-extern u8 lll_seg7_trajectory_0702856C[];
-extern u8 lll_seg7_trajectory_07028660[];
 extern struct Animation *spiny_seg5_anims_05016EAC[];
 
 #define POS_OP_SAVE_POSITION 0
