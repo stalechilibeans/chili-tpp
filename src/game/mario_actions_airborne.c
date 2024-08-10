@@ -92,13 +92,6 @@ s32 check_fall_damage(struct MarioState *m, u32 hardFallAction) {
     return FALSE;
 }
 
-s32 check_kick_or_dive_in_air(struct MarioState *m) {
-    if (m->input & INPUT_B_PRESSED) {
-        return set_mario_action(m, m->forwardVel > 28.0f ? ACT_DIVE : ACT_JUMP_KICK, 0);
-    }
-    return FALSE;
-}
-
 s32 should_get_stuck_in_ground(struct MarioState *m) {
     u32 terrainType = m->area->terrainType & TERRAIN_MASK;
     struct Surface *floor = m->floor;
@@ -693,7 +686,6 @@ s32 act_twirling(struct MarioState *m) {
         play_sound(SOUND_ACTION_TWIRL, m->marioObj->header.gfx.cameraToObject);
     }
 
-    // play_mario_sound(m, SOUND_ACTION_TERRAIN_JUMP, SOUND_MARIO_YAHOO);
     update_lava_boost_or_twirling(m);
 
     switch (perform_air_step(m, 0)) {

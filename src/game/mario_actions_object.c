@@ -11,12 +11,6 @@
 #include "engine/math_util.h"
 #include "thread6.h"
 
-/**
- * Used by act_punching() to determine Mario's forward velocity during each
- * animation frame.
- */
-s8 sPunchingForwardVelocities[8] = { 0, 1, 1, 2, 3, 5, 7, 10 };
-
 void animated_stationary_ground_step(struct MarioState *m, s32 animation, u32 endAction) {
     stationary_ground_step(m);
     set_mario_animation(m, animation);
@@ -94,7 +88,6 @@ s32 mario_update_punch_sequence(struct MarioState *m) {
                 }
                 set_mario_animation(m, MARIO_ANIM_FIRST_PUNCH);
                 m->marioBodyState->punchState = (0 << 6) | 4;
-                // m->particleFlags |= PARTICLE_DUST;
                 m->flags |= MARIO_PUNCHING;
             }
     }

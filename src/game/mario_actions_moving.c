@@ -410,7 +410,7 @@ s32 apply_slope_decel(struct MarioState *m, f32 decelCoef) {
 
     switch (mario_get_floor_class(m)) {
         default:
-            decel = decelCoef * 2.5f;
+            decel = decelCoef * 0.85f;
             break;
     }
 
@@ -824,8 +824,8 @@ s32 act_walking(struct MarioState *m) {
     vec3f_copy(startPos, m->pos);
     update_walking_speed(m);
 
-    if (m->actionState != 0 && (m->forwardVel < m->intendedMag * 1.0f))
-        m->forwardVel = m->intendedMag * 1.0f;
+    if (m->actionState != 0 && (m->forwardVel < m->intendedMag))
+    m->forwardVel = m->intendedMag;
 
     m->actionState = 0;
 
@@ -991,7 +991,7 @@ s32 act_turning_around(struct MarioState *m) {
         return set_mario_action(m, ACT_WALKING, 0);
     }
 
-    if (apply_slope_decel(m, 0.5f)) {
+    if (apply_slope_decel(m, 2.0f)) {
         return begin_walking_action(m, 8.0f, ACT_FINISH_TURNING_AROUND, 0);
     }
 
@@ -1055,7 +1055,7 @@ s32 act_braking(struct MarioState *m) {
         return check_common_action_exits(m);
     }
 
-    if (apply_slope_decel(m, 0.5f)) {
+    if (apply_slope_decel(m, 2.0f)) {
         return set_mario_action(m, ACT_BRAKING_STOP, 0);
     }
 
@@ -1684,7 +1684,7 @@ u32 common_landing_action(struct MarioState *m, s16 animation, u32 airAction) {
     if (m->input & INPUT_NONZERO_ANALOG) {
         apply_landing_accel(m, 0.98f);
     } else if (m->forwardVel >= 16.0f) {
-        apply_slope_decel(m, 0.5f);
+        apply_slope_decel(m, 2.0f);
     } else {
         m->vel[1] = 0.0f;
     }
