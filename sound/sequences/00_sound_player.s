@@ -5195,8 +5195,6 @@ layer_end
 .sound_obj_thwomp:
 chan_setbank 7
 chan_setinstr 12
-chan_setval 55
-chan_call .set_reverb
 chan_setlayer 0, .layer_2055
 chan_end
 
@@ -5206,7 +5204,7 @@ layer_note1 31, 0x1e, 127
 layer_end
 
 .layer_2055:
-layer_note1 30, 0x7f, 127
+layer_note1 37, 0x7f, 127
 layer_end
 
 
