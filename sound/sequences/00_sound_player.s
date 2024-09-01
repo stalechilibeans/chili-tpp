@@ -2859,7 +2859,7 @@ chan_setlayer 0, .layer_10E3
 chan_end
 
 .layer_10E3:
-layer_note1 39, 0x38, 115 #made the sound louder
+layer_note1 39, 0x30, 115
 layer_note1 0, 0x0, 0
 layer_end
 
