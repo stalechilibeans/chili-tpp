@@ -3223,7 +3223,7 @@ chan_setlayer 0, .layer_1344
 chan_end
 
 .layer_1344:
-layer_note1 39, 0x7f, 115
+layer_note1 39, 0x7f, 127
 layer_end
 
 .sound_general_platform:
@@ -5206,7 +5206,6 @@ layer_end
 .layer_2055:
 layer_note1 37, 0x7f, 127
 layer_end
-
 
 .sound_obj_cannon1:
 chan_setbank 6
