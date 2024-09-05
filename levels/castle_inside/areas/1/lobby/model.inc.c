@@ -72,49 +72,45 @@ Gfx mat_castle_inside_WallTopMaterial[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_castle_inside_MoonMaterial[] = {
-	gsDPPipeSync(),
-	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0),
-	gsSPClearGeometryMode(G_CULL_BACK),
-	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPTileSync(),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, castle_inside_Moon_2_rgba16),
-	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 7, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
-	gsDPLoadSync(),
-	gsDPLoadTile(7, 0, 0, 124, 124),
-	gsDPPipeSync(),
-	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
-	gsDPSetTileSize(0, 0, 0, 124, 124),
-	gsSPSetLights1(castle_inside_lights_main),
-	gsSPEndDisplayList(),
-};
-
-Gfx mat_revert_castle_inside_MoonMaterial[] = {
-	gsDPPipeSync(),
-	gsSPSetGeometryMode(G_CULL_BACK),
-	gsSPEndDisplayList(),
-};
-
 Gfx mat_castle_inside_StarMaterial[] = {
-	gsDPPipeSync(),
-	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, ENVIRONMENT, 0),
 	gsSPClearGeometryMode(G_CULL_BACK),
-	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPTileSync(),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, castle_inside_Wall_star_2_rgba16),
-	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 7, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
-	gsDPLoadSync(),
-	gsDPLoadTile(7, 0, 0, 124, 124),
-	gsDPPipeSync(),
-	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
-	gsDPSetTileSize(0, 0, 0, 124, 124),
 	gsSPSetLights1(castle_inside_lights_main),
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, PRIMITIVE, 0),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetPrimColor(0, 0, 255, 255, 255, 255),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 1, castle_inside_star_rgba16),
+	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadBlock(7, 0, 0, 1023, 256),
+	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 0, 0, G_TX_WRAP | G_TX_MIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTileSize(0, 0, 0, 124, 124),
 	gsSPEndDisplayList(),
 };
 
 Gfx mat_revert_castle_inside_StarMaterial[] = {
-	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_CULL_BACK),
+	gsDPPipeSync(),
+	gsSPEndDisplayList(),
+};
+
+Gfx mat_castle_inside_MoonMaterial[] = {
+	gsSPClearGeometryMode(G_CULL_BACK),
+	gsSPSetLights1(castle_inside_lights_main),
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, TEXEL0, 0, PRIMITIVE, 0, TEXEL0, 0, SHADE, 0, TEXEL0, 0, PRIMITIVE, 0),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetPrimColor(0, 0, 255, 255, 255, 255),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 1, castle_inside_moon_rgba16),
+	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadBlock(7, 0, 0, 1023, 256),
+	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 0, 0, G_TX_WRAP | G_TX_MIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTileSize(0, 0, 0, 124, 124),
+	gsSPEndDisplayList(),
+};
+
+Gfx mat_revert_castle_inside_MoonMaterial[] = {
+	gsSPSetGeometryMode(G_CULL_BACK),
+	gsDPPipeSync(),
 	gsSPEndDisplayList(),
 };
 
@@ -2026,45 +2022,41 @@ Gfx castle_inside_main_dl_mesh[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx castle_inside_decal_dl_mesh_vtx_0[6] = {
-	{{ {-665, 569, -539}, 0, {-16, 1008}, {255, 1, 127, 255} }},
-	{{ {-472, 785, -539}, 0, {1008, -16}, {255, 1, 127, 255} }},
-	{{ {-665, 785, -540}, 0, {-16, -16}, {255, 1, 127, 255} }},
-	{{ {-665, 569, -539}, 0, {-16, 1008}, {0, 0, 127, 255} }},
-	{{ {-472, 569, -539}, 0, {1008, 1008}, {0, 0, 127, 255} }},
-	{{ {-472, 785, -539}, 0, {1008, -16}, {0, 0, 127, 255} }},
-};
-
-Gfx castle_inside_decal_dl_mesh_tri_0[] = {
-	gsSPVertex(castle_inside_decal_dl_mesh_vtx_0 + 0, 6, 0),
-	gsSP1Triangle(0, 1, 2, 0),
-	gsSP1Triangle(3, 4, 5, 0),
-	gsSPEndDisplayList(),
-};
-
-Vtx castle_inside_decal_dl_mesh_vtx_1[6] = {
+Vtx castle_inside_decal_dl_mesh_vtx_0[4] = {
 	{{ {468, 569, -539}, 0, {-16, 1008}, {0, 0, 127, 255} }},
 	{{ {661, 569, -539}, 0, {1008, 1008}, {0, 0, 127, 255} }},
 	{{ {661, 785, -539}, 0, {1008, -16}, {0, 0, 127, 255} }},
-	{{ {468, 569, -539}, 0, {-16, 1008}, {255, 1, 127, 255} }},
-	{{ {661, 785, -539}, 0, {1008, -16}, {255, 1, 127, 255} }},
 	{{ {468, 785, -540}, 0, {-16, -16}, {255, 1, 127, 255} }},
 };
 
-Gfx castle_inside_decal_dl_mesh_tri_1[] = {
-	gsSPVertex(castle_inside_decal_dl_mesh_vtx_1 + 0, 6, 0),
+Gfx castle_inside_decal_dl_mesh_tri_0[] = {
+	gsSPVertex(castle_inside_decal_dl_mesh_vtx_0 + 0, 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
-	gsSP1Triangle(3, 4, 5, 0),
+	gsSP1Triangle(0, 2, 3, 0),
+	gsSPEndDisplayList(),
+};
+
+Vtx castle_inside_decal_dl_mesh_vtx_1[4] = {
+	{{ {-665, 569, -539}, 0, {-16, 1008}, {0, 0, 127, 255} }},
+	{{ {-472, 785, -539}, 0, {1008, -16}, {0, 0, 127, 255} }},
+	{{ {-665, 785, -540}, 0, {-16, -16}, {255, 1, 127, 255} }},
+	{{ {-472, 569, -539}, 0, {1008, 1008}, {0, 0, 127, 255} }},
+};
+
+Gfx castle_inside_decal_dl_mesh_tri_1[] = {
+	gsSPVertex(castle_inside_decal_dl_mesh_vtx_1 + 0, 4, 0),
+	gsSP1Triangle(0, 1, 2, 0),
+	gsSP1Triangle(0, 3, 1, 0),
 	gsSPEndDisplayList(),
 };
 
 Gfx castle_inside_decal_dl_mesh[] = {
-	gsSPDisplayList(mat_castle_inside_MoonMaterial),
-	gsSPDisplayList(castle_inside_decal_dl_mesh_tri_0),
-	gsSPDisplayList(mat_revert_castle_inside_MoonMaterial),
 	gsSPDisplayList(mat_castle_inside_StarMaterial),
-	gsSPDisplayList(castle_inside_decal_dl_mesh_tri_1),
+	gsSPDisplayList(castle_inside_decal_dl_mesh_tri_0),
 	gsSPDisplayList(mat_revert_castle_inside_StarMaterial),
+	gsSPDisplayList(mat_castle_inside_MoonMaterial),
+	gsSPDisplayList(castle_inside_decal_dl_mesh_tri_1),
+	gsSPDisplayList(mat_revert_castle_inside_MoonMaterial),
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPClearGeometryMode(G_TEXTURE_GEN),
