@@ -710,20 +710,12 @@ u32 interact_coin(struct MarioState *m, UNUSED u32 interactType, struct Object *
 
     o->oInteractStatus = INT_STATUS_INTERACTED;
 
-    if (m->numCoins >= 50) {
-        m->numCoins -= 50;
+    if (m->numCoins >= 100) {
+        m->numCoins -= 100;
         m->numLives++;
-
         gHudDisplay.coins = m->numCoins;
-
         play_sound(SOUND_GENERAL_COLLECT_1UP, gDefaultSoundArgs);
-    }
-
-#ifdef VERSION_SH
-    if (o->oDamageOrCoinValue >= 2) {
-        queue_rumble_data(5, 80);
-    }
-#endif
+    } 
 
     return FALSE;
 }
