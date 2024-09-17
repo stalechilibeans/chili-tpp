@@ -1,6 +1,6 @@
 # chili-tpp
 
-'chili-tpp' is a modification of The Preservation Project, which aims to improve the overall accuracy of the hack.
+'chili-tpp' is a fan-made continuation of The Preservation Project, which aims to continue the hack's legacy.
 
 ## Credits
 
