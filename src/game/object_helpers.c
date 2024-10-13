@@ -171,11 +171,13 @@ Gfx *geo_switch_anim_state(s32 run, struct GraphNode *node) {
     return NULL;
 }
 
+extern s32 gDebugInfoFlags;
+#define DEBUG_INFO_FLAG_DPRINT (1 << 0)
 //! @bug Same issue as geo_switch_anim_state.
 #ifdef AVOID_UB
-Gfx *geo_switch_area(s32 run, struct GraphNode *node, UNUSED void *context) {
+Gfx *geo_switch_area(s32 callContext, struct GraphNode *node, UNUSED void *context) {
 #else
-Gfx *geo_switch_area(s32 run, struct GraphNode *node) {
+Gfx *geo_switch_area(s32 callContext, struct GraphNode *node) {
 #endif
     s16 sp26;
     struct Surface *sp20;
@@ -183,7 +185,7 @@ Gfx *geo_switch_area(s32 run, struct GraphNode *node) {
         (struct Object *) gCurGraphNodeObject; // TODO: change global type to Object pointer
     struct GraphNodeSwitchCase *switchCase = (struct GraphNodeSwitchCase *) node;
 
-    if (run == TRUE) {
+    if (callContext == GEO_CONTEXT_RENDER) {
         if (gMarioObject == NULL) {
             switchCase->selectedCase = 0;
         } else {
@@ -194,6 +196,7 @@ Gfx *geo_switch_area(s32 run, struct GraphNode *node) {
             if (sp20) {
                 gMarioCurrentRoom = sp20->room;
                 sp26 = sp20->room - 1;
+                // gDebugInfoFlags|=DEBUG_INFO_FLAG_DPRINT;
                 print_debug_top_down_objectinfo("areainfo %d", sp20->room);
 
                 if (sp26 >= 0) {
