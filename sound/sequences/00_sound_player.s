@@ -2143,7 +2143,7 @@ chan_setlayer 0, .layer_CC0
 chan_end
 
 .layer_CC0:
-layer_note1 37, 0x1E, 110
+layer_note1 37, 0x18, 110
 layer_end
 
 .sound_mario_eeuh:
