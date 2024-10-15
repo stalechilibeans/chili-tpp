@@ -736,7 +736,7 @@ s32 obj_lava_death(void) {
         return TRUE;
     } else {
         // Sinking effect
-        o->oPosY -= 10.0f;
+        //o->oPosY -= 10.0f;
     }
 
     if ((o->oTimer % 8) == 0) {

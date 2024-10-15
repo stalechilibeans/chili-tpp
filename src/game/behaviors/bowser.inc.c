@@ -1447,7 +1447,7 @@ void bhv_flame_moving_forward_growing_loop(void) {
         obj_mark_for_deletion(o);
     if (o->oPosY < o->oFloorHeight) {
         o->oPosY = o->oFloorHeight;
-        sp18 = spawn_object(o, MODEL_RED_FLAME, bhvFlameBowser);
+        sp18 = spawn_object(o, MODEL_BLUE_FLAME, bhvFlameBowser);
         obj_mark_for_deletion(o);
     }
 }

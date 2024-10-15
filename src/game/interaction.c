@@ -1173,11 +1173,9 @@ u32 interact_bully(struct MarioState *m, UNUSED u32 interactType, struct Object 
 
     else if (!sInvulnerable && !(m->flags & MARIO_VANISH_CAP)
              && !(o->oInteractionSubtype & INT_SUBTYPE_DELAY_INVINCIBILITY)) {
-#ifdef VERSION_SH
-        queue_rumble_data(5, 80);
-#endif
         push_mario_out_of_object(m, o, 5.0f);
-
+        
+        update_mario_sound_and_camera(m);
         drop_and_set_mario_action(m, bully_knock_back_mario(m), 0);
         if (m->forwardVel < 0.0f) {
             o->oMoveAngleYaw = m->faceAngle[1];

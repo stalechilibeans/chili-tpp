@@ -128,7 +128,7 @@ const Gfx flame_seg3_dl_0301B458[] = {
 // 0x0301B470 - 0x0301B500
 const Gfx flame_seg3_dl_0301B470[] = {
     gsSPClearGeometryMode(G_LIGHTING | G_SHADING_SMOOTH),
-    gsDPSetEnvColor(100, 100, 255, 150),
+    gsDPSetEnvColor(225, 220, 0, 150),
     gsDPSetCombineMode(G_CC_FADEA, G_CC_FADEA),
     gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_CLAMP, 5, G_TX_NOLOD),
     gsDPLoadSync(),

@@ -66,12 +66,12 @@ void bully_act_chase_mario(void) {
     f32 posY = o->oPosY;
     f32 homeZ = o->oHomeZ;
 
-    if (o->oTimer < 10) {
-        o->oForwardVel = 3.0;
-        obj_turn_toward_object(o, gMarioObject, 16, 4096);
+    if (o->oTimer < 20) {
+        o->oForwardVel = 1.5;
+        obj_turn_toward_object(o, gMarioObject, 16, 1280);
     } else if (o->oBehParams2ndByte == BULLY_BP_SIZE_SMALL) {
-        o->oForwardVel = 5.0;
-        if (o->oTimer >= 31)
+        o->oForwardVel = 12.0;
+        if (o->oTimer >= 50)
             o->oTimer = 0;
     } else {
         o->oForwardVel = 30.0;
@@ -237,6 +237,7 @@ void bhv_bully_loop(void) {
             break;
 
         case BULLY_ACT_LAVA_DEATH:
+            cur_obj_scale(0.0f);
             bully_act_level_death();
             break;
 
