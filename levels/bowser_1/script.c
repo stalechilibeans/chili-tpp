@@ -34,7 +34,7 @@ const LevelScript level_bowser_1_entry[] = {
         WARP_NODE(/*id*/ 0xF1, /*destLevel*/ LEVEL_CASTLE, /*destArea*/ 0x01, /*destNode*/ 0x25, /*flags*/ WARP_NO_CHECKPOINT),
         TERRAIN(/*terrainData*/ bowser_1_seg7_collision_level),
         SET_BACKGROUND_MUSIC(/*settingsPreset*/ 0x0002, /*seq*/ SEQ_LEVEL_BOSS_KOOPA),
-        TERRAIN_TYPE(/*terrainType*/ TERRAIN_STONE),
+        TERRAIN_TYPE(/*terrainType*/ TERRAIN_SNOW),
     END_AREA(),
 
     FREE_LEVEL_POOL(),
