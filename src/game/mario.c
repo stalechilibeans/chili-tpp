@@ -445,7 +445,7 @@ s8 sTerrainSounds[7][6] = {
       SOUND_TERRAIN_SAND,    SOUND_TERRAIN_STONE,  SOUND_TERRAIN_STONE }, // TERRAIN_SAND
     { SOUND_TERRAIN_SPOOKY,  SOUND_TERRAIN_SPOOKY, SOUND_TERRAIN_SPOOKY,
       SOUND_TERRAIN_SPOOKY,  SOUND_TERRAIN_STONE,  SOUND_TERRAIN_STONE }, // TERRAIN_SPOOKY
-    { SOUND_TERRAIN_DEFAULT, SOUND_TERRAIN_STONE,  SOUND_TERRAIN_GRASS,
+    { SOUND_TERRAIN_DEFAULT, SOUND_TERRAIN_STONE,  SOUND_TERRAIN_STONE,
       SOUND_TERRAIN_ICE,     SOUND_TERRAIN_STONE,  SOUND_TERRAIN_ICE }, // TERRAIN_WATER
     { SOUND_TERRAIN_DEFAULT, SOUND_TERRAIN_DEFAULT,SOUND_TERRAIN_DEFAULT,
       SOUND_TERRAIN_DEFAULT, SOUND_TERRAIN_DEFAULT,SOUND_TERRAIN_DEFAULT }, // TERRAIN_SLIDE
@@ -1237,16 +1237,16 @@ void debug_print_speed_action_normal(struct MarioState *m) {
     f32 steepness;
     f32 floor_nY;
 
-#ifdef TPP_DEBUG
-    print_text_fmt_int(16, 48, "X %d", m->pos[0]);
-    print_text_fmt_int(16, 32, "Y %d", m->pos[1]);
-    print_text_fmt_int(16, 16, "Z %d", m->pos[2]);
-#endif
-
     if (gShowDebugText) {
         steepness = sqrtf(
             ((m->floor->normal.x * m->floor->normal.x) + (m->floor->normal.z * m->floor->normal.z)));
         floor_nY = m->floor->normal.y;
+
+    #ifdef TPP_DEBUG
+        print_text_fmt_int(16, 48, "X %d", m->pos[0]);
+        print_text_fmt_int(16, 32, "Y %d", m->pos[1]);
+        print_text_fmt_int(16, 16, "Z %d", m->pos[2]);
+    #endif
 
         print_text_fmt_int(210, 88, "ANG %d", (atan2s(floor_nY, steepness) * 180.0f) / 32768.0f);
         print_text_fmt_int(210, 72, "SPD %d", m->forwardVel);
@@ -1260,6 +1260,7 @@ void debug_print_speed_action_normal(struct MarioState *m) {
  * Update the button inputs for Mario.
  */
 void update_mario_button_inputs(struct MarioState *m) {
+#ifdef TPP_DEBUG
     if (m->controller->buttonDown & R_JPAD) {
         gShowDebugText = TRUE;
     }
@@ -1271,6 +1272,7 @@ void update_mario_button_inputs(struct MarioState *m) {
     if (m->action != ACT_DEBUG_FREE_MOVE && m->controller->buttonPressed & D_JPAD) {
         set_mario_action(m, ACT_DEBUG_FREE_MOVE, 0);
     }
+#endif
 
     if (m->controller->buttonPressed & A_BUTTON) {
         m->input |= INPUT_A_PRESSED;

@@ -7,6 +7,8 @@
  * (maybe eventually) in SM64
  */
 
+#define TPP_DEBUG
+
 // Bug Fixes
 // --| US Version Nintendo Bug Fixes
 /// Fixes bug where obtaining over 999 coins sets the number of lives to 999 (or -25)
