@@ -1662,7 +1662,7 @@ layer_end
 
 .sound_moving_slide_snow:
 chan_setbank 3
-chan_setinstr 5
+chan_setinstr 6
 chan_setlayer 0, .layer_9F1
 chan_end
 
