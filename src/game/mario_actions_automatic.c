@@ -237,9 +237,22 @@ s32 act_grab_pole_slow(struct MarioState *m) {
     if (set_pole_position(m, 0.0f) == POLE_NONE) {
         set_mario_animation(m, MARIO_ANIM_GRAB_POLE_SHORT);
         if (is_anim_at_end(m)) {
-            set_mario_action(m, ACT_HOLDING_POLE, 0);
+            if ((m->controller->stickY > 16.0f) ||(m->controller->stickY < -16.0f)) {
+                    set_mario_action(m, ACT_HOLDING_POLE, 0);
+                    m->faceAngle[1] -= m->controller->stickX * 16.0f;
+                }
+                if (m->input & INPUT_A_PRESSED) {
+                    add_tree_leaf_particles(m);
+                    m->faceAngle[1] += 0x8000;
+                    return set_mario_action(m, ACT_WALL_KICK_AIR, 0);
+                }
+                if (m->input & INPUT_Z_PRESSED) {
+                    add_tree_leaf_particles(m);
+                    m->forwardVel = -2.0f;
+                    return set_mario_action(m, ACT_SOFT_BONK, 0);
+                }
+                m->faceAngle[1] -= m->controller->stickX * 16.0f;
         }
-        // add_tree_leaf_particles(m);
     }
 
     return FALSE;
@@ -259,10 +272,24 @@ s32 act_grab_pole_fast(struct MarioState *m) {
             set_mario_animation(m, MARIO_ANIM_GRAB_POLE_SWING_PART2);
             if (is_anim_at_end(m) != 0) {
                 marioObj->oMarioPoleYawVel = 0;
-                set_mario_action(m, ACT_HOLDING_POLE, 0);
+                if ((m->controller->stickY > 16.0f) ||(m->controller->stickY < -16.0f)) {
+                    set_mario_action(m, ACT_HOLDING_POLE, 0);
+                    m->faceAngle[1] -= m->controller->stickX * 16.0f;
+                }
+                if (m->input & INPUT_A_PRESSED) {
+                    add_tree_leaf_particles(m);
+                    m->faceAngle[1] += 0x8000;
+                    return set_mario_action(m, ACT_WALL_KICK_AIR, 0);
+                }
+                if (m->input & INPUT_Z_PRESSED) {
+                    add_tree_leaf_particles(m);
+                    m->forwardVel = -2.0f;
+                    return set_mario_action(m, ACT_SOFT_BONK, 0);
+                }
+                m->faceAngle[1] -= m->controller->stickX * 16.0f;
             }
         }
-        // add_tree_leaf_particles(m);
+
     }
 
     return FALSE;
