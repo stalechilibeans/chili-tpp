@@ -396,7 +396,7 @@ s32 mario_get_floor_class(struct MarioState *m) {
         floorClass = SURFACE_CLASS_DEFAULT;
     }
 
-    if (m->floor) {
+    if (m->floor != NULL) {
         switch (m->floor->type) {
             case SURFACE_NOT_SLIPPERY:
             case SURFACE_HARD_NOT_SLIPPERY:
