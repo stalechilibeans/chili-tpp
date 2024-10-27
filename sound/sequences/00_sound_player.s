@@ -2227,7 +2227,7 @@ chan_setlayer 0, .layer_D33
 chan_end
 
 .layer_D33:
-layer_note1 39, 0xaa, 127
+layer_note1 40, 0xaa, 127
 layer_end
 
 .sound_mario_haha:
