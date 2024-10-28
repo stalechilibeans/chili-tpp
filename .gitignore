@@ -50,3 +50,4 @@ build/*
 *.z64
 *.map
 .assets-local.txt
+**/.DS_Store
