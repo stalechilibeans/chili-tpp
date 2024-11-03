@@ -14,5 +14,5 @@
 
 #include "levels/castle_grounds/header.h"
 
-#include "levels/castle_grounds/areas/1/9/geo.inc.c"
+#include "levels/castle_grounds/areas/1/5/geo.inc.c"
 #include "levels/castle_grounds/areas/1/geo.inc.c"
