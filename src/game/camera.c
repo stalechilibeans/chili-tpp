@@ -10731,17 +10731,27 @@ void zoom_fov_30(UNUSED struct MarioState *m) {
 void fov_default(struct MarioState *m) {
     sStatusFlags &= ~CAM_FLAG_SLEEPING;
 
-    if ((m->action == ACT_SLEEPING) || (m->action == ACT_START_SLEEPING)) {
-        camera_approach_f32_symmetric_bool(&sFOVState.fov, 30.f, (30.f - sFOVState.fov) / 30.f);
-        sStatusFlags |= CAM_FLAG_SLEEPING;
+    // Footage shows that Mario's idle state was considered a sleeping state.
+    if (m->action == ACT_IDLE || m->action == ACT_START_SLEEPING || m->action == ACT_SLEEPING) {
+        m->sleepTimer++; // Increase the timer
+
+        if (m->sleepTimer >= 100) { // Gradually set the FOV to 30 if the threshold is reached
+            camera_approach_f32_symmetric_bool(&sFOVState.fov, 30.f, (30.f - sFOVState.fov) / 30.f);
+            sStatusFlags |= CAM_FLAG_SLEEPING;
+        }
     } else {
+        m->sleepTimer = 0; // Reset the timer and set the FOV back to 45 when Mario isn't sleeping
         camera_approach_f32_symmetric_bool(&sFOVState.fov, 45.f, (45.f - sFOVState.fov) / 30.f);
-        sFOVState.unusedIsSleeping = 0;
+        // Maybe figure out how to make the default fov thing have more priority over the sleep timer later
+        // The FOV 30 to 45 transition gets interrupted whenever Mario enters a sleeping state, which may not
+        // be accurate to the SW95 demo
     }
+
     if (m->area->camera->cutscene == CUTSCENE_0F_UNUSED) {
         sFOVState.fov = 45.f;
     }
 }
+
 
 //??! Literally the exact same as below
 static UNUSED void unused_approach_fov_30(UNUSED struct MarioState *m) {
