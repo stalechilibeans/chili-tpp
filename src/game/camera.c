@@ -10747,7 +10747,8 @@ void fov_default(struct MarioState *m) {
         // be accurate to the SW95 demo
     }
 
-    if (m->area->camera->cutscene == CUTSCENE_0F_UNUSED) {
+    // Nintendo is dumb
+    if (gCurrLevelNum == LEVEL_CCM) {
         sFOVState.fov = 45.f;
     }
 }
