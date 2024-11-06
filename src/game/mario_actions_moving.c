@@ -1086,38 +1086,14 @@ s32 act_braking(struct MarioState *m) {
 s32 act_decelerating(struct MarioState *m) {
     m->actionTimer++;
 
+    if (!(m->actionArg & 1) && m->health < 0x500) {
+        return set_mario_action(m, ACT_PANTING, 0);
+    }
+
     set_mario_animation(m, MARIO_ANIM_IDLE_HEAD_LEFT);
 
-    if (m->input & INPUT_A_PRESSED) {
-        return set_jumping_action(m, ACT_JUMP, 0);
-    }
-
-    if (m->input & INPUT_OFF_FLOOR) {
-        return set_mario_action(m, ACT_FREEFALL, 0);
-    }
-
-    if (m->input & INPUT_ABOVE_SLIDE) {
-        return set_mario_action(m, ACT_BEGIN_SLIDING, 0);
-    }
-
-    if (m->input & INPUT_FIRST_PERSON) {
-        return set_mario_action(m, ACT_FIRST_PERSON, 0);
-    }
-
-    if (m->input & INPUT_NONZERO_ANALOG) {
-        return set_mario_action(m, ACT_WALKING, 0);
-    }
-
-    if (m->input & INPUT_B_PRESSED) {
-        if (m->actionTimer == 4) {
-        return set_mario_action(m, ACT_MOVE_PUNCHING, 5);
-        } else {
-        return set_mario_action(m, ACT_MOVE_PUNCHING, 0);    
-        }
-    }
-
-    if (m->input & INPUT_Z_DOWN) {
-        return set_mario_action(m, ACT_START_CROUCHING, 0);
+    if (check_common_idle_cancels(m)) {
+        return 1;
     }
 
     if (m->actionTimer > 4) {

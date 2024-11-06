@@ -47,7 +47,11 @@ s32 check_common_idle_cancels(struct MarioState *m) {
     }
 
     if (m->input & INPUT_B_PRESSED) {
-        return set_mario_action(m, ACT_PUNCHING, 0);
+        if ((m->actionTimer == 4) && (m->action == ACT_DECELERATING)) {
+        return set_mario_action(m, ACT_MOVE_PUNCHING, 5);
+        } else {
+        return set_mario_action(m, ACT_MOVE_PUNCHING, 0);    
+        }
     }
 
     if (m->input & INPUT_Z_DOWN) {

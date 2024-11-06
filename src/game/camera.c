@@ -10733,22 +10733,20 @@ void fov_default(struct MarioState *m) {
 
     // Footage shows that Mario's idle state was considered a sleeping state.
     if (m->action == ACT_IDLE || m->action == ACT_START_SLEEPING || m->action == ACT_SLEEPING) {
-        m->sleepTimer++; // Increase the timer
-
-        if (m->sleepTimer >= 100) { // Gradually set the FOV to 30 if the threshold is reached
+        if (m->sleepTimer < 135) {
+            m->sleepTimer++; // Increase the timer
+            camera_approach_f32_symmetric_bool(&sFOVState.fov, 45.f, (45.f - sFOVState.fov) / 30.f);
+        } else { // Gradually set the FOV to 30 if the threshold is reached
             camera_approach_f32_symmetric_bool(&sFOVState.fov, 30.f, (30.f - sFOVState.fov) / 30.f);
             sStatusFlags |= CAM_FLAG_SLEEPING;
         }
     } else {
         m->sleepTimer = 0; // Reset the timer and set the FOV back to 45 when Mario isn't sleeping
         camera_approach_f32_symmetric_bool(&sFOVState.fov, 45.f, (45.f - sFOVState.fov) / 30.f);
-        // Maybe figure out how to make the default fov thing have more priority over the sleep timer later
-        // The FOV 30 to 45 transition gets interrupted whenever Mario enters a sleeping state, which may not
-        // be accurate to the SW95 demo
     }
 
     // Nintendo is dumb
-    if (gCurrLevelNum == LEVEL_CCM) {
+    if ((gCurrLevelNum == LEVEL_CCM) || (gCurrLevelNum == LEVEL_DDD)) {
         sFOVState.fov = 45.f;
     }
 }
