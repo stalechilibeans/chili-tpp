@@ -10732,7 +10732,7 @@ void fov_default(struct MarioState *m) {
     sStatusFlags &= ~CAM_FLAG_SLEEPING;
 
     // Footage shows that Mario's idle state was considered a sleeping state.
-    if (m->action == ACT_IDLE || m->action == ACT_START_SLEEPING || m->action == ACT_SLEEPING) {
+    if (m->action == ACT_IDLE || m->action == ACT_START_SLEEPING || m->action == ACT_SLEEPING || m->action == ACT_DECELERATING) {
         if (m->sleepTimer < 135) {
             m->sleepTimer++; // Increase the timer
             camera_approach_f32_symmetric_bool(&sFOVState.fov, 45.f, (45.f - sFOVState.fov) / 30.f);
