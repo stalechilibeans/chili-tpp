@@ -1,0 +1,24 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Retrieve required files
+      run: wget https://archive.org/download/nointro.n64/Super%20Mario%2064%20%28Japan%29.7z/Super%20Mario%2064%20%28Japan%29.z64 && mv "Super Mario 64 (Japan).z64" baserom.jp.z64
+    
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag tpp
+      
+    - name: Run the Docker image
+      run: docker run --rm --mount type=bind,source="$(pwd)",destination=/tpp tpp make -j
