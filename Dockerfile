@@ -14,4 +14,4 @@ WORKDIR /tpp
 ENV PATH="/tpp/tools:${PATH}"
 
 CMD echo 'Usage: docker run --rm -v${PWD}:/tpp tpp make VERSION= jp -j4\n' \
-         'See https://github.com/Fluvian/tpp/blob/master/README.md for more information'
+         'See https://github.com/stalechilibeans/chili-tpp/blob/master/README.md for more information'
