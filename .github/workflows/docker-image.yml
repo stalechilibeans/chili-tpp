@@ -18,7 +18,7 @@ jobs:
       run: curl -L "https://drive.google.com/uc?export=download&id=1q4wA2GaeALgVH4e-lgyos0MA6nWNRWRk" > baserom.jp.z64
     
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag tpp
+      run: docker build . --file Dockerfile --tag sm64
       
     - name: Run the Docker image
-      run: docker run --rm --mount type=bind,source="$(pwd)",destination=/tpp tpp make -j
+      run: docker run --rm --mount type=bind,source="$(pwd)",destination=/sm64 sm64 make -j
