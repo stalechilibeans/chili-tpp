@@ -464,12 +464,20 @@ void update_walking_speed(struct MarioState *m) {
         m->forwardVel = 48.0f;
     }
 
-    if (m->forwardVel >= targetSpeed && m->forwardVel < 32.0f) {
-        m->forwardVel = m->intendedMag;
-    }
-
-    if (m->forwardVel > 32.0f && m-> intendedMag < 32.0f) {
-        m->forwardVel--;
+    if (m->action == ACT_HOLD_WALKING){
+        if (m->forwardVel >= targetSpeed && m->forwardVel < 13.0f) {
+            m->forwardVel = m->intendedMag;
+        }
+        if (m->forwardVel > 13.0f && m-> intendedMag < 13.0f) {
+            m->forwardVel--;
+        }
+    } else {
+        if (m->forwardVel >= targetSpeed && m->forwardVel < 32.0f) {
+            m->forwardVel = m->intendedMag;
+        }
+        if (m->forwardVel > 32.0f && m-> intendedMag < 32.0f) {
+            m->forwardVel--;
+        }
     }
 
     m->faceAngle[1] =
