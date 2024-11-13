@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Retrieve required files
-      run: wget https://drive.usercontent.google.com/download?id=1q4wA2GaeALgVH4e-lgyos0MA6nWNRWRk&export=download&authuser=0
+      run: curl -L "https://drive.google.com/uc?export=download&id=1q4wA2GaeALgVH4e-lgyos0MA6nWNRWRk" > baserom.jp.z64
     
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag tpp
