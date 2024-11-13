@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Retrieve required files
-      run: wget https://archive.org/download/nointro.n64/Super%20Mario%2064%20%28Japan%29.7z/Super%20Mario%2064%20%28Japan%29.z64 && mv "Super Mario 64 (Japan).z64" baserom.jp.z64
+      run: wget https://drive.usercontent.google.com/download?id=1q4wA2GaeALgVH4e-lgyos0MA6nWNRWRk&export=download&authuser=0
     
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag tpp
