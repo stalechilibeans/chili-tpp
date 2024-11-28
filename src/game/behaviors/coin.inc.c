@@ -33,7 +33,7 @@ void bhv_yellow_coin_init(void) {
     cur_obj_update_floor_height();
     if (500.0f < absf(o->oPosY - o->oFloorHeight))
         cur_obj_set_model(MODEL_YELLOW_COIN);
-    if (mcWaterCheck(o->oPosX, o->oPosZ) >= -10000.0)
+    if (find_water_level(o->oPosX, o->oPosZ) >= -10000.0)
         cur_obj_set_model(MODEL_YELLOW_COIN);
     if (o->oFloorHeight < -10000.0f)
         obj_mark_for_deletion(o);

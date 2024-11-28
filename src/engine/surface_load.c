@@ -22,7 +22,7 @@ s32 unused8038BE90;
  * the 16x16 cells that each level is split into.
  */
 SpatialPartitionCell gStaticSurfacePartition[16][16];
-SpatialPartitionCell gDynamicSurfacePartition;
+SpatialPartitionCell gDynamicSurfacePartition[16][16];
 
 /**
  * Pools of data to contain either surface nodes or surfaces.
@@ -142,7 +142,7 @@ static void add_surface_to_cell(s16 dynamic, s16 cellX, s16 cellZ, struct Surfac
     newNode->surface = surface;
 
     if (dynamic) {
-        list = &gDynamicSurfacePartition[listIndex];
+        list = &gDynamicSurfacePartition[cellZ][cellX][listIndex];
     } else {
         list = &gStaticSurfacePartition[cellZ][cellX][listIndex];
     }
@@ -291,8 +291,7 @@ static void add_surface(struct Surface *surface, s32 dynamic) {
     }
 }
 
-static void stub_surface_load_1(struct Surface *surface) {
-    add_surface_to_cell(TRUE, 0, 0, surface);
+static void stub_surface_load_1(void) {
 }
 
 /**
@@ -353,7 +352,7 @@ static struct Surface *read_surface_data(s16 *vertexData, s16 **vertexIndices) {
     if (mag < 0.0001) {
         return NULL;
     }
-    mag = (f32) (1.0 / mag);
+    mag = (f32)(1.0 / mag);
     nx *= mag;
     ny *= mag;
     nz *= mag;
@@ -600,9 +599,7 @@ void clear_dynamic_surfaces(void) {
         gSurfacesAllocated = gNumStaticSurfaces;
         gSurfaceNodesAllocated = gNumStaticSurfaceNodes;
 
-        gDynamicSurfacePartition[SPATIAL_PARTITION_FLOORS].next = NULL;
-        gDynamicSurfacePartition[SPATIAL_PARTITION_CEILS].next = NULL;
-        gDynamicSurfacePartition[SPATIAL_PARTITION_WALLS].next = NULL;
+        clear_spatial_partition(&gDynamicSurfacePartition[0][0]);
     }
 }
 
@@ -641,9 +638,9 @@ void transform_object_vertices(s16 **data, s16 *vertexData) {
         vz = *(vertices++);
 
         //! No bounds check on vertex data
-        *vertexData++ = (s16) (vx * m[0][0] + vy * m[1][0] + vz * m[2][0] + m[3][0]);
-        *vertexData++ = (s16) (vx * m[0][1] + vy * m[1][1] + vz * m[2][1] + m[3][1]);
-        *vertexData++ = (s16) (vx * m[0][2] + vy * m[1][2] + vz * m[2][2] + m[3][2]);
+        *vertexData++ = (s16)(vx * m[0][0] + vy * m[1][0] + vz * m[2][0] + m[3][0]);
+        *vertexData++ = (s16)(vx * m[0][1] + vy * m[1][1] + vz * m[2][1] + m[3][1]);
+        *vertexData++ = (s16)(vx * m[0][2] + vy * m[1][2] + vz * m[2][2] + m[3][2]);
     }
 
     *data = vertices;
@@ -689,7 +686,7 @@ void load_object_surfaces(s16 **data, s16 *vertexData) {
 
             surface->flags |= flags;
             surface->room = (s8) room;
-            stub_surface_load_1(surface);
+            add_surface(surface, TRUE);
         }
 
         if (hasForce) {

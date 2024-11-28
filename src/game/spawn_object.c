@@ -298,7 +298,7 @@ struct Object *allocate_object(struct ObjectNode *objList) {
 static void snap_object_to_floor(struct Object *obj) {
     struct Surface *surface;
 
-    obj->oFloorHeight = mcBGGroundCheck(obj->oPosX, obj->oPosY, obj->oPosZ, &surface);
+    obj->oFloorHeight = find_floor(obj->oPosX, obj->oPosY, obj->oPosZ, &surface);
 
     if (obj->oFloorHeight + 2.0f > obj->oPosY && obj->oPosY > obj->oFloorHeight - 10.0f) {
         obj->oPosY = obj->oFloorHeight;

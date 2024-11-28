@@ -257,7 +257,7 @@ void bhv_fish_loop(void) {
      * In SA oFishWaterLevel is set to zero because fish cannot exit the water.
      * This prevents accidental deletion.
      */
-    o->oFishWaterLevel = mcWaterCheck(o->oPosX, o->oPosZ);
+    o->oFishWaterLevel = find_water_level(o->oPosX, o->oPosZ);
     if (gCurrLevelNum == LEVEL_SA) {
         o->oFishWaterLevel = 0.0f;
     }

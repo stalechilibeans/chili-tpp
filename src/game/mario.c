@@ -528,7 +528,7 @@ struct Surface *resolve_and_return_wall_collisions(Vec3f pos, f32 offset, f32 ra
     collisionData.radius = radius;
     collisionData.offsetY = offset;
 
-    if (mcWallCheck(&collisionData)) {
+    if (find_wall_collisions(&collisionData)) {
         wall = collisionData.walls[collisionData.numWalls - 1];
     }
 
@@ -547,7 +547,7 @@ struct Surface *resolve_and_return_wall_collisions(Vec3f pos, f32 offset, f32 ra
 f32 vec3f_find_ceil(Vec3f pos, f32 height, struct Surface **ceil) {
     UNUSED f32 unused;
 
-    return mcBGRoofCheck(pos[0], height + 80.0f, pos[2], ceil);
+    return find_ceil(pos[0], height + 80.0f, pos[2], ceil);
 }
 
 /**
@@ -679,7 +679,7 @@ f32 find_floor_height_relative_polar(struct MarioState *m, s16 angleFromMario, f
     f32 y = sins(m->faceAngle[1] + angleFromMario) * distFromMario;
     f32 x = coss(m->faceAngle[1] + angleFromMario) * distFromMario;
 
-    floorY = mcBGGroundCheck(m->pos[0] + y, m->pos[1] + 100.0f, m->pos[2] + x, &floor);
+    floorY = find_floor(m->pos[0] + y, m->pos[1] + 100.0f, m->pos[2] + x, &floor);
 
     return floorY;
 }
@@ -696,8 +696,8 @@ s16 find_floor_slope(struct MarioState *m, s16 yawOffset) {
     f32 x = sins(m->faceAngle[1] + yawOffset) * 5.0f;
     f32 z = coss(m->faceAngle[1] + yawOffset) * 5.0f;
 
-    forwardFloorY = mcBGGroundCheck(m->pos[0] + x, m->pos[1] + 100.0f, m->pos[2] + z, &floor);
-    backwardFloorY = mcBGGroundCheck(m->pos[0] - x, m->pos[1] + 100.0f, m->pos[2] - z, &floor);
+    forwardFloorY = find_floor(m->pos[0] + x, m->pos[1] + 100.0f, m->pos[2] + z, &floor);
+    backwardFloorY = find_floor(m->pos[0] - x, m->pos[1] + 100.0f, m->pos[2] - z, &floor);
 
     //! If Mario is near OOB, these floorY's can sometimes be -11000.
     //  This will cause these to be off and give improper slopes.
@@ -1338,10 +1338,10 @@ void update_mario_geometry_inputs(struct MarioState *m) {
     f32 gasLevel;
     f32 ceilToFloorDist;
 
-    WallCheck(&m->pos[0], &m->pos[1], &m->pos[2], 60.0f, 50.0f);
-    WallCheck(&m->pos[0], &m->pos[1], &m->pos[2], 30.0f, 24.0f);
+    f32_find_wall_collision(&m->pos[0], &m->pos[1], &m->pos[2], 60.0f, 50.0f);
+    f32_find_wall_collision(&m->pos[0], &m->pos[1], &m->pos[2], 30.0f, 24.0f);
 
-    m->floorHeight = mcBGGroundCheck(m->pos[0], m->pos[1], m->pos[2], &m->floor);
+    m->floorHeight = find_floor(m->pos[0], m->pos[1], m->pos[2], &m->floor);
 
     // If Mario is OOB, move his position to his graphical position (which was not updated)
     // and check for the floor there.
@@ -1349,12 +1349,12 @@ void update_mario_geometry_inputs(struct MarioState *m) {
     // since the graphical position was not Mario's previous location.
     if (m->floor == NULL) {
         vec3f_copy(m->pos, m->marioObj->header.gfx.pos);
-        m->floorHeight = mcBGGroundCheck(m->pos[0], m->pos[1], m->pos[2], &m->floor);
+        m->floorHeight = find_floor(m->pos[0], m->pos[1], m->pos[2], &m->floor);
     }
 
     m->ceilHeight = vec3f_find_ceil(&m->pos[0], m->floorHeight, &m->ceil);
     gasLevel = find_poison_gas_level(m->pos[0], m->pos[2]);
-    m->waterLevel = mcWaterCheck(m->pos[0], m->pos[2]);
+    m->waterLevel = find_water_level(m->pos[0], m->pos[2]);
 
     if (m->floor) {
         m->floorAngle = atan2s(m->floor->normal.z, m->floor->normal.x);
@@ -1823,7 +1823,7 @@ void init_mario(void) {
     gMarioState->riddenObj = NULL;
     gMarioState->usedObj = NULL;
 
-    gMarioState->waterLevel = mcWaterCheck(gMarioSpawnInfo->startPos[0], gMarioSpawnInfo->startPos[2]);
+    gMarioState->waterLevel = find_water_level(gMarioSpawnInfo->startPos[0], gMarioSpawnInfo->startPos[2]);
 
     gMarioState->area = gCurrentArea;
     gMarioState->marioObj = gMarioObject;
@@ -1832,7 +1832,7 @@ void init_mario(void) {
     vec3s_set(gMarioState->angleVel, 0, 0, 0);
     vec3s_to_vec3f(gMarioState->pos, gMarioSpawnInfo->startPos);
     vec3f_set(gMarioState->vel, 0, 0, 0);
-    gMarioState->floorHeight = mcBGGroundCheck(gMarioState->pos[0], gMarioState->pos[1],
+    gMarioState->floorHeight = find_floor(gMarioState->pos[0], gMarioState->pos[1],
                                                gMarioState->pos[2], &gMarioState->floor);
 
     if (gMarioState->pos[1] < gMarioState->floorHeight) {

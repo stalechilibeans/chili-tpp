@@ -17,7 +17,7 @@ s32 check_if_moving_over_floor(f32 a0, f32 a1) {
     f32 sp20 = o->oPosX + sins(o->oMoveAngleYaw) * a1;
     f32 floorHeight;
     f32 sp18 = o->oPosZ + coss(o->oMoveAngleYaw) * a1;
-    floorHeight = mcBGGroundCheck(sp20, o->oPosY, sp18, &sp24);
+    floorHeight = find_floor(sp20, o->oPosY, sp18, &sp24);
     if (absf(floorHeight - o->oPosY) < a0) // abs
         return 1;
     else

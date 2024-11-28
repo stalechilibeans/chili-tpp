@@ -174,8 +174,8 @@ void print_mapinfo(void) {
     area = ((s32) gCurrentObject->oPosX + 0x2000) / 1024
            + ((s32) gCurrentObject->oPosZ + 0x2000) / 1024 * 16;
 
-    bgY = mcBGGroundCheck(gCurrentObject->oPosX, gCurrentObject->oPosY, gCurrentObject->oPosZ, &pfloor);
-    water = mcWaterCheck(gCurrentObject->oPosX, gCurrentObject->oPosZ);
+    bgY = find_floor(gCurrentObject->oPosX, gCurrentObject->oPosY, gCurrentObject->oPosZ, &pfloor);
+    water = find_water_level(gCurrentObject->oPosX, gCurrentObject->oPosZ);
 
     print_debug_top_down_normal("mapinfo", 0);
     print_debug_top_down_mapinfo("area %x", area);
@@ -212,8 +212,8 @@ void print_mapinfo(void) {
     // area  = ((s32)gCurrentObject->oPosX + 0x2000) / 1024
     //      + ((s32)gCurrentObject->oPosZ + 0x2000) / 1024 * 16;
     //
-    bgY = mcBGGroundCheck(gCurrentObject->oPosX, gCurrentObject->oPosY, gCurrentObject->oPosZ, &pfloor);
-    water = mcWaterCheck(gCurrentObject->oPosX, gCurrentObject->oPosZ);
+    bgY = find_floor(gCurrentObject->oPosX, gCurrentObject->oPosY, gCurrentObject->oPosZ, &pfloor);
+    water = find_water_level(gCurrentObject->oPosX, gCurrentObject->oPosZ);
 
     print_debug_top_down_normal("mapinfo", 0);
     // print_debug_top_down_mapinfo("area %x", area);

@@ -733,7 +733,7 @@ void set_camera_height(struct Camera *c, f32 goalHeight) {
     UNUSED u8 filler[8];
     UNUSED s16 action = sMarioCamState->action;
     f32 baseOff = 125.f;
-    f32 camCeilHeight = mcBGRoofCheck(c->pos[0], gLakituState.goalPos[1] - 50.f, c->pos[2], &surface);
+    f32 camCeilHeight = find_ceil(c->pos[0], gLakituState.goalPos[1] - 50.f, c->pos[2], &surface);
 
     if (sMarioCamState->action & ACT_FLAG_HANGING) {
         marioCeilHeight = sMarioGeometry.currCeilHeight;
@@ -751,7 +751,7 @@ void set_camera_height(struct Camera *c, f32 goalHeight) {
 
         approach_camera_height(c, goalHeight, 5.f);
     } else {
-        camFloorHeight = mcBGGroundCheck(c->pos[0], c->pos[1] + 100.f, c->pos[2], &surface) + baseOff;
+        camFloorHeight = find_floor(c->pos[0], c->pos[1] + 100.f, c->pos[2], &surface) + baseOff;
         marioFloorHeight = baseOff + sMarioGeometry.currFloorHeight;
 
         if (camFloorHeight < marioFloorHeight) {
@@ -793,7 +793,7 @@ s16 look_down_slopes(s16 camYaw) {
     f32 xOff = sMarioCamState->pos[0] + sins(camYaw) * 40.f;
     f32 zOff = sMarioCamState->pos[2] + coss(camYaw) * 40.f;
 
-    floorDY = mcBGGroundCheck(xOff, sMarioCamState->pos[1], zOff, &floor) - sMarioCamState->pos[1];
+    floorDY = find_floor(xOff, sMarioCamState->pos[1], zOff, &floor) - sMarioCamState->pos[1];
 
     if (floor != NULL) {
         if (floor->type != SURFACE_WALL_MISC && floorDY > 0) {
@@ -1411,7 +1411,7 @@ s32 update_fixed_camera(struct Camera *c, Vec3f focus, UNUSED Vec3f pos) {
         goalHeight += 300 - distCamToFocus;
     }
 
-    ceilHeight = mcBGRoofCheck(c->pos[0], goalHeight - 100.f, c->pos[2], &ceiling);
+    ceilHeight = find_ceil(c->pos[0], goalHeight - 100.f, c->pos[2], &ceiling);
     if (ceilHeight != 20000.f) {
         if (goalHeight > (ceilHeight -= 125.f)) {
             goalHeight = ceilHeight;
@@ -1515,7 +1515,7 @@ s32 update_boss_fight_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
     // When C-Down is not active, this
     vec3f_set_dist_and_angle(focus, pos, focusDistance, 0x1000, yaw);
     // Find the floor of the arena
-    pos[1] = mcBGGroundCheck(c->areaCenX, 20000.f, c->areaCenZ, &floor);
+    pos[1] = find_floor(c->areaCenX, 20000.f, c->areaCenZ, &floor);
     if (floor != NULL) {
         nx = floor->normal.x;
         ny = floor->normal.y;
@@ -1738,14 +1738,14 @@ s32 mode_behind_mario(struct Camera *c) {
 
     // Keep the camera above the water surface if swimming
     if (c->mode == CAMERA_MODE_WATER_SURFACE) {
-        floorHeight = mcBGGroundCheck(c->pos[0], c->pos[1], c->pos[2], &floor);
+        floorHeight = find_floor(c->pos[0], c->pos[1], c->pos[2], &floor);
         newPos[1] = marioState->waterLevel + 120;
         if (newPos[1] < (floorHeight += 120.f)) {
             newPos[1] = floorHeight;
         }
     }
     approach_camera_height(c, newPos[1], 50.f);
-    waterHeight = mcWaterCheck(c->pos[0], c->pos[2]) + 100.f;
+    waterHeight = find_water_level(c->pos[0], c->pos[2]) + 100.f;
     if (c->pos[1] <= waterHeight) {
         gCameraMovementFlags |= CAM_MOVE_SUBMERGED;
     } else {
@@ -1820,7 +1820,7 @@ s16 update_slide_camera(struct Camera *c) {
         sStatusFlags |= CAM_FLAG_BLOCK_SMOOTH_MOVEMENT;
 
         // Stay above the slide floor
-        floorHeight = mcBGGroundCheck(c->pos[0], c->pos[1] + 200.f, c->pos[2], &floor) + 125.f;
+        floorHeight = find_floor(c->pos[0], c->pos[1] + 200.f, c->pos[2], &floor) + 125.f;
         if (c->pos[1] < floorHeight) {
             c->pos[1] = floorHeight;
         }
@@ -1896,7 +1896,7 @@ s16 update_default_camera(struct Camera *c) {
     UNUSED s16 nextYawVel;
     s32 avoidStatus = 0;
     f32 ceilHeight =
-        mcBGRoofCheck(gLakituState.goalPos[0], gLakituState.goalPos[1], gLakituState.goalPos[2], &ceil);
+        find_ceil(gLakituState.goalPos[0], gLakituState.goalPos[1], gLakituState.goalPos[2], &ceil);
 
     handle_c_button_movement(c);
     vec3f_get_dist_and_angle(sMarioCamState->pos, c->pos, &dist, &pitch, &yaw);
@@ -2001,10 +2001,10 @@ s16 update_default_camera(struct Camera *c) {
 
     marioFloorHeight = 125.f + sMarioGeometry.currFloorHeight;
     marioFloor = sMarioGeometry.currFloor;
-    camFloorHeight = mcBGGroundCheck(cPos[0], cPos[1] + 50.f, cPos[2], &cFloor) + 125.f;
+    camFloorHeight = find_floor(cPos[0], cPos[1] + 50.f, cPos[2], &cFloor) + 125.f;
     for (scale = 0.1f; scale < 1.f; scale += 0.2f) {
         scale_along_line(tempPos, cPos, sMarioCamState->pos, scale);
-        tempFloorHeight = mcBGGroundCheck(tempPos[0], tempPos[1], tempPos[2], &tempFloor) + 125.f;
+        tempFloorHeight = find_floor(tempPos[0], tempPos[1], tempPos[2], &tempFloor) + 125.f;
         if (tempFloor != NULL && tempFloorHeight > marioFloorHeight) {
             marioFloorHeight = tempFloorHeight;
             marioFloor = tempFloor;
@@ -2019,7 +2019,7 @@ s16 update_default_camera(struct Camera *c) {
     }
 
     // If there's water below the camera, decide whether to keep the camera above the water surface
-    waterHeight = mcWaterCheck(cPos[0], cPos[2]);
+    waterHeight = find_water_level(cPos[0], cPos[2]);
     if (waterHeight != -11000.f) {
         waterHeight += 125.f;
         distFromWater = waterHeight - marioFloorHeight;
@@ -2217,7 +2217,7 @@ s32 update_spiral_stairs_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
     checkPos[0] = focus[0] + (cPos[0] - focus[0]) * 0.7f;
     checkPos[1] = focus[1] + (cPos[1] - focus[1]) * 0.7f + 300.f;
     checkPos[2] = focus[2] + (cPos[2] - focus[2]) * 0.7f;
-    floorHeight = mcBGGroundCheck(checkPos[0], checkPos[1] + 50.f, checkPos[2], &floor);
+    floorHeight = find_floor(checkPos[0], checkPos[1] + 50.f, checkPos[2], &floor);
 
     if (floorHeight != -11000.f) {
         if (floorHeight < sMarioGeometry.currFloorHeight) {
@@ -2340,7 +2340,7 @@ s32 exit_c_up(struct Camera *c) {
                 vec3f_set_dist_and_angle(checkFoc, curPos, curDist, 0, curYaw + checkYaw);
 
                 // If there are no walls this way,
-                if (WallCheck(&curPos[0], &curPos[1], &curPos[2], 20.f, 50.f) == 0) {
+                if (f32_find_wall_collision(&curPos[0], &curPos[1], &curPos[2], 20.f, 50.f) == 0) {
 
                     // Start close to mario, check for walls, floors, and ceilings all the way to the
                     // zoomed out distance
@@ -2349,18 +2349,18 @@ s32 exit_c_up(struct Camera *c) {
 
                         // Check if we're zooming out into a floor or ceiling
                         ceilHeight =
-                            mcBGRoofCheck(curPos[0], curPos[1] - 150.f, curPos[2], &surface) + -10.f;
+                            find_ceil(curPos[0], curPos[1] - 150.f, curPos[2], &surface) + -10.f;
                         if (surface != NULL && ceilHeight < curPos[1]) {
                             break;
                         }
                         floorHeight =
-                            mcBGGroundCheck(curPos[0], curPos[1] + 150.f, curPos[2], &surface) + 10.f;
+                            find_floor(curPos[0], curPos[1] + 150.f, curPos[2], &surface) + 10.f;
                         if (surface != NULL && floorHeight > curPos[1]) {
                             break;
                         }
 
                         // Stop checking this direction if there is a wall blocking the way
-                        if (WallCheck(&curPos[0], &curPos[1], &curPos[2], 20.f, 50.f) == 1) {
+                        if (f32_find_wall_collision(&curPos[0], &curPos[1], &curPos[2], 20.f, 50.f) == 1) {
                             break;
                         }
                     }
@@ -2750,7 +2750,7 @@ void update_lakitu(struct Camera *c) {
 
         if (c->mode != CAMERA_MODE_C_UP && c->cutscene == 0) {
             gCheckingSurfaceCollisionsForCamera = TRUE;
-            distToFloor = mcBGGroundCheck(gLakituState.pos[0], gLakituState.pos[1] + 20.0f,
+            distToFloor = find_floor(gLakituState.pos[0], gLakituState.pos[1] + 20.0f,
                                           gLakituState.pos[2], &floor);
             if (distToFloor != -11000.f) {
                 if (gLakituState.pos[1] < (distToFloor += 100.0f)) {
@@ -3158,7 +3158,7 @@ void init_camera(struct Camera *c) {
     // Set the camera pos to marioOffset (relative to mario), added to mario's position
     offset_rotated(c->pos, sMarioCamState->pos, marioOffset, sMarioCamState->faceAngle);
     if (c->mode != CAMERA_MODE_BEHIND_MARIO) {
-        c->pos[1] = mcBGGroundCheck(sMarioCamState->pos[0], sMarioCamState->pos[1] + 100.f,
+        c->pos[1] = find_floor(sMarioCamState->pos[0], sMarioCamState->pos[1] + 100.f,
                                     sMarioCamState->pos[2], &floor)
                     + 125.f;
     }
@@ -3685,7 +3685,7 @@ s32 collide_with_walls(Vec3f pos, f32 offsetY, f32 radius) {
     collisionData.z = pos[2];
     collisionData.radius = radius;
     collisionData.offsetY = offsetY;
-    numCollisions = mcWallCheck(&collisionData);
+    numCollisions = find_wall_collisions(&collisionData);
     if (numCollisions != 0) {
         for (i = 0; i < collisionData.numWalls; i++) {
             wall = collisionData.walls[collisionData.numWalls - 1];
@@ -5164,13 +5164,13 @@ s16 next_lakitu_state(Vec3f newPos, Vec3f newFoc, Vec3f curPos, Vec3f curFoc, Ve
         vec3f_copy(newPos, nextPos);
 
         if (gCamera->cutscene != 0 || !(gCameraMovementFlags & CAM_MOVE_C_UP_MODE)) {
-            floorHeight = mcBGGroundCheck(newPos[0], newPos[1], newPos[2], &floor);
+            floorHeight = find_floor(newPos[0], newPos[1], newPos[2], &floor);
             if (floorHeight != -11000.f) {
                 if ((floorHeight += 125.f) > newPos[1]) {
                     newPos[1] = floorHeight;
                 }
             }
-            WallCheck(&newPos[0], &newPos[1], &newPos[2], 0.f, 100.f);
+            f32_find_wall_collision(&newPos[0], &newPos[1], &newPos[2], 0.f, 100.f);
         }
         sModeTransition.framesLeft--;
         yaw = calculate_yaw(newFoc, newPos);
@@ -5526,7 +5526,7 @@ BAD_RETURN(s32) cam_castle_lobby_entrance(UNUSED struct Camera *c) {
  */
 BAD_RETURN(s32) cam_castle_look_upstairs(struct Camera *c) {
     struct Surface *floor;
-    f32 floorHeight = mcBGGroundCheck(c->pos[0], c->pos[1], c->pos[2], &floor);
+    f32 floorHeight = find_floor(c->pos[0], c->pos[1], c->pos[2], &floor);
 
     // If mario is on the first few steps, fix the camera pos, making it look up
     if ((sMarioGeometry.currFloorHeight > 1229.f) && (floorHeight < 1229.f) && (sCSideButtonYaw == 0)) {
@@ -5539,7 +5539,7 @@ BAD_RETURN(s32) cam_castle_look_upstairs(struct Camera *c) {
  */
 BAD_RETURN(s32) cam_castle_basement_look_downstairs(struct Camera *c) {
     struct Surface *floor;
-    f32 floorHeight = mcBGGroundCheck(c->pos[0], c->pos[1], c->pos[2], &floor);
+    f32 floorHeight = find_floor(c->pos[0], c->pos[1], c->pos[2], &floor);
 
     // Fix the camera pos, making it look downwards. Only active on the top few steps
     if ((floorHeight > -110.f) && (sCSideButtonYaw == 0)) {
@@ -6364,9 +6364,9 @@ void resolve_geometry_collisions(Vec3f pos, UNUSED Vec3f lastGood) {
     f32 ceilY, floorY;
     struct Surface *surf;
 
-    WallCheck(&pos[0], &pos[1], &pos[2], 0.f, 100.f);
-    floorY = mcBGGroundCheck(pos[0], pos[1] + 50.f, pos[2], &surf);
-    ceilY = mcBGRoofCheck(pos[0], pos[1] - 50.f, pos[2], &surf);
+    f32_find_wall_collision(&pos[0], &pos[1], &pos[2], 0.f, 100.f);
+    floorY = find_floor(pos[0], pos[1] + 50.f, pos[2], &surf);
+    ceilY = find_ceil(pos[0], pos[1] - 50.f, pos[2], &surf);
 
     if ((-11000.f != floorY) && (20000.f == ceilY)) {
         if (pos[1] < (floorY += 125.f)) {
@@ -6447,7 +6447,7 @@ s32 rotate_camera_around_walls(struct Camera *c, Vec3f cPos, s16 *avoidYaw, s16 
         // Increase the coarse check radius
         camera_approach_f32_symmetric_bool(&coarseRadius, 250.f, 30.f);
 
-        if (mcWallCheck(&colData) != 0) {
+        if (find_wall_collisions(&colData) != 0) {
             wall = colData.walls[colData.numWalls - 1];
 
             // If we're over halfway from mario to lakitu, then there's a wall near the camera, but
@@ -6472,7 +6472,7 @@ s32 rotate_camera_around_walls(struct Camera *c, Vec3f cPos, s16 *avoidYaw, s16 
             // Increase the fine check radius
             camera_approach_f32_symmetric_bool(&fineRadius, 200.f, 20.f);
 
-            if (mcWallCheck(&colData) != 0) {
+            if (find_wall_collisions(&colData) != 0) {
                 wall = colData.walls[colData.numWalls - 1];
                 horWallNorm = atan2s(wall->normal.z, wall->normal.x);
                 wallYaw = horWallNorm + DEGREES(90);
@@ -6508,7 +6508,7 @@ void find_mario_floor_and_ceil(struct PlayerGeometry *pg) {
     s16 tempCheckingSurfaceCollisionsForCamera = gCheckingSurfaceCollisionsForCamera;
     gCheckingSurfaceCollisionsForCamera = TRUE;
 
-    if (mcBGGroundCheck(sMarioCamState->pos[0], sMarioCamState->pos[1] + 10.f, sMarioCamState->pos[2],
+    if (find_floor(sMarioCamState->pos[0], sMarioCamState->pos[1] + 10.f, sMarioCamState->pos[2],
                         &surf)
         != -11000.f) {
         pg->currFloorType = surf->type;
@@ -6516,7 +6516,7 @@ void find_mario_floor_and_ceil(struct PlayerGeometry *pg) {
         pg->currFloorType = 0;
     }
 
-    if (mcBGRoofCheck(sMarioCamState->pos[0], sMarioCamState->pos[1] - 10.f, sMarioCamState->pos[2],
+    if (find_ceil(sMarioCamState->pos[0], sMarioCamState->pos[1] - 10.f, sMarioCamState->pos[2],
                       &surf)
         != 20000.f) {
         pg->currCeilType = surf->type;
@@ -6525,11 +6525,11 @@ void find_mario_floor_and_ceil(struct PlayerGeometry *pg) {
     }
 
     gCheckingSurfaceCollisionsForCamera = FALSE;
-    pg->currFloorHeight = mcBGGroundCheck(sMarioCamState->pos[0], sMarioCamState->pos[1] + 10.f,
+    pg->currFloorHeight = find_floor(sMarioCamState->pos[0], sMarioCamState->pos[1] + 10.f,
                                           sMarioCamState->pos[2], &pg->currFloor);
-    pg->currCeilHeight = mcBGRoofCheck(sMarioCamState->pos[0], sMarioCamState->pos[1] - 10.f,
+    pg->currCeilHeight = find_ceil(sMarioCamState->pos[0], sMarioCamState->pos[1] - 10.f,
                                        sMarioCamState->pos[2], &pg->currCeil);
-    pg->waterHeight = mcWaterCheck(sMarioCamState->pos[0], sMarioCamState->pos[2]);
+    pg->waterHeight = find_water_level(sMarioCamState->pos[0], sMarioCamState->pos[2]);
     gCheckingSurfaceCollisionsForCamera = tempCheckingSurfaceCollisionsForCamera;
 }
 
@@ -8725,7 +8725,7 @@ BAD_RETURN(s32) cutscene_non_painting_set_cam_pos(struct Camera *c) {
         default:
             offset_rotated(c->pos, sCutsceneVars[7].point, sCutsceneVars[5].point,
                            sCutsceneVars[7].angle);
-            c->pos[1] = mcBGGroundCheck(c->pos[0], c->pos[1] + 1000.f, c->pos[2], &floor) + 125.f;
+            c->pos[1] = find_floor(c->pos[0], c->pos[1] + 1000.f, c->pos[2], &floor) + 125.f;
             break;
     }
 }
@@ -9672,7 +9672,7 @@ BAD_RETURN(s32) cutscene_exit_painting_move_to_floor(struct Camera *c) {
     Vec3f floorHeight;
 
     vec3f_copy(floorHeight, sMarioCamState->pos);
-    floorHeight[1] = mcBGGroundCheck(sMarioCamState->pos[0], sMarioCamState->pos[1] + 10.f,
+    floorHeight[1] = find_floor(sMarioCamState->pos[0], sMarioCamState->pos[1] + 10.f,
                                      sMarioCamState->pos[2], &floor);
 
     if (floor != NULL) {
@@ -9781,7 +9781,7 @@ BAD_RETURN(s32) cutscene_enter_cannon_raise(struct Camera *c) {
         offset_rotated(c->focus, c->focus, cannonFocus, cannonAngle);
     }
 
-    floorHeight = mcBGGroundCheck(c->pos[0], c->pos[1] + 500.f, c->pos[2], &floor) + 100.f;
+    floorHeight = find_floor(c->pos[0], c->pos[1] + 500.f, c->pos[2], &floor) + 100.f;
 
     if (c->pos[1] < floorHeight) {
         c->pos[1] = floorHeight;

@@ -263,10 +263,10 @@ static s32 perform_ground_quarter_step(struct MarioState *m, Vec3f nextPos) {
     lowerWall = resolve_and_return_wall_collisions(nextPos, 30.0f, 24.0f);
     upperWall = resolve_and_return_wall_collisions(nextPos, 60.0f, 50.0f);
 
-    floorHeight = mcBGGroundCheck(nextPos[0], nextPos[1], nextPos[2], &floor);
+    floorHeight = find_floor(nextPos[0], nextPos[1], nextPos[2], &floor);
     ceilHeight = vec3f_find_ceil(nextPos, floorHeight, &ceil);
 
-    waterLevel = mcWaterCheck(nextPos[0], nextPos[2]);
+    waterLevel = find_water_level(nextPos[0], nextPos[2]);
 
     m->wall = upperWall;
 
@@ -364,7 +364,7 @@ u32 check_ledge_grab(struct MarioState *m, struct Surface *wall, Vec3f intendedP
     // a higher ledge than expected (glitchy ledge grab)
     ledgePos[0] = nextPos[0] - wall->normal.x * 60.0f;
     ledgePos[2] = nextPos[2] - wall->normal.z * 60.0f;
-    ledgePos[1] = mcBGGroundCheck(ledgePos[0], nextPos[1] + 160.0f, ledgePos[2], &ledgeFloor);
+    ledgePos[1] = find_floor(ledgePos[0], nextPos[1] + 160.0f, ledgePos[2], &ledgeFloor);
 
     if (ledgePos[1] - nextPos[1] <= 100.0f) {
         return 0;
@@ -397,10 +397,10 @@ s32 perform_air_quarter_step(struct MarioState *m, Vec3f intendedPos, u32 stepAr
     upperWall = resolve_and_return_wall_collisions(nextPos, 150.0f, 50.0f);
     lowerWall = resolve_and_return_wall_collisions(nextPos, 30.0f, 50.0f);
 
-    floorHeight = mcBGGroundCheck(nextPos[0], nextPos[1], nextPos[2], &floor);
+    floorHeight = find_floor(nextPos[0], nextPos[1], nextPos[2], &floor);
     ceilHeight = vec3f_find_ceil(nextPos, floorHeight, &ceil);
 
-    waterLevel = mcWaterCheck(nextPos[0], nextPos[2]);
+    waterLevel = find_water_level(nextPos[0], nextPos[2]);
 
     m->wall = NULL;
 

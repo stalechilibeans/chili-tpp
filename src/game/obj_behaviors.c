@@ -149,7 +149,7 @@ s32 obj_find_wall(f32 objNewX, f32 objY, f32 objNewZ, f32 objVelX, f32 objVelZ) 
     hitbox.offsetY = o->hitboxHeight / 2;
     hitbox.radius = o->hitboxRadius;
 
-    if (mcWallCheck(&hitbox) != 0) {
+    if (find_wall_collisions(&hitbox) != 0) {
         o->oPosX = hitbox.x;
         o->oPosY = hitbox.y;
         o->oPosZ = hitbox.z;
@@ -430,9 +430,9 @@ s16 object_step(void) {
         collisionFlags += OBJ_COL_FLAG_HIT_WALL;
     }
 
-    floorY = mcBGGroundCheck(objX + objVelX, objY, objZ + objVelZ, &sObjFloor);
+    floorY = find_floor(objX + objVelX, objY, objZ + objVelZ, &sObjFloor);
     if (turn_obj_away_from_steep_floor(sObjFloor, floorY, objVelX, objVelZ) == 1) {
-        waterY = mcWaterCheck(objX + objVelX, objZ + objVelZ);
+        waterY = find_water_level(objX + objVelX, objZ + objVelZ);
         if (waterY > objY) {
             calc_new_obj_vel_and_pos_y_underwater(sObjFloor, floorY, objVelX, objVelZ, waterY);
             collisionFlags += OBJ_COL_FLAG_UNDERWATER;
@@ -598,7 +598,7 @@ s32 obj_find_wall_displacement(Vec3f dist, f32 x, f32 y, f32 z, f32 radius) {
     hitbox.offsetY = 10.0f;
     hitbox.radius = radius;
 
-    if (mcWallCheck(&hitbox) != 0) {
+    if (find_wall_collisions(&hitbox) != 0) {
         dist[0] = hitbox.x - x;
         dist[1] = hitbox.y - y;
         dist[2] = hitbox.z - z;
