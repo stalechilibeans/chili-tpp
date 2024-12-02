@@ -1,6 +1,6 @@
 # chili-tpp
 
-'chili-tpp' is a fan-made continuation of The Preservation Project, which aims to continue the hack's legacy.
+'chili-tpp' is a fan continuation of The Preservation Project, which aims to improve the hack's overall accuracy as well as continuing its legacy.
 
 ## Credits
 
