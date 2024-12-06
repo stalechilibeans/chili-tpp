@@ -62,4 +62,6 @@
 
 *CreamDream*
 
+*Diamond Hero*
+
 ### Original Super Mario 64 Decompilation Team
