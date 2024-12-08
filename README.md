@@ -2,6 +2,8 @@
 
 'chili-tpp' is a fan continuation of The Preservation Project, which aims to improve the hack's overall accuracy as well as continuing its legacy.
 
+December 8, 2024: This repository will be archived from now on as there is something far better in the works aiming to replace this.
+
 ## Credits
 
 ### Original 'The Preservation Project' Team
