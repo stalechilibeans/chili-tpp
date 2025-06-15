@@ -4,6 +4,8 @@
 
 December 8, 2024: This repository will be archived from now on as there is something far better in the works aiming to replace this.
 
+June 14, 2025: This repository is now outdated, go check out [this one](https://github.com/96flashbacks/showfloor) instead.
+
 ## Credits
 
 ### Original 'The Preservation Project' Team
